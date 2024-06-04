@@ -1,0 +1,194 @@
+---
+title: "01 - Introduction"
+author: "Stefano Coretta"
+format:
+  mono-light-revealjs:
+    theme: [default, custom.scss]
+    history: false
+filters:
+  - tachyonsextra
+---
+
+```{r}
+#| label: setup
+
+library(tidyverse)
+theme_set(theme_light())
+library(coretta2018itapol)
+library(brms)
+```
+
+
+## Statistical modelling
+
+...
+
+## Statistical inference
+
+...
+
+## Two frameworks of inference
+
+...
+
+## Frequentist framework
+
+...
+
+## Bayesian framework
+
+...
+
+## Bayesian regression: basics
+
+::: box-note
+
+- R package brms.
+
+- Same syntax as lme4.
+
+- One function to fit many types of regression models: `brm()`.
+
+:::
+
+## Example data: background
+
+...
+
+## Example data: the data frame
+
+```{r}
+#| label: data
+
+library(coretta2018itapol)
+data("token_measures")
+
+token_measures
+```
+
+## Vowel duration and consonant voicing
+
+```{r}
+#| label: vdur-strip
+token_measures |> 
+  ggplot(aes(c2_phonation, v1_duration)) +
+  geom_jitter(width = 0.2, alpha = 0.1) +
+  stat_summary(fun.data = "mean_cl_boot", colour = "purple") +
+  facet_grid(cols = vars(language))
+```
+
+
+## Vowel duration
+
+```{r}
+#| label: vdur-dens
+token_measures |> 
+ggplot(aes(v2_duration)) +
+geom_density(fill = "purple", alpha = 0.5) +
+geom_rug(alpha = 0.1)
+```
+
+## Gaussian model of vowel duration
+
+$$
+\begin{align}
+dur & \sim Gaussian(\mu, \sigma)
+\end{align}
+$$
+
+- $dur$ is vowel duration
+
+- $\sim$ means "is distributed/generated according to".
+
+- $Gaussian(\mu, \sigma)$ a Gaussian distribution with mean $\mu$ and standard deviation $\sigma$.
+
+## Fit the model with brms
+
+```{r}
+#| label: m-1
+
+m_1 <- brm(
+  v2_duration ~ 1,
+  family = gaussian,
+  data = token_measures,
+  cores = 4,
+  file = "data/cache/m_1",
+)
+```
+
+## Model summary
+
+```{r}
+#| label: m-1-summary
+
+summary(m_1)
+```
+
+## Model summary: 80% CrIs
+
+```{r}
+#| label: m-1-summary-0.8
+summary(m_1, prob = 0.8)
+```
+
+## Plot posterior probability distributions
+
+```{r}
+#| label: m-1-plot
+
+plot(m_1, combo = c("dens", "trace"))
+```
+
+## Diagnostics: posterior predictive checks
+
+```{r}
+#| label: m-1-pp-check
+pp_check(m_1, ndraws = 50)
+```
+
+## Log-normal model of vowel duration
+
+$$
+\begin{align}
+dur & \sim LogNormal(\mu, \sigma)
+\end{align}
+$$
+
+. . .
+
+$$
+\begin{align}
+log(dur) & \sim Gaussian(\mu_1, \sigma_1)
+\end{align}
+$$
+
+## Fit the log-normal model
+
+```{r}
+#| label: m-2
+
+m_2 <- brm(
+  v2_duration ~ 1,
+  family = lognormal,
+  data = token_measures,
+  cores = 4,
+  file = "data/cache/m_2",
+)
+```
+
+## Model summary
+
+```{r}
+#| label: m-2-summary
+
+summary(m_2, prob = 0.8)
+```
+
+## Posterior predictive checks
+
+```{r}
+#| label: m-2-pp-check
+
+pp_check(m_2, ndraws = 50)
+```
+

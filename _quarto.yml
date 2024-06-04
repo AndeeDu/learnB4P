@@ -1,0 +1,19 @@
+project:
+  type: website
+  execute-dir: project
+
+website:
+  title: "LearnB4P"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+
