@@ -39,6 +39,13 @@
       ],
       "Hash": "065ae649b05f1ff66bb0c793107508f5"
     },
+    "HDInterval": {
+      "Package": "HDInterval",
+      "Version": "0.2.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "b5b77433b286dd869ff33ee7fd5c545f"
+    },
     "MASS": {
       "Package": "MASS",
       "Version": "7.3-60.2",
@@ -631,6 +638,18 @@
         "methods"
       ],
       "Hash": "daf4a1246be12c1fa8c7705a0935c1a0"
+    },
+    "evd": {
+      "Package": "evd",
+      "Version": "2.3-7",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "grDevices",
+        "graphics",
+        "stats"
+      ],
+      "Hash": "5cf51c5acc12a6c08cb5e2e7b19b8ca8"
     },
     "fansi": {
       "Package": "fansi",
@@ -1869,6 +1888,18 @@
         "xfun"
       ],
       "Hash": "d44e2fcd2e4e076f0aac540208559d1d"
+    },
+    "truncdist": {
+      "Package": "truncdist",
+      "Version": "1.0-2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "evd",
+        "stats4"
+      ],
+      "Hash": "ed3ed12875e0417a645baaecc07dd536"
     },
     "tzdb": {
       "Package": "tzdb",

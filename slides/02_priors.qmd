@@ -1,0 +1,407 @@
+---
+title: "02 - Priors"
+author: "Stefano Coretta"
+format:
+  mono-light-revealjs:
+    theme: [default, custom.scss]
+    history: false
+filters:
+  - tachyonsextra
+---
+
+```{r}
+#| label: setup
+
+library(tidyverse)
+theme_set(theme_light())
+library(coretta2018itapol)
+library(brms)
+library(htmltools)
+
+library(coretta2018itapol)
+data("token_measures")
+token_measures <- token_measures |> drop_na(v1_duration)
+
+library(googlesheets4)
+gs4_deauth()
+library(HDInterval)
+library(truncdist)
+```
+
+## Vowel duration
+
+$$
+\begin{align}
+vdur & \sim Gaussian(\mu, \sigma)\\
+\end{align}
+$$
+
+Pick a $\mu$ and $\sigma$.
+
+Report them here: <https://forms.gle/HRzH5CworngWrBv16>.
+
+## Proposed distributions of vowel duration
+
+```{r}
+#| label: rt-sheet
+#| echo: false
+#| message: false
+#| warning: false
+
+vdur <- read_sheet("https://docs.google.com/spreadsheets/d/1UmXmC1N2JWFyd01sj5yjttMKPldBK_lHDSa__zIWnNo/edit?usp=sharing", 1)
+colnames(vdur) <- c("Timestamp", "mean_dur", "sd_dur")
+
+if (nrow(vdur) == 0) {
+  vdur <- tibble(Timestamp = c("a", "b"), mean_dur = c(100, 130), sd_dur = c(40, 25))
+}
+
+x <- seq(min(vdur$mean_dur) - 3 * max(vdur$sd_dur), max(vdur$mean_dur) + 3 * max(vdur$sd_dur))
+
+vdur %>%
+  mutate(
+    y = map2(mean_dur, sd_dur, ~dnorm(x, .x, .y)),
+    x = list(x)
+  ) %>%
+  unnest(cols = c(y, x)) %>%
+  ggplot(aes(x, y, group = as.character(paste(Timestamp, mean_dur, sd_dur)))) +
+  geom_line(size = 1, alpha = 0.5) +
+  theme(legend.position = "none") +
+  labs(
+    x = "Vowel duration (ms)", y = "Density",
+    title = "Proposed distributions of vowel duration"
+  ) +
+  scale_color_brewer(palette = "Paired")
+```
+
+## Bayesian belief update
+
+![](img/prior-update.png){fig-align="center"}
+
+## 
+
+```{r}
+#| label: seeing-priors
+#| echo: false
+
+HTML('<section id="Priors" data-background-iframe="https://seeing-theory.brown.edu/bayesian-inference/index.html#section3" data-background-interactive>
+</section>')
+```
+
+## Priors
+
+$$
+\begin{align}
+vdur & \sim LogNormal(\mu, \sigma)\\
+\mu & \sim Gaussian(\mu_1, \sigma_1)\\
+\sigma & \sim Cauchy_{+}(0, \sigma_2)\\
+\end{align}
+$$
+
+## Get default priors
+
+```{r}
+#| label: get-prior
+
+get_prior(
+  v1_duration ~ 1,
+  family = lognormal,
+  data = token_measures
+)
+```
+
+## Prior probability distributions
+
+```{r}
+#| label: distrs
+
+ggplot(tibble(x = c(-10, 10)), aes(x = x)) +
+  stat_function(fun = dnorm, geom = "line", colour = "blue", 
+                args = list(0, 1), n = 501) +
+  stat_function(fun = dt, geom = "line", colour = "red",
+              args = list(df = 3), n = 501) +
+  stat_function(fun = dcauchy, geom = "line", colour = "orange",
+              args = list(0, 1), n = 501)
+```
+
+## The empirical rule
+
+```{r}
+#| label: empirical-rule-1
+#| echo: false
+
+x <- seq(-4, 4, by = 0.01)
+y = dnorm(x, 0, 1)
+
+ger_1 <- ggplot() +
+  aes(x, y) +
+  geom_line(linewidth = 2, colour = "#FFA70B") +
+  scale_x_continuous(breaks = c(-4:4), labels = c("", expression(paste(-3, sigma)), expression(paste(-2, sigma)), expression(paste(-1, sigma)), expression(paste(mu)), expression(paste(+1, sigma)), expression(paste(+2, sigma)), expression(paste(+3, sigma)), "")) +
+  ylim(0, 0.6) +
+  labs(
+    x = element_blank(), y = element_blank()
+  )
+ger_1
+```
+
+## The empirical rule
+
+```{r empirical-rule-2, echo=FALSE}
+ger_1 +
+  geom_ribbon(aes(x = ifelse(x >= -1 & x <= 1, x, NA), ymin = 0, ymax = y), alpha = 0.7, fill = "#8970FF") +
+  annotate(
+    "segment",
+    x = -1, xend = 1, y = 0.45, yend = 0.45,
+    arrow = arrow(ends = "both", angle = 90, length = unit(.2, "cm")),
+    linewidth = 1
+  ) +
+  annotate("label", x = 0, y = 0.45, label = "68%") +
+  geom_line(linewidth = 2, colour = "#FFA70B")
+```
+
+## The empirical rule
+
+```{r empirical-rule-3, echo=FALSE}
+ger_1 +
+  geom_ribbon(aes(x = ifelse(x >= -2 & x <= 2, x, NA), ymin = 0, ymax = y), alpha = 0.4, fill = "#8970FF") +
+annotate(
+    "segment",
+    x = -2, xend = 2, y = 0.5, yend = 0.5,
+    arrow = arrow(ends = "both", angle = 90, length = unit(.2, "cm")),
+    linewidth = 1
+  ) +
+  annotate("label", x = 0, y = 0.50, label = "95%") +
+  geom_line(linewidth = 2, colour = "#FFA70B")
+```
+
+## The empirical rule
+
+```{r empirical-rule-4, echo=FALSE}
+ger_1 +
+  geom_ribbon(aes(x = x, ymin = 0, ymax = y), alpha = 0.3, fill = "#8970FF") +
+  annotate(
+    "segment",
+    x = -3, xend = 3, y = 0.55, yend = 0.55,
+    arrow = arrow(ends = "both", angle = 90, length = unit(.2, "cm")),
+    linewidth = 1
+  ) +
+  annotate("label", x = 0, y = 0.55, label = "99.7 ≈ 100%") +
+  geom_line(linewidth = 2, colour = "#FFA70B")
+```
+
+## The empirical rule
+
+```{r empirical-rule-5, echo=FALSE}
+x <- seq(-4, 4, by = 0.01)
+y = dnorm(x, 0, 1)
+ggplot() +
+  aes(x, y) +
+  geom_ribbon(aes(x = x, ymin = 0, ymax = y), alpha = 0.3, fill = "#8970FF") +
+  geom_ribbon(aes(x = ifelse(x >= -2 & x <= 2, x, NA), ymin = 0, ymax = y), alpha = 0.4, fill = "#8970FF") +
+  geom_ribbon(aes(x = ifelse(x >= -1 & x <= 1, x, NA), ymin = 0, ymax = y), alpha = 0.7, fill = "#8970FF") +
+  geom_line(linewidth = 2, colour = "#FFA70B") +
+  annotate(
+    "segment",
+    x = -1, xend = 1, y = 0.45, yend = 0.45,
+    arrow = arrow(ends = "both", angle = 90, length = unit(.2, "cm")),
+    linewidth = 1
+  ) +
+  annotate("label", x = 0, y = 0.45, label = "68%") +
+  annotate(
+    "segment",
+    x = -2, xend = 2, y = 0.5, yend = 0.5,
+    arrow = arrow(ends = "both", angle = 90, length = unit(.2, "cm")),
+    linewidth = 1
+  ) +
+  annotate("label", x = 0, y = 0.50, label = "95%") +
+  annotate(
+    "segment",
+    x = -3, xend = 3, y = 0.55, yend = 0.55,
+    arrow = arrow(ends = "both", angle = 90, length = unit(.2, "cm")),
+    linewidth = 1
+  ) +
+  annotate("label", x = 0, y = 0.55, label = "99.7 ≈ 100%") +
+  scale_x_continuous(breaks = c(-4:4), labels = c("", expression(paste(-3, sigma)), expression(paste(-2, sigma)), expression(paste(-1, sigma)), expression(paste(mu)), expression(paste(+1, sigma)), expression(paste(+2, sigma)), expression(paste(+3, sigma)), "")) +
+  ylim(0, 0.6) +
+  labs(
+    x = element_blank(), y = element_blank()
+  )
+```
+
+## Priors of the model
+
+$$
+\begin{align}
+\text{RT}_i & \sim Gaussian(\mu, \sigma)\\
+\mu & \sim Gaussian(\mu_1, \sigma_1)\\
+\sigma & \sim Cauchy_{+}(0, \sigma_2)\\
+\end{align}
+$$
+
+. . .
+
+::: box-note
+Let's pick $\mu_1$ and $\sigma_1$.
+
+We can use the empirical rule.
+:::
+
+## Prior for $\mu$
+
+$$
+\begin{align}
+vdur & \sim LogNormal(\mu, \sigma)\\
+\mu & \sim Gaussian(\mu_1, \sigma_1)\\
+\sigma & \sim Cauchy_{+}(0, \sigma_2)\\
+\end{align}
+$$
+
+::: box-note
+-   Let's say that the mean vowel duration is between 50 and 150 ms at 95% confidence. In logs, that would be `log(50) = 3.9` and `log(150) = 5`.
+
+-   Get $\mu_1$
+
+    -   `mean(c(3.9, 5)) = 4.45`
+
+-   Get $\sigma_1$
+
+    -   `(5 - 3.9) / 2 = 0.55`
+:::
+
+## Prior for $\mu$
+
+$$
+\begin{align}
+\text{RT}_i & \sim Gaussian(\mu, \sigma)\\
+\mu & \sim Gaussian(\mu_1 = 4.45, \sigma_1 = 0.55)\\
+\sigma & \sim Cauchy_{+}(0, \sigma_2)\\
+\end{align}
+$$
+
+## Prior for $\mu$: plot
+
+```{r}
+#| label: mu-prior-plot
+
+ggplot(tibble(x = c(2, 7)), aes(x = x)) +
+  stat_function(fun = dnorm, geom = "area", fill = "lightblue",
+                args = list(4.45, 0.55)) +
+  labs(
+    x = expression("Prior for"~mu[1]), y = "density"
+  )
+```
+
+## Prior for $\sigma$
+
+```{r hdi-cauchy}
+library(HDInterval)
+
+round(inverseCDF(c(0.975), ptrunc, spec = "cauchy", a = 0, scale = 0.1))
+
+round(inverseCDF(c(0.975), ptrunc, spec = "cauchy", a = 0, scale = 0.2))
+
+round(inverseCDF(c(0.975), ptrunc, spec = "cauchy", a = 0, scale = 0.3))
+```
+
+## Prior for $\sigma$: plot
+
+```{r}
+#| label: sigma-prior-plot
+
+ggplot(tibble(x = c(0, 2)), aes(x = x)) +
+  stat_function(fun = dtrunc, geom = "area", fill = "tomato4",
+                args = list(spec = "cauchy", a = 0, scale = 0.1))
+```
+
+## Prior predictive checks: sample prior
+
+```{r}
+#| label: m-3-priorpp
+
+my_seed <- 3485
+
+m_3_priors <- c(
+  prior(normal(4.45, 0.55), class = Intercept),
+  prior(cauchy(0, 0.1), class = sigma)
+)
+
+m_3_priorpp <- brm(
+  v1_duration ~ 1,
+  family = lognormal,
+  prior = m_3_priors,
+  data = token_measures,
+  sample_prior = "only",
+  cores = 4,
+  file = "data/cache/m_3_priorpp",
+  seed = my_seed
+)
+```
+
+## Prior predictive checks: sample prior
+
+```{r}
+#| label: m-3-priorpp-summ
+
+summary(m_3_priorpp)
+```
+
+
+## Prior predictive checks: plot
+
+```{r}
+#| label: m-3-priorpp-plot
+
+set.seed(my_seed)
+m_3_pppreds <- posterior_predict(m_3_priorpp, newdata = tibble(y = 1), ndraws = 1e3) |>
+  as.vector()
+
+ggplot() +
+  aes(x = m_3_pppreds) +
+  geom_density(fill = "forestgreen") +
+  geom_rug(alpha = 0.25)
+```
+
+## Prior predictive checks: plot (zoom in)
+
+```{r}
+#| label: m-3-priorpp-plot-2
+#| warning: false
+
+ggplot() +
+  aes(x = m_3_pppreds) +
+  geom_density(fill = "forestgreen") +
+  geom_rug(alpha = 0.25) +
+  xlim(-100, 500)
+```
+
+## Run the model
+
+```{r}
+#| label: m-3
+
+m_3 <- brm(
+  v1_duration ~ 1,
+  family = lognormal,
+  prior = m_3_priors,
+  data = token_measures,
+  cores = 4,
+  file = "data/cache/m_3",
+  seed = my_seed
+)
+```
+
+## Model summary
+
+```{r}
+#| label: m-3-summ
+
+summary(m_3, prob = 0.8)
+```
+
+## Posterior predictive checks
+
+```{r}
+#| label: m-3-pp
+
+pp_check(m_3, ndraws = 100)
+```
+
