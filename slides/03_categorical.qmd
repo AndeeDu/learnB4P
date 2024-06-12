@@ -1,0 +1,72 @@
+---
+title: "03 - Categorical predictors"
+author: "Stefano Coretta"
+format:
+  mono-light-revealjs:
+    theme: [default, custom.scss]
+    history: false
+filters:
+  - tachyonsextra
+---
+
+```{r}
+#| label: setup
+
+library(tidyverse)
+theme_set(theme_light())
+library(coretta2018itapol)
+library(brms)
+library(htmltools)
+
+library(coretta2018itapol)
+data("token_measures")
+token_measures <- token_measures |> drop_na(v1_duration)
+
+library(HDInterval)
+library(truncdist)
+```
+
+## Vowel duration by voicing
+
+```{r}
+token_measures |> 
+  ggplot(aes(c2_phonation, v1_duration)) +
+  geom_violin() +
+  geom_jitter(width = 0.1, alpha = 0.2) +
+  stat_summary(colour = "red")
+```
+
+## Categorical predictors: treatment contrasts (default)
+
+$$
+\begin{align}
+vdur_i & \sim LogNormal(\mu, \sigma)\\
+\mu & = \beta_0 + \beta_1 \cdot \text{voiceless}_i \\
+\beta_0 & \sim Gaussian(\mu_0, \sigma_0)\\
+\beta_1 & \sim Gaussian(\mu_1, \sigma_1)\\
+\sigma & \sim Cauchy_{+}(0, \sigma_2)\\
+\end{align}
+$$
+
+## Get default priors
+
+```{r}
+#| label: get-prior
+
+get_prior(
+  v1_duration ~ c2_phonation,
+  family = lognormal,
+  data = token_measures
+)
+```
+
+## Categorical predictors: indexing
+
+$$
+\begin{align}
+vdur_i & \sim LogNormal(\mu_i, \sigma)\\
+\mu_i & = \beta_{voicing[i]}\\
+\beta_j & \sim Gaussian(\mu_j, \sigma_j) & , \text{for } j = 1..2\\
+\sigma & \sim Cauchy_{+}(0, \sigma_3)\\
+\end{align}
+$$
