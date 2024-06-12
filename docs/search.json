@@ -1,0 +1,345 @@
+[
+  {
+    "objectID": "setup.html",
+    "href": "setup.html",
+    "title": "Pre-workshop set-up",
+    "section": "",
+    "text": "Please, follow these instructions carefully to get ready at least one day before the workshop."
+  },
+  {
+    "objectID": "setup.html#pre-requisites",
+    "href": "setup.html#pre-requisites",
+    "title": "Pre-workshop set-up",
+    "section": "Pre-requisites",
+    "text": "Pre-requisites\nBefore installing the necessary software, make sure you have installed or updated the following software.\n\nThe latest version of R (https://cloud.r-project.org).\nThe latest version of RStudio (https://www.rstudio.com/products/rstudio/download/#download).\nYour operating system is up-to-date."
+  },
+  {
+    "objectID": "setup.html#installation",
+    "href": "setup.html#installation",
+    "title": "Pre-workshop set-up",
+    "section": "Installation",
+    "text": "Installation\n\n\n\n\n\n\nImportant\n\n\n\nIf you have previously installed the C++ toolkit or if you have recently updated your OS, please follow these instructions to reinstall them.\n\n\nNow you will need to install a few packages and extra software.\nHere is an overview of what you will install:\n\nC++ toolchain.\nR packages: tidyverse, brms, tidybayes, extraDistr.\n\n\n1. Install the C++ toolchain\nThe package brms used in the workshop requires a working C++ toolchain to compile models.\n\nWindows\nFor Windows, follow the instructions here: https://cran.r-project.org/bin/windows/Rtools/rtools43/rtools.html\n\n\nmacOS\nFor macOS, open the Terminal and write the following line then press enter/return:\nxcode-select --install\nYou’ll see a panel that asks you to install the Xcode Command Line Tools. Install them. Downloading and installation will take 30 to 60 minutes.\n\n\nLinux\nFor Linux, follow the instructions here: https://github.com/stan-dev/rstan/wiki/Configuring-C-Toolchain-for-Linux\n\n\n\n2. Install the R packages\nYou need to install the following packages:\ninstall.packages(c(\"tidyverse\", \"brms\", \"tidybayes\", \"extraDistr\", \"HDInterval\"))\nIt will take several minutes to install the packages, depending on your system and configuration.\nIf after opening the workshop project in RStudio you get asked to install extra packages or software, please do so.\n\n\nCheck your installation\nRun the following in the RStudio Console:\nexample(stan_model, package = \"rstan\", run.dontrun = TRUE)\nIf you see some strange looking text printed in the Console and then fit and fit2 in the Environment, then you are sorted!"
+  },
+  {
+    "objectID": "setup.html#troubleshooting",
+    "href": "setup.html#troubleshooting",
+    "title": "Pre-workshop set-up",
+    "section": "Troubleshooting",
+    "text": "Troubleshooting\nIf you are having issues with installation, the best place to ask for help are:\n\nThe Stan Forums: https://discourse.mc-stan.org\nStackOverflow: https://stackoverflow.com\nAny search engine."
+  },
+  {
+    "objectID": "slides/01_introduction.html#statistical-modelling",
+    "href": "slides/01_introduction.html#statistical-modelling",
+    "title": "01 - Introduction",
+    "section": "Statistical modelling",
+    "text": "Statistical modelling\n…"
+  },
+  {
+    "objectID": "slides/01_introduction.html#statistical-inference",
+    "href": "slides/01_introduction.html#statistical-inference",
+    "title": "01 - Introduction",
+    "section": "Statistical inference",
+    "text": "Statistical inference\n…"
+  },
+  {
+    "objectID": "slides/01_introduction.html#two-frameworks-of-inference",
+    "href": "slides/01_introduction.html#two-frameworks-of-inference",
+    "title": "01 - Introduction",
+    "section": "Two frameworks of inference",
+    "text": "Two frameworks of inference\n…"
+  },
+  {
+    "objectID": "slides/01_introduction.html#frequentist-framework",
+    "href": "slides/01_introduction.html#frequentist-framework",
+    "title": "01 - Introduction",
+    "section": "Frequentist framework",
+    "text": "Frequentist framework\n…"
+  },
+  {
+    "objectID": "slides/01_introduction.html#bayesian-framework",
+    "href": "slides/01_introduction.html#bayesian-framework",
+    "title": "01 - Introduction",
+    "section": "Bayesian framework",
+    "text": "Bayesian framework\n…"
+  },
+  {
+    "objectID": "slides/01_introduction.html#bayesian-regression-basics",
+    "href": "slides/01_introduction.html#bayesian-regression-basics",
+    "title": "01 - Introduction",
+    "section": "Bayesian regression: basics",
+    "text": "Bayesian regression: basics\n\n\nR package brms.\nSame syntax as lme4.\nOne function to fit many types of regression models: brm()."
+  },
+  {
+    "objectID": "slides/01_introduction.html#example-data-background",
+    "href": "slides/01_introduction.html#example-data-background",
+    "title": "01 - Introduction",
+    "section": "Example data: background",
+    "text": "Example data: background\n…"
+  },
+  {
+    "objectID": "slides/01_introduction.html#example-data-the-data-frame",
+    "href": "slides/01_introduction.html#example-data-the-data-frame",
+    "title": "01 - Introduction",
+    "section": "Example data: the data frame",
+    "text": "Example data: the data frame\n\n\n# A tibble: 1,343 × 53\n   index speaker file     rec_date        ipu   prompt word    time sentence_ons\n   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;        &lt;dbl&gt;\n 1     1 it01    it01-001 29/11/2016 15:… ipu_1 Dico … pugu   0.990        0.990\n 2     2 it01    it01-002 29/11/2016 15:… ipu_2 Dico … pada   3.62         0.502\n 3     3 it01    it01-003 29/11/2016 15:… ipu_3 Dico … poco   6.13         0.697\n 4     4 it01    it01-004 29/11/2016 15:… ipu_4 Dico … pata   8.82         0.623\n 5     5 it01    it01-005 29/11/2016 15:… ipu_5 Dico … boco  11.5          0.665\n 6     6 it01    it01-006 29/11/2016 15:… ipu_6 Dico … podo  14.3          0.647\n 7     7 it01    it01-007 29/11/2016 15:… ipu_7 Dico … boto  17.2          0.740\n 8     8 it01    it01-008 29/11/2016 15:… ipu_8 Dico … paca  19.7          0.502\n 9     9 it01    it01-009 29/11/2016 15:… ipu_9 Dico … bodo  22.3          0.556\n10    10 it01    it01-010 29/11/2016 15:… ipu_… Dico … pucu  24.8          0.535\n# ℹ 1,333 more rows\n# ℹ 44 more variables: sentence_off &lt;dbl&gt;, word_ons &lt;dbl&gt;, word_off &lt;dbl&gt;,\n#   v1_ons &lt;dbl&gt;, c2_ons &lt;dbl&gt;, v2_ons &lt;dbl&gt;, c1_rel &lt;dbl&gt;, c2_rel &lt;dbl&gt;,\n#   voicing_start &lt;dbl&gt;, voicing_end &lt;dbl&gt;, voicing_duration &lt;dbl&gt;,\n#   voiced_points &lt;dbl&gt;, GONS &lt;dbl&gt;, max &lt;dbl&gt;, NOFF &lt;dbl&gt;, NONS &lt;dbl&gt;,\n#   peak1 &lt;dbl&gt;, peak2 &lt;dbl&gt;, c1_duration &lt;dbl&gt;, c1_clos_duration &lt;dbl&gt;,\n#   c1_vot &lt;dbl&gt;, c1_rvoff &lt;dbl&gt;, v1_duration &lt;dbl&gt;, c2_duration &lt;dbl&gt;, …"
+  },
+  {
+    "objectID": "slides/01_introduction.html#vowel-duration-and-consonant-voicing",
+    "href": "slides/01_introduction.html#vowel-duration-and-consonant-voicing",
+    "title": "01 - Introduction",
+    "section": "Vowel duration and consonant voicing",
+    "text": "Vowel duration and consonant voicing"
+  },
+  {
+    "objectID": "slides/01_introduction.html#vowel-duration",
+    "href": "slides/01_introduction.html#vowel-duration",
+    "title": "01 - Introduction",
+    "section": "Vowel duration",
+    "text": "Vowel duration"
+  },
+  {
+    "objectID": "slides/01_introduction.html#gaussian-model-of-vowel-duration",
+    "href": "slides/01_introduction.html#gaussian-model-of-vowel-duration",
+    "title": "01 - Introduction",
+    "section": "Gaussian model of vowel duration",
+    "text": "Gaussian model of vowel duration\n\\[\n\\begin{align}\ndur & \\sim Gaussian(\\mu, \\sigma)\n\\end{align}\n\\]\n\n\\(dur\\) is vowel duration\n\\(\\sim\\) means “is distributed/generated according to”.\n\\(Gaussian(\\mu, \\sigma)\\) a Gaussian distribution with mean \\(\\mu\\) and standard deviation \\(\\sigma\\)."
+  },
+  {
+    "objectID": "slides/01_introduction.html#fit-the-model-with-brms",
+    "href": "slides/01_introduction.html#fit-the-model-with-brms",
+    "title": "01 - Introduction",
+    "section": "Fit the model with brms",
+    "text": "Fit the model with brms"
+  },
+  {
+    "objectID": "slides/01_introduction.html#model-summary",
+    "href": "slides/01_introduction.html#model-summary",
+    "title": "01 - Introduction",
+    "section": "Model summary",
+    "text": "Model summary\n\n\n Family: gaussian \n  Links: mu = identity; sigma = identity \nFormula: v2_duration ~ 1 \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n          Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nIntercept    78.10      0.84    76.45    79.78 1.00     2657     2561\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nsigma    31.33      0.60    30.19    32.54 1.00     3320     2578\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
+  },
+  {
+    "objectID": "slides/01_introduction.html#model-summary-80-cris",
+    "href": "slides/01_introduction.html#model-summary-80-cris",
+    "title": "01 - Introduction",
+    "section": "Model summary: 80% CrIs",
+    "text": "Model summary: 80% CrIs\n\n\n Family: gaussian \n  Links: mu = identity; sigma = identity \nFormula: v2_duration ~ 1 \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n          Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nIntercept    78.10      0.84    77.02    79.17 1.00     2657     2561\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nsigma    31.33      0.60    30.57    32.10 1.00     3320     2578\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
+  },
+  {
+    "objectID": "slides/01_introduction.html#plot-posterior-probability-distributions",
+    "href": "slides/01_introduction.html#plot-posterior-probability-distributions",
+    "title": "01 - Introduction",
+    "section": "Plot posterior probability distributions",
+    "text": "Plot posterior probability distributions"
+  },
+  {
+    "objectID": "slides/01_introduction.html#diagnostics-posterior-predictive-checks",
+    "href": "slides/01_introduction.html#diagnostics-posterior-predictive-checks",
+    "title": "01 - Introduction",
+    "section": "Diagnostics: posterior predictive checks",
+    "text": "Diagnostics: posterior predictive checks"
+  },
+  {
+    "objectID": "slides/01_introduction.html#log-normal-model-of-vowel-duration",
+    "href": "slides/01_introduction.html#log-normal-model-of-vowel-duration",
+    "title": "01 - Introduction",
+    "section": "Log-normal model of vowel duration",
+    "text": "Log-normal model of vowel duration\n\\[\n\\begin{align}\ndur & \\sim LogNormal(\\mu, \\sigma)\n\\end{align}\n\\]\n\n\\[\n\\begin{align}\nlog(dur) & \\sim Gaussian(\\mu_1, \\sigma_1)\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "slides/01_introduction.html#fit-the-log-normal-model",
+    "href": "slides/01_introduction.html#fit-the-log-normal-model",
+    "title": "01 - Introduction",
+    "section": "Fit the log-normal model",
+    "text": "Fit the log-normal model"
+  },
+  {
+    "objectID": "slides/01_introduction.html#model-summary-1",
+    "href": "slides/01_introduction.html#model-summary-1",
+    "title": "01 - Introduction",
+    "section": "Model summary",
+    "text": "Model summary\n\n\n Family: lognormal \n  Links: mu = identity; sigma = identity \nFormula: v2_duration ~ 1 \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n          Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nIntercept     4.30      0.01     4.28     4.31 1.00     3405     2635\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nsigma     0.34      0.01     0.33     0.35 1.00     2798     2230\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
+  },
+  {
+    "objectID": "slides/01_introduction.html#posterior-predictive-checks",
+    "href": "slides/01_introduction.html#posterior-predictive-checks",
+    "title": "01 - Introduction",
+    "section": "Posterior predictive checks",
+    "text": "Posterior predictive checks"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "LearnB4P",
+    "section": "",
+    "text": "Under construction"
+  },
+  {
+    "objectID": "slides/02_priors.html#vowel-duration",
+    "href": "slides/02_priors.html#vowel-duration",
+    "title": "02 - Priors",
+    "section": "Vowel duration",
+    "text": "Vowel duration\n\\[\n\\begin{align}\nvdur & \\sim Gaussian(\\mu, \\sigma)\\\\\n\\end{align}\n\\]\nPick a \\(\\mu\\) and \\(\\sigma\\).\nReport them here: https://forms.gle/HRzH5CworngWrBv16."
+  },
+  {
+    "objectID": "slides/02_priors.html#proposed-distributions-of-vowel-duration",
+    "href": "slides/02_priors.html#proposed-distributions-of-vowel-duration",
+    "title": "02 - Priors",
+    "section": "Proposed distributions of vowel duration",
+    "text": "Proposed distributions of vowel duration"
+  },
+  {
+    "objectID": "slides/02_priors.html#bayesian-belief-update",
+    "href": "slides/02_priors.html#bayesian-belief-update",
+    "title": "02 - Priors",
+    "section": "Bayesian belief update",
+    "text": "Bayesian belief update"
+  },
+  {
+    "objectID": "slides/02_priors.html#priors",
+    "href": "slides/02_priors.html#priors",
+    "title": "02 - Priors",
+    "section": "Priors",
+    "text": "Priors\n\\[\n\\begin{align}\nvdur & \\sim LogNormal(\\mu, \\sigma)\\\\\n\\mu & \\sim Gaussian(\\mu_1, \\sigma_1)\\\\\n\\sigma & \\sim Cauchy_{+}(0, \\sigma_2)\\\\\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "slides/02_priors.html#get-default-priors",
+    "href": "slides/02_priors.html#get-default-priors",
+    "title": "02 - Priors",
+    "section": "Get default priors",
+    "text": "Get default priors\n\n\n                  prior     class coef group resp dpar nlpar lb ub  source\n student_t(3, 4.6, 2.5) Intercept                                  default\n   student_t(3, 0, 2.5)     sigma                             0    default"
+  },
+  {
+    "objectID": "slides/02_priors.html#prior-probability-distributions",
+    "href": "slides/02_priors.html#prior-probability-distributions",
+    "title": "02 - Priors",
+    "section": "Prior probability distributions",
+    "text": "Prior probability distributions"
+  },
+  {
+    "objectID": "slides/02_priors.html#the-empirical-rule",
+    "href": "slides/02_priors.html#the-empirical-rule",
+    "title": "02 - Priors",
+    "section": "The empirical rule",
+    "text": "The empirical rule"
+  },
+  {
+    "objectID": "slides/02_priors.html#the-empirical-rule-1",
+    "href": "slides/02_priors.html#the-empirical-rule-1",
+    "title": "02 - Priors",
+    "section": "The empirical rule",
+    "text": "The empirical rule"
+  },
+  {
+    "objectID": "slides/02_priors.html#the-empirical-rule-2",
+    "href": "slides/02_priors.html#the-empirical-rule-2",
+    "title": "02 - Priors",
+    "section": "The empirical rule",
+    "text": "The empirical rule"
+  },
+  {
+    "objectID": "slides/02_priors.html#the-empirical-rule-3",
+    "href": "slides/02_priors.html#the-empirical-rule-3",
+    "title": "02 - Priors",
+    "section": "The empirical rule",
+    "text": "The empirical rule"
+  },
+  {
+    "objectID": "slides/02_priors.html#the-empirical-rule-4",
+    "href": "slides/02_priors.html#the-empirical-rule-4",
+    "title": "02 - Priors",
+    "section": "The empirical rule",
+    "text": "The empirical rule"
+  },
+  {
+    "objectID": "slides/02_priors.html#priors-of-the-model",
+    "href": "slides/02_priors.html#priors-of-the-model",
+    "title": "02 - Priors",
+    "section": "Priors of the model",
+    "text": "Priors of the model\n\\[\n\\begin{align}\n\\text{RT}_i & \\sim Gaussian(\\mu, \\sigma)\\\\\n\\mu & \\sim Gaussian(\\mu_1, \\sigma_1)\\\\\n\\sigma & \\sim Cauchy_{+}(0, \\sigma_2)\\\\\n\\end{align}\n\\]\n\n\nLet’s pick \\(\\mu_1\\) and \\(\\sigma_1\\).\nWe can use the empirical rule."
+  },
+  {
+    "objectID": "slides/02_priors.html#prior-for-mu",
+    "href": "slides/02_priors.html#prior-for-mu",
+    "title": "02 - Priors",
+    "section": "Prior for \\(\\mu\\)",
+    "text": "Prior for \\(\\mu\\)\n\\[\n\\begin{align}\nvdur & \\sim LogNormal(\\mu, \\sigma)\\\\\n\\mu & \\sim Gaussian(\\mu_1, \\sigma_1)\\\\\n\\sigma & \\sim Cauchy_{+}(0, \\sigma_2)\\\\\n\\end{align}\n\\]\n\n\nLet’s say that the mean vowel duration is between 50 and 150 ms at 95% confidence. In logs, that would be log(50) = 3.9 and log(150) = 5.\nGet \\(\\mu_1\\)\n\nmean(c(3.9, 5)) = 4.45\n\nGet \\(\\sigma_1\\)\n\n(5 - 3.9) / 2 = 0.55"
+  },
+  {
+    "objectID": "slides/02_priors.html#prior-for-mu-1",
+    "href": "slides/02_priors.html#prior-for-mu-1",
+    "title": "02 - Priors",
+    "section": "Prior for \\(\\mu\\)",
+    "text": "Prior for \\(\\mu\\)\n\\[\n\\begin{align}\n\\text{RT}_i & \\sim Gaussian(\\mu, \\sigma)\\\\\n\\mu & \\sim Gaussian(\\mu_1 = 4.45, \\sigma_1 = 0.55)\\\\\n\\sigma & \\sim Cauchy_{+}(0, \\sigma_2)\\\\\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "slides/02_priors.html#prior-for-mu-plot",
+    "href": "slides/02_priors.html#prior-for-mu-plot",
+    "title": "02 - Priors",
+    "section": "Prior for \\(\\mu\\): plot",
+    "text": "Prior for \\(\\mu\\): plot"
+  },
+  {
+    "objectID": "slides/02_priors.html#prior-for-sigma",
+    "href": "slides/02_priors.html#prior-for-sigma",
+    "title": "02 - Priors",
+    "section": "Prior for \\(\\sigma\\)",
+    "text": "Prior for \\(\\sigma\\)\n\n\n[1] 3\n\n\n[1] 5\n\n\n[1] 8"
+  },
+  {
+    "objectID": "slides/02_priors.html#prior-for-sigma-plot",
+    "href": "slides/02_priors.html#prior-for-sigma-plot",
+    "title": "02 - Priors",
+    "section": "Prior for \\(\\sigma\\): plot",
+    "text": "Prior for \\(\\sigma\\): plot"
+  },
+  {
+    "objectID": "slides/02_priors.html#prior-predictive-checks-sample-prior",
+    "href": "slides/02_priors.html#prior-predictive-checks-sample-prior",
+    "title": "02 - Priors",
+    "section": "Prior predictive checks: sample prior",
+    "text": "Prior predictive checks: sample prior"
+  },
+  {
+    "objectID": "slides/02_priors.html#prior-predictive-checks-sample-prior-1",
+    "href": "slides/02_priors.html#prior-predictive-checks-sample-prior-1",
+    "title": "02 - Priors",
+    "section": "Prior predictive checks: sample prior",
+    "text": "Prior predictive checks: sample prior\n\n\n Family: lognormal \n  Links: mu = identity; sigma = identity \nFormula: v1_duration ~ 1 \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n          Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nIntercept     4.44      0.55     3.37     5.50 1.00     2453     1701\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nsigma     0.42      2.29     0.00     2.58 1.00     2838     1969\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
+  },
+  {
+    "objectID": "slides/02_priors.html#prior-predictive-checks-plot",
+    "href": "slides/02_priors.html#prior-predictive-checks-plot",
+    "title": "02 - Priors",
+    "section": "Prior predictive checks: plot",
+    "text": "Prior predictive checks: plot"
+  },
+  {
+    "objectID": "slides/02_priors.html#prior-predictive-checks-plot-zoom-in",
+    "href": "slides/02_priors.html#prior-predictive-checks-plot-zoom-in",
+    "title": "02 - Priors",
+    "section": "Prior predictive checks: plot (zoom in)",
+    "text": "Prior predictive checks: plot (zoom in)"
+  },
+  {
+    "objectID": "slides/02_priors.html#run-the-model",
+    "href": "slides/02_priors.html#run-the-model",
+    "title": "02 - Priors",
+    "section": "Run the model",
+    "text": "Run the model"
+  },
+  {
+    "objectID": "slides/02_priors.html#model-summary",
+    "href": "slides/02_priors.html#model-summary",
+    "title": "02 - Priors",
+    "section": "Model summary",
+    "text": "Model summary\n\n\n Family: lognormal \n  Links: mu = identity; sigma = identity \nFormula: v1_duration ~ 1 \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n          Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nIntercept     4.59      0.01     4.58     4.61 1.00     3240     2369\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nsigma     0.33      0.01     0.32     0.34 1.00     3516     2708\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
+  },
+  {
+    "objectID": "slides/02_priors.html#posterior-predictive-checks",
+    "href": "slides/02_priors.html#posterior-predictive-checks",
+    "title": "02 - Priors",
+    "section": "Posterior predictive checks",
+    "text": "Posterior predictive checks"
+  }
+]
