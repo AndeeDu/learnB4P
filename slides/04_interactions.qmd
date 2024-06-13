@@ -1,0 +1,167 @@
+---
+title: "04 - Interactions"
+author: "Stefano Coretta"
+format:
+  mono-light-revealjs:
+    theme: [default, custom.scss]
+    history: false
+filters:
+  - tachyonsextra
+---
+
+```{r}
+#| label: setup
+
+library(tidyverse)
+theme_set(theme_light())
+library(coretta2018itapol)
+library(brms)
+library(htmltools)
+
+library(coretta2018itapol)
+data("token_measures")
+token_measures <- token_measures |> drop_na(v1_duration)
+
+library(HDInterval)
+library(truncdist)
+```
+
+## Set order of levels
+
+```{r}
+token_measures <- token_measures |> 
+  mutate(
+    c2_phonation = factor(c2_phonation, levels = c("voiceless", "voiced"))
+  )
+```
+
+
+## Vowel duration by voicing and language
+
+```{r}
+token_measures |> 
+  ggplot(aes(c2_phonation, v1_duration)) +
+  geom_violin() +
+  geom_jitter(width = 0.1, alpha = 0.2) +
+  stat_summary(fun.data = "mean_cl_boot", colour = "red") +
+  facet_grid(cols = vars(language))
+```
+
+## Categorical predictors: interactions
+
+$$
+\begin{align}
+vdur_i & \sim LogNormal(\mu_i, \sigma)\\
+\mu_i & = \beta_{voicing[i], language[i]}\\
+\beta_{jw} & \sim Gaussian(\mu_j, \sigma_j) & , \text{for } j = 1..2\\
+ &  &  w = 1..2\\
+\sigma & \sim Cauchy_{+}(0, \sigma_3)\\
+\end{align}
+$$
+
+## Get default priors: indexing
+
+```{r}
+#| label: get-prior
+
+get_prior(
+  v1_duration ~ 0 + c2_phonation:language,
+  family = lognormal,
+  data = token_measures
+)
+```
+
+## Priors
+
+```{r}
+#| label: m-5-priors
+
+m_5_priors <- c(
+  # Prior for the four `b` coefficients
+  prior(normal(4.45, 0.55), class = b),
+  # Prior for sigma
+  prior(normal(0, 0.1), class = sigma)
+)
+
+m_5_priors
+```
+
+## Prior predictive checks
+
+```{r}
+#| label: m-5-prior-pp
+
+my_seed <- 1382
+
+m_5_priorpp <- brm(
+  v1_duration ~ 0 + c2_phonation:language,
+  data = token_measures,
+  family = lognormal,
+  prior = m_5_priors,
+  sample_prior = "only",
+  cores = 4,
+  seed = my_seed,
+  file = "data/cache/m_5_priorpp"
+)
+```
+
+## Prior predictive plots
+
+```{r}
+#| label: m-5-prior-pp-plot
+
+conditional_effects(m_5_priorpp, effects = "language:c2_phonation")
+```
+
+## Fit the model
+
+```{r}
+#| label: m-5
+
+m_5 <- brm(
+  v1_duration ~ 0 + c2_phonation:language,
+  data = token_measures,
+  family = lognormal,
+  prior = m_5_priors,
+  seed = my_seed,
+  cores = 4,
+  file = "data/cache/m_5"
+)
+```
+
+## Model summary
+
+```{r}
+#| label: m-5-summary
+
+summary(m_5, prob = 0.8)
+```
+
+## Posterior probability distributions: outcome (vowel duration)
+
+```{r}
+#| label: m-5-cond
+
+conditional_effects(m_5, effects = "language:c2_phonation")
+```
+
+## Posterior probability distribution: difference of vowel duration
+
+```{r}
+#| label: m-5-comparisons
+
+# In milliseconds
+avg_comparisons(m_5, variables = "c2_phonation", by = "language", conf_level = 0.8)
+
+# As ratio
+avg_comparisons(m_5, variables = "c2_phonation", by = "language", conf_level = 0.8, comparison = "ratio")
+```
+
+## Posterior probability distribution: difference of difference
+
+```{r}
+#| label: m-5-diffdiff
+
+avg_comparisons(m_5, variables = "c2_phonation", by = "language", conf_level = 0.8, comparison = "ratio", hypothesis = "b2 = b1")
+```
+

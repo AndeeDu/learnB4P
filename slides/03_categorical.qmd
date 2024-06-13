@@ -33,7 +33,7 @@ token_measures |>
   ggplot(aes(c2_phonation, v1_duration)) +
   geom_violin() +
   geom_jitter(width = 0.1, alpha = 0.2) +
-  stat_summary(colour = "red")
+  stat_summary(fun.data = "mean_cl_boot", colour = "red")
 ```
 
 ## Categorical predictors: treatment contrasts (default)
@@ -70,3 +70,105 @@ vdur_i & \sim LogNormal(\mu_i, \sigma)\\
 \sigma & \sim Cauchy_{+}(0, \sigma_3)\\
 \end{align}
 $$
+
+## Get default priors: indexing
+
+```{r}
+#| label: get-prior-2
+
+get_prior(
+  v1_duration ~ 0 + c2_phonation,
+  family = lognormal,
+  data = token_measures
+)
+```
+
+## Priors
+
+```{r}
+#| label: m-4-priors
+
+m_4_priors <- c(
+  # Prior for both `b` coefficients
+  prior(normal(4.45, 0.55), class = b),
+  prior(normal(0, 0.1), class = sigma)
+)
+
+m_4_priors
+```
+
+## Prior predictive checks
+
+```{r}
+#| label: m-4-prior-pp
+
+my_seed <- 9682
+
+m_4_priorpp <- brm(
+  v1_duration ~ 0 + c2_phonation,
+  data = token_measures,
+  family = lognormal,
+  prior = m_4_priors,
+  sample_prior = "only",
+  cores = 4,
+  seed = my_seed,
+  file = "data/cache/m_4_priorpp"
+)
+```
+
+## Prior predictive plots
+
+```{r}
+#| label: m-4-prior-pp-plot
+
+conditional_effects(m_4_priorpp)
+```
+
+## Fit the model
+
+```{r}
+#| label: m-4
+
+m_4 <- brm(
+  v1_duration ~ 0 + c2_phonation,
+  data = token_measures,
+  family = lognormal,
+  prior = m_4_priors,
+  seed = my_seed,
+  cores = 4,
+  file = "data/cache/m_4"
+)
+```
+
+## Model summary
+
+```{r}
+#| label: m-4-summary
+
+summary(m_4, prob = 0.8)
+```
+
+## Posterior probability distributions: outcome (vowel duration)
+
+```{r}
+#| label: m-4-cond
+
+conditional_effects(m_4)
+```
+
+## Posterior probability distribution: difference of vowel duration
+
+```{r}
+#| label: m4-comparisons
+
+library(marginaleffects)
+
+avg_comparisons(m_4, conf_level = 0.8)
+```
+
+## Posterior probability distributions
+
+| Posteriors | package         | function                |
+|------------|-----------------|-------------------------|
+| Outcome    | brms            | `conditional_effects()` |
+| Difference | marginaleffects | `avg_comparisons()`     |
