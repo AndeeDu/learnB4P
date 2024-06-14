@@ -1,0 +1,215 @@
+---
+title: "04 - Interactions"
+author: "Stefano Coretta"
+format:
+  mono-light-revealjs:
+    theme: [default, custom.scss]
+    history: false
+filters:
+  - tachyonsextra
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+theme_set(theme_light())
+library(coretta2018itapol)
+library(brms)
+library(htmltools)
+
+library(coretta2018itapol)
+data("token_measures")
+token_measures <- token_measures |> drop_na(v1_duration)
+
+library(marginaleffects)
+library(HDInterval)
+library(truncdist)
+```
+
+## Set order of levels
+
+```{r}
+#| label: set-levels
+
+token_measures <- token_measures |> 
+  mutate(
+    c2_phonation = factor(c2_phonation, levels = c("voiceless", "voiced"))
+  )
+```
+
+
+## Vowel duration by speech rate
+
+```{r}
+#| label: vdur-speech
+
+token_measures |> 
+  ggplot(aes(speech_rate, log(v1_duration))) +
+  geom_point(alpha = 0.25) +
+  geom_smooth(method = "lm") +
+  geom_smooth(method = "gam", formula = y ~ s(x, k = 3), colour = "red")
+```
+
+## Numeric predictors
+
+$$
+\begin{align}
+vdur_i & \sim LogNormal(\mu_i, \sigma)\\
+\mu_i & = \beta_{1,voicing[i], language[i]} + \beta_2 \cdot \text{spr}\\
+\beta_{1jw} & \sim Gaussian(\mu_j, \sigma_j) & , \text{for } j = 1..2\\
+ &  &  w = 1..2\\
+\beta_2 & \sim Gaussian(\mu_3, \sigma_3)\\
+\sigma & \sim Cauchy_{+}(0, \sigma_4)\\
+\end{align}
+$$
+
+## Get default priors: indexing
+
+```{r}
+#| label: get-prior
+
+get_prior(
+  v1_duration ~ 0 + c2_phonation:language + speech_rate_c,
+  family = lognormal,
+  data = token_measures
+)
+```
+
+## Priors
+
+```{r}
+#| label: m-6-priors
+
+m_6_priors <- c(
+  # Priors for the four `b` coefficients
+  prior(normal(4.45, 0.55), class = b, coef = `c2_phonationvoiced:languageItalian`),
+  prior(normal(4.45, 0.55), class = b, coef = `c2_phonationvoiced:languagePolish`),
+  prior(normal(4.45, 0.55), class = b, coef = `c2_phonationvoiceless:languageItalian`),
+  prior(normal(4.45, 0.55), class = b, coef = `c2_phonationvoiceless:languagePolish`),
+  prior(normal(0, 0.5), class = b, coef = `speech_rate_c`),
+  # Prior for sigma
+  prior(normal(0, 0.1), class = sigma)
+)
+
+m_6_priors
+```
+
+## Prior predictive checks
+
+```{r}
+#| label: m-6-prior-pp
+
+my_seed <- 5293
+
+m_6_priorpp <- brm(
+  v1_duration ~ 0 + c2_phonation:language + speech_rate_c,
+  data = token_measures,
+  family = lognormal,
+  prior = m_6_priors,
+  sample_prior = "only",
+  cores = 4,
+  seed = my_seed,
+  file = "data/cache/m_6_priorpp"
+)
+```
+
+## Prior predictive plots
+
+```{r}
+#| label: m-5-prior-pp-plot
+
+conditional_effects(m_6_priorpp, effects = "language:c2_phonation")
+conditional_effects(m_6_priorpp, effects = "speech_rate_c", spaghetti = TRUE, ndraws = 100)
+```
+
+## Fit the model
+
+```{r}
+#| label: m-6
+
+m_6 <- brm(
+  v1_duration ~ 0 + c2_phonation:language + speech_rate_c,
+  data = token_measures,
+  family = lognormal,
+  prior = m_6_priors,
+  seed = my_seed,
+  cores = 4,
+  file = "data/cache/m_6"
+)
+```
+
+## Model summary
+
+```{r}
+#| label: m-6-summary
+
+summary(m_6, prob = 0.8)
+```
+
+## Posterior probability distributions: outcome (vowel duration)
+
+```{r}
+#| label: m-6-cond
+
+conditional_effects(m_6, effects = "language:c2_phonation")
+conditional_effects(m_6, effects = "speech_rate_c")
+```
+
+## Posterior probability distribution: difference of vowel duration
+
+```{r}
+#| label: m-6-comparisons
+
+# In milliseconds
+avg_comparisons(m_6, variables = "c2_phonation", by = "language", conf_level = 0.8)
+
+# As ratio
+avg_comparisons(m_6, variables = "c2_phonation", by = "language", conf_level = 0.8, comparison = "ratio")
+```
+
+## Posterior probability distribution: difference of difference
+
+```{r}
+#| label: m-6-diffdiff
+
+avg_comparisons(m_6, variables = "c2_phonation", by = "language", conf_level = 0.8, comparison = "ratio", hypothesis = "b2 = b1")
+```
+
+## Posterior predictive checks
+
+```{r}
+pp_check(m_6, ndraws = 100)
+```
+
+## Non-linear effects: GAMs
+
+```{r}
+#| label: m-6a
+
+m_6a <- brm(
+  v1_duration ~ 0 + c2_phonation:language + s(speech_rate_c, k = 3),
+  data = token_measures,
+  family = lognormal,
+  seed = my_seed,
+  cores = 4,
+  file = "data/cache/m_6a"
+)
+```
+
+## Posterior probability distributions: outcome (vowel duration)
+
+```{r}
+#| label: m-6a-cond
+
+plot(conditional_effects(m_6a, effects = "speech_rate_c"), points = TRUE)
+```
+
+## Posterior probability distribution: difference of difference
+
+```{r}
+#| label: m-6a-diffdiff
+
+avg_comparisons(m_6a, variables = "c2_phonation", by = "language", conf_level = 0.8, comparison = "ratio", hypothesis = "b2 = b1")
+```
