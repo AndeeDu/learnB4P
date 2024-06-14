@@ -1,0 +1,99 @@
+---
+title: "06 - Multilevel models I"
+author: "Stefano Coretta"
+format:
+  mono-light-revealjs:
+    theme: [default, custom.scss]
+    history: false
+filters:
+  - tachyonsextra
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+theme_set(theme_light())
+library(coretta2018itapol)
+library(brms)
+library(htmltools)
+
+library(coretta2018itapol)
+data("token_measures")
+token_measures <- token_measures |> drop_na(v1_duration)
+
+library(marginaleffects)
+library(tidybayes)
+```
+
+## Set order of levels
+
+```{r}
+#| label: set-levels
+
+token_measures <- token_measures |> 
+  mutate(
+    c2_phonation = factor(c2_phonation, levels = c("voiceless", "voiced"))
+  )
+```
+
+```{r}
+get_prior(
+  v1_duration ~
+    0 + c2_phonation:language + s(speech_rate_c, k = 3) +
+    (0 + c2_phonation:language | speaker),
+  data = token_measures,
+  family = lognormal
+)
+```
+
+```{r}
+m_7_priors <- c(
+  prior(normal(4.45, 0.55), class = b),
+  prior(normal(0, 0.5), class = b, coef = sspeech_rate_c_1),
+  prior(normal(0, 0.1), class = sigma),
+  prior(normal(0, 0.1), class = sd),
+  prior(normal(0, 0.1), class = sds),
+  prior(lkj(2), class = cor)
+)
+```
+
+
+```{r}
+#| label: m-7
+
+m_7 <- brm(
+  v1_duration ~
+    0 + c2_phonation:language + s(speech_rate_c, k = 3) +
+    (0 + c2_phonation:language | speaker),
+  data = token_measures,
+  family = lognormal,
+  prior = m_7_priors,
+  seed = my_seed,
+  cores = 4,
+  file = "data/cache/m_7"
+)
+```
+
+```{r}
+summary(m_7, prob = 0.8)
+```
+
+```{r}
+conditional_effects(m_7, effects = "language:c2_phonation")
+```
+
+## Posterior probability distribution: difference of difference
+
+```{r}
+#| label: m-6a-diffdiff
+
+avg_comparisons(m_7, variables = "c2_phonation", by = "language", conf_level = 0.8, comparison = "ratio")
+avg_comparisons(m_7, variables = "c2_phonation", by = "language", conf_level = 0.8, comparison = "ratio", hypothesis = "b2 = b1")
+```
+
+```{r}
+
+```
+

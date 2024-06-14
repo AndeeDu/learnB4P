@@ -1,5 +1,5 @@
 ---
-title: "04 - Interactions"
+title: "05 - Numeric predictors"
 author: "Stefano Coretta"
 format:
   mono-light-revealjs:
