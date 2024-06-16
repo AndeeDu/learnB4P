@@ -1,5 +1,7 @@
 ---
-title: "LearnB4P"
+title: "Learn Bayesian modelling for Phonetology"
 ---
 
-Under construction
+This is the website of the workshop **learnB4P**.
+
+Check out the [set-up](setup.qmd) page for instructions on software requirements.

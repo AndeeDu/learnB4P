@@ -4,19 +4,30 @@ project:
   output-dir: docs
 
 website:
-  title: "LearnB4P"
+  title: "learnB4P"
   navbar:
     left:
       - href: index.qmd
         text: Home
       - href: setup.qmd
         text: Set-up
+      - text: Slides
+        menu:
+          - href: "slides/01_introduction.qmd"
+            text: "01 - Introduction"
+          - href: "slides/02_priors.qmd"
+            text: "02 - Priors"
+          - href: "slides/03_categorical.qmd"
+            text: "03 - Categorical predictors"
+          - href: "slides/04_interactions.qmd"
+            text: "04 - Interactions"
 
 format:
   html:
-    theme: cosmo
+    theme: solar
     css: styles.css
     toc: true
 
-
+execute:
+  freeze: auto
 

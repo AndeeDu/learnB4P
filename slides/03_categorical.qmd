@@ -7,10 +7,16 @@ format:
     history: false
 filters:
   - tachyonsextra
+execute:
+  echo: true
+knitr:
+  opts_chunk: 
+    fig-align: center
 ---
 
 ```{r}
 #| label: setup
+#| include: false
 
 library(tidyverse)
 theme_set(theme_light())
@@ -29,6 +35,8 @@ library(truncdist)
 ## Vowel duration by voicing
 
 ```{r}
+#| label: vdur-voi
+#| echo: false
 token_measures |> 
   ggplot(aes(c2_phonation, v1_duration)) +
   geom_violin() +

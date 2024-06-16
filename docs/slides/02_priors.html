@@ -12,7 +12,7 @@
   <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Stefano Coretta">
-  <title>LearnB4P - 02 - Priors</title>
+  <title>learnB4P - 02 - Priors</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -30,6 +30,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -345,20 +410,22 @@ Stefano Coretta
 vdur &amp; \sim Gaussian(\mu, \sigma)\\
 \end{align}
 \]</span></p>
+<div class="fragment">
 <p>Pick a <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>.</p>
 <p>Report them here: <a href="https://forms.gle/HRzH5CworngWrBv16" class="uri">https://forms.gle/HRzH5CworngWrBv16</a>.</p>
+</div>
 </section>
 <section id="proposed-distributions-of-vowel-duration" class="slide level2">
 <h2>Proposed distributions of vowel duration</h2>
 
-<img data-src="02_priors_files/figure-revealjs/rt-sheet-1.png" width="960" class="r-stretch"></section>
+<img data-src="02_priors_files/figure-revealjs/rt-sheet-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="bayesian-belief-update" class="slide level2">
 <h2>Bayesian belief update</h2>
 
 <img data-src="img/prior-update.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="section" class="slide level2">
 <h2></h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <section id="Priors" data-background-iframe="https://seeing-theory.brown.edu/bayesian-inference/index.html#section3" data-background-interactive="">
 </section>
@@ -377,7 +444,12 @@ vdur &amp; \sim LogNormal(\mu, \sigma)\\
 </section>
 <section id="get-default-priors" class="slide level2">
 <h2>Get default priors</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">get_prior</span>(</span>
+<span id="cb1-2"><a></a>  v1_duration <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb1-3"><a></a>  <span class="at">family =</span> lognormal,</span>
+<span id="cb1-4"><a></a>  <span class="at">data =</span> token_measures</span>
+<span id="cb1-5"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                  prior     class coef group resp dpar nlpar lb ub  source
  student_t(3, 4.6, 2.5) Intercept                                  default
@@ -388,32 +460,32 @@ vdur &amp; \sim LogNormal(\mu, \sigma)\\
 <section id="prior-probability-distributions" class="slide level2">
 <h2>Prior probability distributions</h2>
 
-<img data-src="02_priors_files/figure-revealjs/distrs-1.png" width="960" class="r-stretch"></section>
+<img data-src="02_priors_files/figure-revealjs/distrs-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="the-empirical-rule" class="slide level2">
 <h2>The empirical rule</h2>
 
-<img data-src="02_priors_files/figure-revealjs/empirical-rule-1-1.png" width="960" class="r-stretch"></section>
+<img data-src="02_priors_files/figure-revealjs/empirical-rule-1-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="the-empirical-rule-1" class="slide level2">
 <h2>The empirical rule</h2>
 
-<img data-src="02_priors_files/figure-revealjs/empirical-rule-2-1.png" width="960" class="r-stretch"></section>
+<img data-src="02_priors_files/figure-revealjs/empirical-rule-2-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="the-empirical-rule-2" class="slide level2">
 <h2>The empirical rule</h2>
 
-<img data-src="02_priors_files/figure-revealjs/empirical-rule-3-1.png" width="960" class="r-stretch"></section>
+<img data-src="02_priors_files/figure-revealjs/empirical-rule-3-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="the-empirical-rule-3" class="slide level2">
 <h2>The empirical rule</h2>
 
-<img data-src="02_priors_files/figure-revealjs/empirical-rule-4-1.png" width="960" class="r-stretch"></section>
+<img data-src="02_priors_files/figure-revealjs/empirical-rule-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="the-empirical-rule-4" class="slide level2">
 <h2>The empirical rule</h2>
 
-<img data-src="02_priors_files/figure-revealjs/empirical-rule-5-1.png" width="960" class="r-stretch"></section>
+<img data-src="02_priors_files/figure-revealjs/empirical-rule-5-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="priors-of-the-model" class="slide level2">
 <h2>Priors of the model</h2>
 <p><span class="math display">\[
 \begin{align}
-\text{RT}_i &amp; \sim Gaussian(\mu, \sigma)\\
+vdur &amp; \sim LogNormal(\mu, \sigma)\\
 \mu &amp; \sim Gaussian(\mu_1, \sigma_1)\\
 \sigma &amp; \sim Cauchy_{+}(0, \sigma_2)\\
 \end{align}
@@ -452,7 +524,7 @@ vdur &amp; \sim LogNormal(\mu, \sigma)\\
 <h2>Prior for <span class="math inline">\(\mu\)</span></h2>
 <p><span class="math display">\[
 \begin{align}
-\text{RT}_i &amp; \sim Gaussian(\mu, \sigma)\\
+vdur &amp; \sim LogNormal(\mu, \sigma)\\
 \mu &amp; \sim Gaussian(\mu_1 = 4.45, \sigma_1 = 0.55)\\
 \sigma &amp; \sim Cauchy_{+}(0, \sigma_2)\\
 \end{align}
@@ -461,16 +533,21 @@ vdur &amp; \sim LogNormal(\mu, \sigma)\\
 <section id="prior-for-mu-plot" class="slide level2">
 <h2>Prior for <span class="math inline">\(\mu\)</span>: plot</h2>
 
-<img data-src="02_priors_files/figure-revealjs/mu-prior-plot-1.png" width="960" class="r-stretch"></section>
+<img data-src="02_priors_files/figure-revealjs/mu-prior-plot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="prior-for-sigma" class="slide level2">
 <h2>Prior for <span class="math inline">\(\sigma\)</span></h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(HDInterval)</span>
+<span id="cb3-2"><a></a></span>
+<span id="cb3-3"><a></a><span class="fu">round</span>(<span class="fu">inverseCDF</span>(<span class="fu">c</span>(<span class="fl">0.975</span>), ptrunc, <span class="at">spec =</span> <span class="st">"cauchy"</span>, <span class="at">a =</span> <span class="dv">0</span>, <span class="at">scale =</span> <span class="fl">0.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">round</span>(<span class="fu">inverseCDF</span>(<span class="fu">c</span>(<span class="fl">0.975</span>), ptrunc, <span class="at">spec =</span> <span class="st">"cauchy"</span>, <span class="at">a =</span> <span class="dv">0</span>, <span class="at">scale =</span> <span class="fl">0.2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">round</span>(<span class="fu">inverseCDF</span>(<span class="fu">c</span>(<span class="fl">0.975</span>), ptrunc, <span class="at">spec =</span> <span class="st">"cauchy"</span>, <span class="at">a =</span> <span class="dv">0</span>, <span class="at">scale =</span> <span class="fl">0.3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 8</code></pre>
 </div>
@@ -478,14 +555,39 @@ vdur &amp; \sim LogNormal(\mu, \sigma)\\
 </section>
 <section id="prior-for-sigma-plot" class="slide level2">
 <h2>Prior for <span class="math inline">\(\sigma\)</span>: plot</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>)), <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span></span>
+<span id="cb9-2"><a></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dtrunc, <span class="at">geom =</span> <span class="st">"area"</span>, <span class="at">fill =</span> <span class="st">"tomato4"</span>,</span>
+<span id="cb9-3"><a></a>                <span class="at">args =</span> <span class="fu">list</span>(<span class="at">spec =</span> <span class="st">"cauchy"</span>, <span class="at">a =</span> <span class="dv">0</span>, <span class="at">scale =</span> <span class="fl">0.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="02_priors_files/figure-revealjs/sigma-prior-plot-1.png" width="960" class="r-stretch"></section>
+</div>
+<img data-src="02_priors_files/figure-revealjs/sigma-prior-plot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="prior-predictive-checks-sample-prior" class="slide level2">
 <h2>Prior predictive checks: sample prior</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10" data-code-line-numbers="|13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>my_seed <span class="ot">&lt;-</span> <span class="dv">3485</span></span>
+<span id="cb10-2"><a></a></span>
+<span id="cb10-3"><a></a>m_3_priors <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb10-4"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.55</span>), <span class="at">class =</span> Intercept),</span>
+<span id="cb10-5"><a></a>  <span class="fu">prior</span>(<span class="fu">cauchy</span>(<span class="dv">0</span>, <span class="fl">0.1</span>), <span class="at">class =</span> sigma)</span>
+<span id="cb10-6"><a></a>)</span>
+<span id="cb10-7"><a></a></span>
+<span id="cb10-8"><a></a>m_3_priorpp <span class="ot">&lt;-</span> <span class="fu">brm</span>(</span>
+<span id="cb10-9"><a></a>  v1_duration <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb10-10"><a></a>  <span class="at">family =</span> lognormal,</span>
+<span id="cb10-11"><a></a>  <span class="at">prior =</span> m_3_priors,</span>
+<span id="cb10-12"><a></a>  <span class="at">data =</span> token_measures,</span>
+<span id="cb10-13"><a></a>  <span class="at">sample_prior =</span> <span class="st">"only"</span>,</span>
+<span id="cb10-14"><a></a>  <span class="at">cores =</span> <span class="dv">4</span>,</span>
+<span id="cb10-15"><a></a>  <span class="at">file =</span> <span class="st">"data/cache/m_3_priorpp"</span>,</span>
+<span id="cb10-16"><a></a>  <span class="at">seed =</span> my_seed</span>
+<span id="cb10-17"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="prior-predictive-checks-sample-prior-1" class="slide level2">
 <h2>Prior predictive checks: sample prior</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">summary</span>(m_3_priorpp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Family: lognormal 
   Links: mu = identity; sigma = identity 
@@ -510,18 +612,47 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 </section>
 <section id="prior-predictive-checks-plot" class="slide level2">
 <h2>Prior predictive checks: plot</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">set.seed</span>(my_seed)</span>
+<span id="cb13-2"><a></a>m_3_pppreds <span class="ot">&lt;-</span> <span class="fu">posterior_predict</span>(m_3_priorpp, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">y =</span> <span class="dv">1</span>), <span class="at">ndraws =</span> <span class="fl">1e3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a></a>  <span class="fu">as.vector</span>()</span>
+<span id="cb13-4"><a></a></span>
+<span id="cb13-5"><a></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb13-6"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> m_3_pppreds) <span class="sc">+</span></span>
+<span id="cb13-7"><a></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"forestgreen"</span>) <span class="sc">+</span></span>
+<span id="cb13-8"><a></a>  <span class="fu">geom_rug</span>(<span class="at">alpha =</span> <span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="02_priors_files/figure-revealjs/m-3-priorpp-plot-1.png" width="960" class="r-stretch"></section>
+</div>
+<img data-src="02_priors_files/figure-revealjs/m-3-priorpp-plot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="prior-predictive-checks-plot-zoom-in" class="slide level2">
 <h2>Prior predictive checks: plot (zoom in)</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb14-2"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> m_3_pppreds) <span class="sc">+</span></span>
+<span id="cb14-3"><a></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"forestgreen"</span>) <span class="sc">+</span></span>
+<span id="cb14-4"><a></a>  <span class="fu">geom_rug</span>(<span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="02_priors_files/figure-revealjs/m-3-priorpp-plot-2-1.png" width="960" class="r-stretch"></section>
+</div>
+<img data-src="02_priors_files/figure-revealjs/m-3-priorpp-plot-2-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="run-the-model" class="slide level2">
 <h2>Run the model</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>m_3 <span class="ot">&lt;-</span> <span class="fu">brm</span>(</span>
+<span id="cb15-2"><a></a>  v1_duration <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb15-3"><a></a>  <span class="at">family =</span> lognormal,</span>
+<span id="cb15-4"><a></a>  <span class="at">prior =</span> m_3_priors,</span>
+<span id="cb15-5"><a></a>  <span class="at">data =</span> token_measures,</span>
+<span id="cb15-6"><a></a>  <span class="at">cores =</span> <span class="dv">4</span>,</span>
+<span id="cb15-7"><a></a>  <span class="at">file =</span> <span class="st">"data/cache/m_3"</span>,</span>
+<span id="cb15-8"><a></a>  <span class="at">seed =</span> my_seed</span>
+<span id="cb15-9"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="model-summary" class="slide level2">
 <h2>Model summary</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">summary</span>(m_3, <span class="at">prob =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Family: lognormal 
   Links: mu = identity; sigma = identity 
@@ -546,9 +677,12 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 </section>
 <section id="posterior-predictive-checks" class="slide level2">
 <h2>Posterior predictive checks</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">pp_check</span>(m_3, <span class="at">ndraws =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
+</div>
 
-<img data-src="02_priors_files/figure-revealjs/m-3-pp-1.png" width="960" class="r-stretch"><div class="quarto-auto-generated-content">
+<img data-src="02_priors_files/figure-revealjs/m-3-pp-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>

@@ -94,6 +94,6 @@ avg_comparisons(m_7, variables = "c2_phonation", by = "language", conf_level = 0
 ```
 
 ```{r}
-
+gather_draws(m_7, r_speaker[speaker,term])
 ```
 

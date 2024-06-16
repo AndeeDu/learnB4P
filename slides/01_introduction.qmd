@@ -7,10 +7,14 @@ format:
     history: false
 filters:
   - tachyonsextra
+execute: 
+  echo: true
+  
 ---
 
 ```{r}
 #| label: setup
+#| include: false
 
 library(tidyverse)
 theme_set(theme_light())
@@ -18,42 +22,69 @@ library(coretta2018itapol)
 library(brms)
 ```
 
-
 ## Statistical modelling
 
-...
+![From McElreath 2019](img/models.png)
 
 ## Statistical inference
 
-...
+![The inference process](img/inference.png)
+
 
 ## Two frameworks of inference
 
-...
+::: {layout-ncol="2"}
+![](img/np.jpg){fig-align="center" width="248"}
+
+![](img/Thomas_Bayes.gif){fig-align="center" width="373"}
+:::
+
 
 ## Frequentist framework
 
-...
+::: box-note
+- Neyman-Pearson's Null Hypothesis Significance Testing (NHST).
+
+- Based on frequentist interpretation of probabilities as **long-run occurrences of events**.
+
+- Output:
+  - **Point estimates** of predictors' parameters (with standard error).
+  -   *p*-values.
+:::
+
 
 ## Bayesian framework
 
-...
+::: box-note
+- Bayesian inference.
+
+- Based on the Bayesian interpretation of probabilities as **degree of belief in the occurrence of events**.
+
+-  Output:
+  - **Probability distributions** of model's parameters.
+:::
+
 
 ## Bayesian regression: basics
 
 ::: box-note
+-   R package brms.
 
-- R package brms.
+-   Same syntax as lme4.
 
-- Same syntax as lme4.
-
-- One function to fit many types of regression models: `brm()`.
-
+-   One function to fit many types of regression models: `brm()`.
 :::
+
 
 ## Example data: background
 
-...
+::: box-note
+- Effect of consonant voicing on preceding vowel duration in Italian and Polish.
+
+- pVCV words (/a, o, u/, /t, d, k, g/).
+
+- 11 Italian speakers, 6 Polish speakers. 5 repetitions.
+:::
 
 ## Example data: the data frame
 
@@ -70,6 +101,8 @@ token_measures
 
 ```{r}
 #| label: vdur-strip
+#| echo: false
+
 token_measures |> 
   ggplot(aes(c2_phonation, v1_duration)) +
   geom_jitter(width = 0.2, alpha = 0.1) +
@@ -77,11 +110,12 @@ token_measures |>
   facet_grid(cols = vars(language))
 ```
 
-
 ## Vowel duration
 
 ```{r}
 #| label: vdur-dens
+#| echo: false
+
 token_measures |> 
 ggplot(aes(v2_duration)) +
 geom_density(fill = "purple", alpha = 0.5) +
@@ -96,11 +130,11 @@ dur & \sim Gaussian(\mu, \sigma)
 \end{align}
 $$
 
-- $dur$ is vowel duration
+-   $dur$ is vowel duration
 
-- $\sim$ means "is distributed/generated according to".
+-   $\sim$ means "is distributed/generated according to".
 
-- $Gaussian(\mu, \sigma)$ a Gaussian distribution with mean $\mu$ and standard deviation $\sigma$.
+-   $Gaussian(\mu, \sigma)$ a Gaussian distribution with mean $\mu$ and standard deviation $\sigma$.
 
 ## Fit the model with brms
 
@@ -128,6 +162,7 @@ summary(m_1)
 
 ```{r}
 #| label: m-1-summary-0.8
+
 summary(m_1, prob = 0.8)
 ```
 
@@ -191,4 +226,3 @@ summary(m_2, prob = 0.8)
 
 pp_check(m_2, ndraws = 50)
 ```
-

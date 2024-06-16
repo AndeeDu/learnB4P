@@ -32,35 +32,35 @@
     "href": "slides/01_introduction.html#statistical-modelling",
     "title": "01 - Introduction",
     "section": "Statistical modelling",
-    "text": "Statistical modelling\n…"
+    "text": "Statistical modelling\n\nFrom McElreath 2019"
   },
   {
     "objectID": "slides/01_introduction.html#statistical-inference",
     "href": "slides/01_introduction.html#statistical-inference",
     "title": "01 - Introduction",
     "section": "Statistical inference",
-    "text": "Statistical inference\n…"
+    "text": "Statistical inference\n\nThe inference process"
   },
   {
     "objectID": "slides/01_introduction.html#two-frameworks-of-inference",
     "href": "slides/01_introduction.html#two-frameworks-of-inference",
     "title": "01 - Introduction",
     "section": "Two frameworks of inference",
-    "text": "Two frameworks of inference\n…"
+    "text": "Two frameworks of inference"
   },
   {
     "objectID": "slides/01_introduction.html#frequentist-framework",
     "href": "slides/01_introduction.html#frequentist-framework",
     "title": "01 - Introduction",
     "section": "Frequentist framework",
-    "text": "Frequentist framework\n…"
+    "text": "Frequentist framework\n\n\nNeyman-Pearson’s Null Hypothesis Significance Testing (NHST).\nBased on frequentist interpretation of probabilities as long-run occurrences of events.\nOutput:\n\nPoint estimates of predictors’ parameters (with standard error).\np-values."
   },
   {
     "objectID": "slides/01_introduction.html#bayesian-framework",
     "href": "slides/01_introduction.html#bayesian-framework",
     "title": "01 - Introduction",
     "section": "Bayesian framework",
-    "text": "Bayesian framework\n…"
+    "text": "Bayesian framework\n\n\nBayesian inference.\nBased on the Bayesian interpretation of probabilities as degree of belief in the occurrence of events.\nOutput:\nProbability distributions of model’s parameters."
   },
   {
     "objectID": "slides/01_introduction.html#bayesian-regression-basics",
@@ -74,14 +74,14 @@
     "href": "slides/01_introduction.html#example-data-background",
     "title": "01 - Introduction",
     "section": "Example data: background",
-    "text": "Example data: background\n…"
+    "text": "Example data: background\n\n\nEffect of consonant voicing on preceding vowel duration in Italian and Polish.\npVCV words (/a, o, u/, /t, d, k, g/).\n11 Italian speakers, 6 Polish speakers. 5 repetitions."
   },
   {
     "objectID": "slides/01_introduction.html#example-data-the-data-frame",
     "href": "slides/01_introduction.html#example-data-the-data-frame",
     "title": "01 - Introduction",
     "section": "Example data: the data frame",
-    "text": "Example data: the data frame\n\n\n# A tibble: 1,343 × 53\n   index speaker file     rec_date        ipu   prompt word    time sentence_ons\n   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;        &lt;dbl&gt;\n 1     1 it01    it01-001 29/11/2016 15:… ipu_1 Dico … pugu   0.990        0.990\n 2     2 it01    it01-002 29/11/2016 15:… ipu_2 Dico … pada   3.62         0.502\n 3     3 it01    it01-003 29/11/2016 15:… ipu_3 Dico … poco   6.13         0.697\n 4     4 it01    it01-004 29/11/2016 15:… ipu_4 Dico … pata   8.82         0.623\n 5     5 it01    it01-005 29/11/2016 15:… ipu_5 Dico … boco  11.5          0.665\n 6     6 it01    it01-006 29/11/2016 15:… ipu_6 Dico … podo  14.3          0.647\n 7     7 it01    it01-007 29/11/2016 15:… ipu_7 Dico … boto  17.2          0.740\n 8     8 it01    it01-008 29/11/2016 15:… ipu_8 Dico … paca  19.7          0.502\n 9     9 it01    it01-009 29/11/2016 15:… ipu_9 Dico … bodo  22.3          0.556\n10    10 it01    it01-010 29/11/2016 15:… ipu_… Dico … pucu  24.8          0.535\n# ℹ 1,333 more rows\n# ℹ 44 more variables: sentence_off &lt;dbl&gt;, word_ons &lt;dbl&gt;, word_off &lt;dbl&gt;,\n#   v1_ons &lt;dbl&gt;, c2_ons &lt;dbl&gt;, v2_ons &lt;dbl&gt;, c1_rel &lt;dbl&gt;, c2_rel &lt;dbl&gt;,\n#   voicing_start &lt;dbl&gt;, voicing_end &lt;dbl&gt;, voicing_duration &lt;dbl&gt;,\n#   voiced_points &lt;dbl&gt;, GONS &lt;dbl&gt;, max &lt;dbl&gt;, NOFF &lt;dbl&gt;, NONS &lt;dbl&gt;,\n#   peak1 &lt;dbl&gt;, peak2 &lt;dbl&gt;, c1_duration &lt;dbl&gt;, c1_clos_duration &lt;dbl&gt;,\n#   c1_vot &lt;dbl&gt;, c1_rvoff &lt;dbl&gt;, v1_duration &lt;dbl&gt;, c2_duration &lt;dbl&gt;, …"
+    "text": "Example data: the data frame\n\nlibrary(coretta2018itapol)\ndata(\"token_measures\")\n\ntoken_measures\n\n# A tibble: 1,343 × 53\n   index speaker file     rec_date        ipu   prompt word    time sentence_ons\n   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;        &lt;dbl&gt;\n 1     1 it01    it01-001 29/11/2016 15:… ipu_1 Dico … pugu   0.990        0.990\n 2     2 it01    it01-002 29/11/2016 15:… ipu_2 Dico … pada   3.62         0.502\n 3     3 it01    it01-003 29/11/2016 15:… ipu_3 Dico … poco   6.13         0.697\n 4     4 it01    it01-004 29/11/2016 15:… ipu_4 Dico … pata   8.82         0.623\n 5     5 it01    it01-005 29/11/2016 15:… ipu_5 Dico … boco  11.5          0.665\n 6     6 it01    it01-006 29/11/2016 15:… ipu_6 Dico … podo  14.3          0.647\n 7     7 it01    it01-007 29/11/2016 15:… ipu_7 Dico … boto  17.2          0.740\n 8     8 it01    it01-008 29/11/2016 15:… ipu_8 Dico … paca  19.7          0.502\n 9     9 it01    it01-009 29/11/2016 15:… ipu_9 Dico … bodo  22.3          0.556\n10    10 it01    it01-010 29/11/2016 15:… ipu_… Dico … pucu  24.8          0.535\n# ℹ 1,333 more rows\n# ℹ 44 more variables: sentence_off &lt;dbl&gt;, word_ons &lt;dbl&gt;, word_off &lt;dbl&gt;,\n#   v1_ons &lt;dbl&gt;, c2_ons &lt;dbl&gt;, v2_ons &lt;dbl&gt;, c1_rel &lt;dbl&gt;, c2_rel &lt;dbl&gt;,\n#   voicing_start &lt;dbl&gt;, voicing_end &lt;dbl&gt;, voicing_duration &lt;dbl&gt;,\n#   voiced_points &lt;dbl&gt;, GONS &lt;dbl&gt;, max &lt;dbl&gt;, NOFF &lt;dbl&gt;, NONS &lt;dbl&gt;,\n#   peak1 &lt;dbl&gt;, peak2 &lt;dbl&gt;, c1_duration &lt;dbl&gt;, c1_clos_duration &lt;dbl&gt;,\n#   c1_vot &lt;dbl&gt;, c1_rvoff &lt;dbl&gt;, v1_duration &lt;dbl&gt;, c2_duration &lt;dbl&gt;, …"
   },
   {
     "objectID": "slides/01_introduction.html#vowel-duration-and-consonant-voicing",
@@ -109,35 +109,35 @@
     "href": "slides/01_introduction.html#fit-the-model-with-brms",
     "title": "01 - Introduction",
     "section": "Fit the model with brms",
-    "text": "Fit the model with brms"
+    "text": "Fit the model with brms\n\nm_1 &lt;- brm(\n  v2_duration ~ 1,\n  family = gaussian,\n  data = token_measures,\n  cores = 4,\n  file = \"data/cache/m_1\",\n)"
   },
   {
     "objectID": "slides/01_introduction.html#model-summary",
     "href": "slides/01_introduction.html#model-summary",
     "title": "01 - Introduction",
     "section": "Model summary",
-    "text": "Model summary\n\n\n Family: gaussian \n  Links: mu = identity; sigma = identity \nFormula: v2_duration ~ 1 \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n          Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nIntercept    78.10      0.84    76.45    79.78 1.00     2657     2561\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nsigma    31.33      0.60    30.19    32.54 1.00     3320     2578\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
+    "text": "Model summary\n\nsummary(m_1)\n\n Family: gaussian \n  Links: mu = identity; sigma = identity \nFormula: v2_duration ~ 1 \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n          Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nIntercept    78.10      0.84    76.45    79.78 1.00     2657     2561\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nsigma    31.33      0.60    30.19    32.54 1.00     3320     2578\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
   },
   {
     "objectID": "slides/01_introduction.html#model-summary-80-cris",
     "href": "slides/01_introduction.html#model-summary-80-cris",
     "title": "01 - Introduction",
     "section": "Model summary: 80% CrIs",
-    "text": "Model summary: 80% CrIs\n\n\n Family: gaussian \n  Links: mu = identity; sigma = identity \nFormula: v2_duration ~ 1 \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n          Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nIntercept    78.10      0.84    77.02    79.17 1.00     2657     2561\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nsigma    31.33      0.60    30.57    32.10 1.00     3320     2578\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
+    "text": "Model summary: 80% CrIs\n\nsummary(m_1, prob = 0.8)\n\n Family: gaussian \n  Links: mu = identity; sigma = identity \nFormula: v2_duration ~ 1 \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n          Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nIntercept    78.10      0.84    77.02    79.17 1.00     2657     2561\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nsigma    31.33      0.60    30.57    32.10 1.00     3320     2578\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
   },
   {
     "objectID": "slides/01_introduction.html#plot-posterior-probability-distributions",
     "href": "slides/01_introduction.html#plot-posterior-probability-distributions",
     "title": "01 - Introduction",
     "section": "Plot posterior probability distributions",
-    "text": "Plot posterior probability distributions"
+    "text": "Plot posterior probability distributions\n\nplot(m_1, combo = c(\"dens\", \"trace\"))"
   },
   {
     "objectID": "slides/01_introduction.html#diagnostics-posterior-predictive-checks",
     "href": "slides/01_introduction.html#diagnostics-posterior-predictive-checks",
     "title": "01 - Introduction",
     "section": "Diagnostics: posterior predictive checks",
-    "text": "Diagnostics: posterior predictive checks"
+    "text": "Diagnostics: posterior predictive checks\n\npp_check(m_1, ndraws = 50)"
   },
   {
     "objectID": "slides/01_introduction.html#log-normal-model-of-vowel-duration",
@@ -151,35 +151,343 @@
     "href": "slides/01_introduction.html#fit-the-log-normal-model",
     "title": "01 - Introduction",
     "section": "Fit the log-normal model",
-    "text": "Fit the log-normal model"
+    "text": "Fit the log-normal model\n\nm_2 &lt;- brm(\n  v2_duration ~ 1,\n  family = lognormal,\n  data = token_measures,\n  cores = 4,\n  file = \"data/cache/m_2\",\n)"
   },
   {
     "objectID": "slides/01_introduction.html#model-summary-1",
     "href": "slides/01_introduction.html#model-summary-1",
     "title": "01 - Introduction",
     "section": "Model summary",
-    "text": "Model summary\n\n\n Family: lognormal \n  Links: mu = identity; sigma = identity \nFormula: v2_duration ~ 1 \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n          Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nIntercept     4.30      0.01     4.28     4.31 1.00     3405     2635\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nsigma     0.34      0.01     0.33     0.35 1.00     2798     2230\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
+    "text": "Model summary\n\nsummary(m_2, prob = 0.8)\n\n Family: lognormal \n  Links: mu = identity; sigma = identity \nFormula: v2_duration ~ 1 \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n          Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nIntercept     4.30      0.01     4.28     4.31 1.00     3405     2635\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nsigma     0.34      0.01     0.33     0.35 1.00     2798     2230\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
   },
   {
     "objectID": "slides/01_introduction.html#posterior-predictive-checks",
     "href": "slides/01_introduction.html#posterior-predictive-checks",
     "title": "01 - Introduction",
     "section": "Posterior predictive checks",
+    "text": "Posterior predictive checks\n\npp_check(m_2, ndraws = 50)"
+  },
+  {
+    "objectID": "slides/03_categorical.html#vowel-duration-by-voicing",
+    "href": "slides/03_categorical.html#vowel-duration-by-voicing",
+    "title": "03 - Categorical predictors",
+    "section": "Vowel duration by voicing",
+    "text": "Vowel duration by voicing"
+  },
+  {
+    "objectID": "slides/03_categorical.html#categorical-predictors-treatment-contrasts-default",
+    "href": "slides/03_categorical.html#categorical-predictors-treatment-contrasts-default",
+    "title": "03 - Categorical predictors",
+    "section": "Categorical predictors: treatment contrasts (default)",
+    "text": "Categorical predictors: treatment contrasts (default)\n\\[\n\\begin{align}\nvdur_i & \\sim LogNormal(\\mu, \\sigma)\\\\\n\\mu & = \\beta_0 + \\beta_1 \\cdot \\text{voiceless}_i \\\\\n\\beta_0 & \\sim Gaussian(\\mu_0, \\sigma_0)\\\\\n\\beta_1 & \\sim Gaussian(\\mu_1, \\sigma_1)\\\\\n\\sigma & \\sim Cauchy_{+}(0, \\sigma_2)\\\\\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "slides/03_categorical.html#get-default-priors",
+    "href": "slides/03_categorical.html#get-default-priors",
+    "title": "03 - Categorical predictors",
+    "section": "Get default priors",
+    "text": "Get default priors\n\nget_prior(\n  v1_duration ~ c2_phonation,\n  family = lognormal,\n  data = token_measures\n)\n\n                  prior     class                  coef group resp dpar nlpar\n                 (flat)         b                                            \n                 (flat)         b c2_phonationvoiceless                      \n student_t(3, 4.6, 2.5) Intercept                                            \n   student_t(3, 0, 2.5)     sigma                                            \n lb ub       source\n            default\n       (vectorized)\n            default\n  0         default"
+  },
+  {
+    "objectID": "slides/03_categorical.html#categorical-predictors-indexing",
+    "href": "slides/03_categorical.html#categorical-predictors-indexing",
+    "title": "03 - Categorical predictors",
+    "section": "Categorical predictors: indexing",
+    "text": "Categorical predictors: indexing\n\\[\n\\begin{align}\nvdur_i & \\sim LogNormal(\\mu_i, \\sigma)\\\\\n\\mu_i & = \\beta_{voicing[i]}\\\\\n\\beta_j & \\sim Gaussian(\\mu_j, \\sigma_j) & , \\text{for } j = 1..2\\\\\n\\sigma & \\sim Cauchy_{+}(0, \\sigma_3)\\\\\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "slides/03_categorical.html#get-default-priors-indexing",
+    "href": "slides/03_categorical.html#get-default-priors-indexing",
+    "title": "03 - Categorical predictors",
+    "section": "Get default priors: indexing",
+    "text": "Get default priors: indexing\n\nget_prior(\n  v1_duration ~ 0 + c2_phonation,\n  family = lognormal,\n  data = token_measures\n)\n\n                prior class                  coef group resp dpar nlpar lb ub\n               (flat)     b                                                  \n               (flat)     b    c2_phonationvoiced                            \n               (flat)     b c2_phonationvoiceless                            \n student_t(3, 0, 2.5) sigma                                              0   \n       source\n      default\n (vectorized)\n (vectorized)\n      default"
+  },
+  {
+    "objectID": "slides/03_categorical.html#priors",
+    "href": "slides/03_categorical.html#priors",
+    "title": "03 - Categorical predictors",
+    "section": "Priors",
+    "text": "Priors\n\nm_4_priors &lt;- c(\n  # Prior for both `b` coefficients\n  prior(normal(4.45, 0.55), class = b),\n  prior(normal(0, 0.1), class = sigma)\n)\n\nm_4_priors\n\n              prior class coef group resp dpar nlpar   lb   ub source\n normal(4.45, 0.55)     b                            &lt;NA&gt; &lt;NA&gt;   user\n     normal(0, 0.1) sigma                            &lt;NA&gt; &lt;NA&gt;   user"
+  },
+  {
+    "objectID": "slides/03_categorical.html#prior-predictive-checks",
+    "href": "slides/03_categorical.html#prior-predictive-checks",
+    "title": "03 - Categorical predictors",
+    "section": "Prior predictive checks",
+    "text": "Prior predictive checks\n\nmy_seed &lt;- 9682\n\nm_4_priorpp &lt;- brm(\n  v1_duration ~ 0 + c2_phonation,\n  data = token_measures,\n  family = lognormal,\n  prior = m_4_priors,\n  sample_prior = \"only\",\n  cores = 4,\n  seed = my_seed,\n  file = \"data/cache/m_4_priorpp\"\n)"
+  },
+  {
+    "objectID": "slides/03_categorical.html#prior-predictive-plots",
+    "href": "slides/03_categorical.html#prior-predictive-plots",
+    "title": "03 - Categorical predictors",
+    "section": "Prior predictive plots",
+    "text": "Prior predictive plots\n\nconditional_effects(m_4_priorpp)"
+  },
+  {
+    "objectID": "slides/03_categorical.html#fit-the-model",
+    "href": "slides/03_categorical.html#fit-the-model",
+    "title": "03 - Categorical predictors",
+    "section": "Fit the model",
+    "text": "Fit the model\n\nm_4 &lt;- brm(\n  v1_duration ~ 0 + c2_phonation,\n  data = token_measures,\n  family = lognormal,\n  prior = m_4_priors,\n  seed = my_seed,\n  cores = 4,\n  file = \"data/cache/m_4\"\n)"
+  },
+  {
+    "objectID": "slides/03_categorical.html#model-summary",
+    "href": "slides/03_categorical.html#model-summary",
+    "title": "03 - Categorical predictors",
+    "section": "Model summary",
+    "text": "Model summary\n\nsummary(m_4, prob = 0.8)\n\n Family: lognormal \n  Links: mu = identity; sigma = identity \nFormula: v1_duration ~ 0 + c2_phonation \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n                      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS\nc2_phonationvoiced        4.65      0.01     4.63     4.66 1.00     4593\nc2_phonationvoiceless     4.54      0.01     4.53     4.56 1.00     4526\n                      Tail_ESS\nc2_phonationvoiced        3242\nc2_phonationvoiceless     3027\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nsigma     0.32      0.01     0.31     0.33 1.00     4205     2982\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
+  },
+  {
+    "objectID": "slides/03_categorical.html#posterior-probability-distributions-outcome-vowel-duration",
+    "href": "slides/03_categorical.html#posterior-probability-distributions-outcome-vowel-duration",
+    "title": "03 - Categorical predictors",
+    "section": "Posterior probability distributions: outcome (vowel duration)",
+    "text": "Posterior probability distributions: outcome (vowel duration)\n\nconditional_effects(m_4)"
+  },
+  {
+    "objectID": "slides/03_categorical.html#posterior-probability-distribution-difference-of-vowel-duration",
+    "href": "slides/03_categorical.html#posterior-probability-distribution-difference-of-vowel-duration",
+    "title": "03 - Categorical predictors",
+    "section": "Posterior probability distribution: difference of vowel duration",
+    "text": "Posterior probability distribution: difference of vowel duration\n\nlibrary(marginaleffects)\n\navg_comparisons(m_4, conf_level = 0.8)\n\n\n         Term                       Contrast Estimate 10.0 % 90.0 %\n c2_phonation mean(voiceless) - mean(voiced)    -10.9  -13.2  -8.63\n\nColumns: term, contrast, estimate, conf.low, conf.high, predicted_lo, predicted_hi, predicted, tmp_idx \nType:  response"
+  },
+  {
+    "objectID": "slides/03_categorical.html#posterior-probability-distributions",
+    "href": "slides/03_categorical.html#posterior-probability-distributions",
+    "title": "03 - Categorical predictors",
+    "section": "Posterior probability distributions",
+    "text": "Posterior probability distributions\n\n\n\nPosteriors\npackage\nfunction\n\n\n\n\nOutcome\nbrms\nconditional_effects()\n\n\nDifference\nmarginaleffects\navg_comparisons()"
+  },
+  {
+    "objectID": "slides/05_numeric.html#set-order-of-levels",
+    "href": "slides/05_numeric.html#set-order-of-levels",
+    "title": "05 - Numeric predictors",
+    "section": "Set order of levels",
+    "text": "Set order of levels"
+  },
+  {
+    "objectID": "slides/05_numeric.html#vowel-duration-by-speech-rate",
+    "href": "slides/05_numeric.html#vowel-duration-by-speech-rate",
+    "title": "05 - Numeric predictors",
+    "section": "Vowel duration by speech rate",
+    "text": "Vowel duration by speech rate"
+  },
+  {
+    "objectID": "slides/05_numeric.html#numeric-predictors",
+    "href": "slides/05_numeric.html#numeric-predictors",
+    "title": "05 - Numeric predictors",
+    "section": "Numeric predictors",
+    "text": "Numeric predictors\n\\[\n\\begin{align}\nvdur_i & \\sim LogNormal(\\mu_i, \\sigma)\\\\\n\\mu_i & = \\beta_{1,voicing[i], language[i]} + \\beta_2 \\cdot \\text{spr}\\\\\n\\beta_{1jw} & \\sim Gaussian(\\mu_j, \\sigma_j) & , \\text{for } j = 1..2\\\\\n&  &  w = 1..2\\\\\n\\beta_2 & \\sim Gaussian(\\mu_3, \\sigma_3)\\\\\n\\sigma & \\sim Cauchy_{+}(0, \\sigma_4)\\\\\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "slides/05_numeric.html#get-default-priors-indexing",
+    "href": "slides/05_numeric.html#get-default-priors-indexing",
+    "title": "05 - Numeric predictors",
+    "section": "Get default priors: indexing",
+    "text": "Get default priors: indexing\n\n\n                prior class                                  coef group resp\n               (flat)     b                                                 \n               (flat)     b    c2_phonationvoiced:languageItalian           \n               (flat)     b     c2_phonationvoiced:languagePolish           \n               (flat)     b c2_phonationvoiceless:languageItalian           \n               (flat)     b  c2_phonationvoiceless:languagePolish           \n               (flat)     b                         speech_rate_c           \n student_t(3, 0, 2.5) sigma                                                 \n dpar nlpar lb ub       source\n                       default\n                  (vectorized)\n                  (vectorized)\n                  (vectorized)\n                  (vectorized)\n                  (vectorized)\n             0         default"
+  },
+  {
+    "objectID": "slides/05_numeric.html#priors",
+    "href": "slides/05_numeric.html#priors",
+    "title": "05 - Numeric predictors",
+    "section": "Priors",
+    "text": "Priors\n\n\n              prior class                                  coef group resp dpar\n normal(4.45, 0.55)     b    c2_phonationvoiced:languageItalian                \n normal(4.45, 0.55)     b     c2_phonationvoiced:languagePolish                \n normal(4.45, 0.55)     b c2_phonationvoiceless:languageItalian                \n normal(4.45, 0.55)     b  c2_phonationvoiceless:languagePolish                \n     normal(0, 0.5)     b                         speech_rate_c                \n     normal(0, 0.1) sigma                                                      \n nlpar   lb   ub source\n       &lt;NA&gt; &lt;NA&gt;   user\n       &lt;NA&gt; &lt;NA&gt;   user\n       &lt;NA&gt; &lt;NA&gt;   user\n       &lt;NA&gt; &lt;NA&gt;   user\n       &lt;NA&gt; &lt;NA&gt;   user\n       &lt;NA&gt; &lt;NA&gt;   user"
+  },
+  {
+    "objectID": "slides/05_numeric.html#prior-predictive-checks",
+    "href": "slides/05_numeric.html#prior-predictive-checks",
+    "title": "05 - Numeric predictors",
+    "section": "Prior predictive checks",
+    "text": "Prior predictive checks"
+  },
+  {
+    "objectID": "slides/05_numeric.html#prior-predictive-plots",
+    "href": "slides/05_numeric.html#prior-predictive-plots",
+    "title": "05 - Numeric predictors",
+    "section": "Prior predictive plots",
+    "text": "Prior predictive plots"
+  },
+  {
+    "objectID": "slides/05_numeric.html#fit-the-model",
+    "href": "slides/05_numeric.html#fit-the-model",
+    "title": "05 - Numeric predictors",
+    "section": "Fit the model",
+    "text": "Fit the model"
+  },
+  {
+    "objectID": "slides/05_numeric.html#model-summary",
+    "href": "slides/05_numeric.html#model-summary",
+    "title": "05 - Numeric predictors",
+    "section": "Model summary",
+    "text": "Model summary\n\n\n Family: lognormal \n  Links: mu = identity; sigma = identity \nFormula: v1_duration ~ 0 + c2_phonation:language + speech_rate_c \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n                                      Estimate Est.Error l-80% CI u-80% CI Rhat\nspeech_rate_c                            -0.19      0.01    -0.20    -0.18 1.00\nc2_phonationvoiceless:languageItalian     4.64      0.01     4.63     4.66 1.00\nc2_phonationvoiced:languageItalian        4.75      0.01     4.74     4.77 1.00\nc2_phonationvoiceless:languagePolish      4.35      0.02     4.33     4.37 1.00\nc2_phonationvoiced:languagePolish         4.44      0.01     4.42     4.46 1.00\n                                      Bulk_ESS Tail_ESS\nspeech_rate_c                             6068     3582\nc2_phonationvoiceless:languageItalian     6112     3110\nc2_phonationvoiced:languageItalian        6022     3294\nc2_phonationvoiceless:languagePolish      5909     2482\nc2_phonationvoiced:languagePolish         5415     3012\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nsigma     0.23      0.00     0.22     0.24 1.00     5878     3114\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
+  },
+  {
+    "objectID": "slides/05_numeric.html#posterior-probability-distributions-outcome-vowel-duration",
+    "href": "slides/05_numeric.html#posterior-probability-distributions-outcome-vowel-duration",
+    "title": "05 - Numeric predictors",
+    "section": "Posterior probability distributions: outcome (vowel duration)",
+    "text": "Posterior probability distributions: outcome (vowel duration)"
+  },
+  {
+    "objectID": "slides/05_numeric.html#posterior-probability-distribution-difference-of-vowel-duration",
+    "href": "slides/05_numeric.html#posterior-probability-distribution-difference-of-vowel-duration",
+    "title": "05 - Numeric predictors",
+    "section": "Posterior probability distribution: difference of vowel duration",
+    "text": "Posterior probability distribution: difference of vowel duration\n\n\n\n         Term                       Contrast language Estimate 10.0 % 90.0 %\n c2_phonation mean(voiced) - mean(voiceless)  Italian    12.74  10.49  14.99\n c2_phonation mean(voiced) - mean(voiceless)  Polish      6.93   4.84   9.11\n\nColumns: term, contrast, language, estimate, conf.low, conf.high, predicted_lo, predicted_hi, predicted, tmp_idx \nType:  response \n\n\n\n         Term                       Contrast language Estimate 10.0 % 90.0 %\n c2_phonation mean(voiced) / mean(voiceless)  Italian     1.12   1.09   1.14\n c2_phonation mean(voiced) / mean(voiceless)  Polish      1.09   1.06   1.12\n\nColumns: term, contrast, language, estimate, conf.low, conf.high, predicted_lo, predicted_hi, predicted, tmp_idx \nType:  response"
+  },
+  {
+    "objectID": "slides/05_numeric.html#posterior-probability-distribution-difference-of-difference",
+    "href": "slides/05_numeric.html#posterior-probability-distribution-difference-of-difference",
+    "title": "05 - Numeric predictors",
+    "section": "Posterior probability distribution: difference of difference",
+    "text": "Posterior probability distribution: difference of difference\n\n\n\n  Term Estimate  10.0 % 90.0 %\n b2=b1  -0.0242 -0.0601  0.013\n\nColumns: term, estimate, conf.low, conf.high \nType:  response"
+  },
+  {
+    "objectID": "slides/05_numeric.html#posterior-predictive-checks",
+    "href": "slides/05_numeric.html#posterior-predictive-checks",
+    "title": "05 - Numeric predictors",
+    "section": "Posterior predictive checks",
     "text": "Posterior predictive checks"
+  },
+  {
+    "objectID": "slides/05_numeric.html#non-linear-effects-gams",
+    "href": "slides/05_numeric.html#non-linear-effects-gams",
+    "title": "05 - Numeric predictors",
+    "section": "Non-linear effects: GAMs",
+    "text": "Non-linear effects: GAMs"
+  },
+  {
+    "objectID": "slides/05_numeric.html#posterior-probability-distributions-outcome-vowel-duration-1",
+    "href": "slides/05_numeric.html#posterior-probability-distributions-outcome-vowel-duration-1",
+    "title": "05 - Numeric predictors",
+    "section": "Posterior probability distributions: outcome (vowel duration)",
+    "text": "Posterior probability distributions: outcome (vowel duration)"
+  },
+  {
+    "objectID": "slides/05_numeric.html#posterior-probability-distribution-difference-of-difference-1",
+    "href": "slides/05_numeric.html#posterior-probability-distribution-difference-of-difference-1",
+    "title": "05 - Numeric predictors",
+    "section": "Posterior probability distribution: difference of difference",
+    "text": "Posterior probability distribution: difference of difference\n\n\n\n  Term Estimate  10.0 % 90.0 %\n b2=b1  -0.0195 -0.0562 0.0178\n\nColumns: term, estimate, conf.low, conf.high \nType:  response"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "LearnB4P",
+    "title": "Learn Bayesian modelling for Phonetology",
     "section": "",
-    "text": "Under construction"
+    "text": "This is the website of the workshop learnB4P.\nCheck out the set-up page for instructions on software requirements."
+  },
+  {
+    "objectID": "slides/06_multilevel_1.html#set-order-of-levels",
+    "href": "slides/06_multilevel_1.html#set-order-of-levels",
+    "title": "06 - Multilevel models I",
+    "section": "Set order of levels",
+    "text": "Set order of levels\n\n\n                prior class                                  coef   group resp\n               (flat)     b                                                   \n               (flat)     b    c2_phonationvoiced:languageItalian             \n               (flat)     b     c2_phonationvoiced:languagePolish             \n               (flat)     b c2_phonationvoiceless:languageItalian             \n               (flat)     b  c2_phonationvoiceless:languagePolish             \n               (flat)     b                      sspeech_rate_c_1             \n               lkj(1)   cor                                                   \n               lkj(1)   cor                                       speaker     \n student_t(3, 0, 2.5)    sd                                                   \n student_t(3, 0, 2.5)    sd                                       speaker     \n student_t(3, 0, 2.5)    sd    c2_phonationvoiced:languageItalian speaker     \n student_t(3, 0, 2.5)    sd     c2_phonationvoiced:languagePolish speaker     \n student_t(3, 0, 2.5)    sd c2_phonationvoiceless:languageItalian speaker     \n student_t(3, 0, 2.5)    sd  c2_phonationvoiceless:languagePolish speaker     \n student_t(3, 0, 2.5)   sds                                                   \n student_t(3, 0, 2.5)   sds               s(speech_rate_c, k = 3)             \n student_t(3, 0, 2.5) sigma                                                   \n dpar nlpar lb ub       source\n                       default\n                  (vectorized)\n                  (vectorized)\n                  (vectorized)\n                  (vectorized)\n                  (vectorized)\n                       default\n                  (vectorized)\n             0         default\n             0    (vectorized)\n             0    (vectorized)\n             0    (vectorized)\n             0    (vectorized)\n             0    (vectorized)\n             0         default\n             0    (vectorized)\n             0         default\n\n\n\n\n Family: lognormal \n  Links: mu = identity; sigma = identity \nFormula: v1_duration ~ 0 + c2_phonation:language + s(speech_rate_c, k = 3) + (0 + c2_phonation:language | speaker) \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nSmoothing Spline Hyperparameters:\n                      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS\nsds(sspeech_rate_c_1)     0.19      0.07     0.10     0.27 1.00     2508\n                      Tail_ESS\nsds(sspeech_rate_c_1)      873\n\nMultilevel Hyperparameters:\n~speaker (Number of levels: 17) \n                                                                                Estimate\nsd(c2_phonationvoiceless:languageItalian)                                           0.13\nsd(c2_phonationvoiced:languageItalian)                                              0.12\nsd(c2_phonationvoiceless:languagePolish)                                            0.11\nsd(c2_phonationvoiced:languagePolish)                                               0.13\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiced:languageItalian)       0.67\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiceless:languagePolish)     0.01\ncor(c2_phonationvoiced:languageItalian,c2_phonationvoiceless:languagePolish)        0.01\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiced:languagePolish)        0.00\ncor(c2_phonationvoiced:languageItalian,c2_phonationvoiced:languagePolish)           0.01\ncor(c2_phonationvoiceless:languagePolish,c2_phonationvoiced:languagePolish)         0.50\n                                                                                Est.Error\nsd(c2_phonationvoiceless:languageItalian)                                            0.03\nsd(c2_phonationvoiced:languageItalian)                                               0.03\nsd(c2_phonationvoiceless:languagePolish)                                             0.03\nsd(c2_phonationvoiced:languagePolish)                                                0.03\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiced:languageItalian)        0.18\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiceless:languagePolish)      0.38\ncor(c2_phonationvoiced:languageItalian,c2_phonationvoiceless:languagePolish)         0.38\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiced:languagePolish)         0.39\ncor(c2_phonationvoiced:languageItalian,c2_phonationvoiced:languagePolish)            0.38\ncor(c2_phonationvoiceless:languagePolish,c2_phonationvoiced:languagePolish)          0.26\n                                                                                l-80% CI\nsd(c2_phonationvoiceless:languageItalian)                                           0.10\nsd(c2_phonationvoiced:languageItalian)                                              0.09\nsd(c2_phonationvoiceless:languagePolish)                                            0.07\nsd(c2_phonationvoiced:languagePolish)                                               0.09\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiced:languageItalian)       0.43\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiceless:languagePolish)    -0.50\ncor(c2_phonationvoiced:languageItalian,c2_phonationvoiceless:languagePolish)       -0.50\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiced:languagePolish)       -0.52\ncor(c2_phonationvoiced:languageItalian,c2_phonationvoiced:languagePolish)          -0.49\ncor(c2_phonationvoiceless:languagePolish,c2_phonationvoiced:languagePolish)         0.15\n                                                                                u-80% CI\nsd(c2_phonationvoiceless:languageItalian)                                           0.16\nsd(c2_phonationvoiced:languageItalian)                                              0.15\nsd(c2_phonationvoiceless:languagePolish)                                            0.15\nsd(c2_phonationvoiced:languagePolish)                                               0.18\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiced:languageItalian)       0.87\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiceless:languagePolish)     0.52\ncor(c2_phonationvoiced:languageItalian,c2_phonationvoiceless:languagePolish)        0.51\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiced:languagePolish)        0.52\ncor(c2_phonationvoiced:languageItalian,c2_phonationvoiced:languagePolish)           0.51\ncor(c2_phonationvoiceless:languagePolish,c2_phonationvoiced:languagePolish)         0.80\n                                                                                Rhat\nsd(c2_phonationvoiceless:languageItalian)                                       1.00\nsd(c2_phonationvoiced:languageItalian)                                          1.00\nsd(c2_phonationvoiceless:languagePolish)                                        1.00\nsd(c2_phonationvoiced:languagePolish)                                           1.00\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiced:languageItalian)   1.00\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiceless:languagePolish) 1.00\ncor(c2_phonationvoiced:languageItalian,c2_phonationvoiceless:languagePolish)    1.00\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiced:languagePolish)    1.00\ncor(c2_phonationvoiced:languageItalian,c2_phonationvoiced:languagePolish)       1.00\ncor(c2_phonationvoiceless:languagePolish,c2_phonationvoiced:languagePolish)     1.00\n                                                                                Bulk_ESS\nsd(c2_phonationvoiceless:languageItalian)                                           1518\nsd(c2_phonationvoiced:languageItalian)                                              1703\nsd(c2_phonationvoiceless:languagePolish)                                            2201\nsd(c2_phonationvoiced:languagePolish)                                               2496\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiced:languageItalian)       1835\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiceless:languagePolish)     1333\ncor(c2_phonationvoiced:languageItalian,c2_phonationvoiceless:languagePolish)        1461\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiced:languagePolish)        1341\ncor(c2_phonationvoiced:languageItalian,c2_phonationvoiced:languagePolish)           1505\ncor(c2_phonationvoiceless:languagePolish,c2_phonationvoiced:languagePolish)         2780\n                                                                                Tail_ESS\nsd(c2_phonationvoiceless:languageItalian)                                           2336\nsd(c2_phonationvoiced:languageItalian)                                              2328\nsd(c2_phonationvoiceless:languagePolish)                                            2276\nsd(c2_phonationvoiced:languagePolish)                                               2544\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiced:languageItalian)       2504\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiceless:languagePolish)     2065\ncor(c2_phonationvoiced:languageItalian,c2_phonationvoiceless:languagePolish)        2274\ncor(c2_phonationvoiceless:languageItalian,c2_phonationvoiced:languagePolish)        2417\ncor(c2_phonationvoiced:languageItalian,c2_phonationvoiced:languagePolish)           1905\ncor(c2_phonationvoiceless:languagePolish,c2_phonationvoiced:languagePolish)         3045\n\nRegression Coefficients:\n                                      Estimate Est.Error l-80% CI u-80% CI Rhat\nc2_phonationvoiceless:languageItalian     4.62      0.04     4.57     4.67 1.00\nc2_phonationvoiced:languageItalian        4.73      0.04     4.69     4.78 1.00\nc2_phonationvoiceless:languagePolish      4.33      0.05     4.28     4.39 1.00\nc2_phonationvoiced:languagePolish         4.43      0.06     4.36     4.50 1.00\nsspeech_rate_c_1                         -0.09      0.01    -0.11    -0.08 1.00\n                                      Bulk_ESS Tail_ESS\nc2_phonationvoiceless:languageItalian      741     1494\nc2_phonationvoiced:languageItalian         976     1886\nc2_phonationvoiceless:languagePolish      1613     1966\nc2_phonationvoiced:languagePolish         1597     1801\nsspeech_rate_c_1                          3131     2947\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nsigma     0.19      0.00     0.19     0.20 1.00     5336     3002\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
+  },
+  {
+    "objectID": "slides/06_multilevel_1.html#posterior-probability-distribution-difference-of-difference",
+    "href": "slides/06_multilevel_1.html#posterior-probability-distribution-difference-of-difference",
+    "title": "06 - Multilevel models I",
+    "section": "Posterior probability distribution: difference of difference",
+    "text": "Posterior probability distribution: difference of difference\n\n\n\n         Term                       Contrast language Estimate 10.0 % 90.0 %\n c2_phonation mean(voiced) / mean(voiceless)  Italian     1.11   1.10   1.13\n c2_phonation mean(voiced) / mean(voiceless)  Polish      1.10   1.07   1.12\n\nColumns: term, contrast, language, estimate, conf.low, conf.high, predicted_lo, predicted_hi, predicted, tmp_idx \nType:  response \n\n\n\n  Term Estimate  10.0 % 90.0 %\n b2=b1  -0.0162 -0.0476  0.015\n\nColumns: term, estimate, conf.low, conf.high \nType:  response \n\n\n\n\n# A tibble: 272,000 × 7\n# Groups:   speaker, term, .variable [68]\n   speaker term                         .chain .iteration .draw .variable .value\n   &lt;chr&gt;   &lt;chr&gt;                         &lt;int&gt;      &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;dbl&gt;\n 1 it01    c2_phonationvoiced:language…      1          1     1 r_speaker 0.149 \n 2 it01    c2_phonationvoiced:language…      1          2     2 r_speaker 0.159 \n 3 it01    c2_phonationvoiced:language…      1          3     3 r_speaker 0.135 \n 4 it01    c2_phonationvoiced:language…      1          4     4 r_speaker 0.135 \n 5 it01    c2_phonationvoiced:language…      1          5     5 r_speaker 0.130 \n 6 it01    c2_phonationvoiced:language…      1          6     6 r_speaker 0.155 \n 7 it01    c2_phonationvoiced:language…      1          7     7 r_speaker 0.166 \n 8 it01    c2_phonationvoiced:language…      1          8     8 r_speaker 0.120 \n 9 it01    c2_phonationvoiced:language…      1          9     9 r_speaker 0.0648\n10 it01    c2_phonationvoiced:language…      1         10    10 r_speaker 0.0819\n# ℹ 271,990 more rows"
+  },
+  {
+    "objectID": "slides/04_interactions.html#set-order-of-levels",
+    "href": "slides/04_interactions.html#set-order-of-levels",
+    "title": "04 - Interactions",
+    "section": "Set order of levels",
+    "text": "Set order of levels\n\ntoken_measures &lt;- token_measures |&gt; \n  mutate(\n    c2_phonation = factor(c2_phonation, levels = c(\"voiceless\", \"voiced\"))\n  )"
+  },
+  {
+    "objectID": "slides/04_interactions.html#vowel-duration-by-voicing-and-language",
+    "href": "slides/04_interactions.html#vowel-duration-by-voicing-and-language",
+    "title": "04 - Interactions",
+    "section": "Vowel duration by voicing and language",
+    "text": "Vowel duration by voicing and language"
+  },
+  {
+    "objectID": "slides/04_interactions.html#categorical-predictors-interactions",
+    "href": "slides/04_interactions.html#categorical-predictors-interactions",
+    "title": "04 - Interactions",
+    "section": "Categorical predictors: interactions",
+    "text": "Categorical predictors: interactions\n\\[\n\\begin{align}\nvdur_i & \\sim LogNormal(\\mu_i, \\sigma)\\\\\n\\mu_i & = \\beta_{voicing[i], language[i]}\\\\\n\\beta_{jw} & \\sim Gaussian(\\mu_j, \\sigma_j) & , \\text{for } j = 1..2\\\\\n&  &  w = 1..2\\\\\n\\sigma & \\sim Cauchy_{+}(0, \\sigma_3)\\\\\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "slides/04_interactions.html#get-default-priors-indexing",
+    "href": "slides/04_interactions.html#get-default-priors-indexing",
+    "title": "04 - Interactions",
+    "section": "Get default priors: indexing",
+    "text": "Get default priors: indexing\n\nget_prior(\n  v1_duration ~ 0 + c2_phonation:language,\n  family = lognormal,\n  data = token_measures\n)\n\n                prior class                                  coef group resp\n               (flat)     b                                                 \n               (flat)     b    c2_phonationvoiced:languageItalian           \n               (flat)     b     c2_phonationvoiced:languagePolish           \n               (flat)     b c2_phonationvoiceless:languageItalian           \n               (flat)     b  c2_phonationvoiceless:languagePolish           \n student_t(3, 0, 2.5) sigma                                                 \n dpar nlpar lb ub       source\n                       default\n                  (vectorized)\n                  (vectorized)\n                  (vectorized)\n                  (vectorized)\n             0         default"
+  },
+  {
+    "objectID": "slides/04_interactions.html#priors",
+    "href": "slides/04_interactions.html#priors",
+    "title": "04 - Interactions",
+    "section": "Priors",
+    "text": "Priors\n\nm_5_priors &lt;- c(\n  # Prior for the four `b` coefficients\n  prior(normal(4.45, 0.55), class = b),\n  # Prior for sigma\n  prior(normal(0, 0.1), class = sigma)\n)\n\nm_5_priors\n\n              prior class coef group resp dpar nlpar   lb   ub source\n normal(4.45, 0.55)     b                            &lt;NA&gt; &lt;NA&gt;   user\n     normal(0, 0.1) sigma                            &lt;NA&gt; &lt;NA&gt;   user"
+  },
+  {
+    "objectID": "slides/04_interactions.html#prior-predictive-checks",
+    "href": "slides/04_interactions.html#prior-predictive-checks",
+    "title": "04 - Interactions",
+    "section": "Prior predictive checks",
+    "text": "Prior predictive checks\n\nmy_seed &lt;- 1382\n\nm_5_priorpp &lt;- brm(\n  v1_duration ~ 0 + c2_phonation:language,\n  data = token_measures,\n  family = lognormal,\n  prior = m_5_priors,\n  sample_prior = \"only\",\n  cores = 4,\n  seed = my_seed,\n  file = \"data/cache/m_5_priorpp\"\n)"
+  },
+  {
+    "objectID": "slides/04_interactions.html#prior-predictive-plots",
+    "href": "slides/04_interactions.html#prior-predictive-plots",
+    "title": "04 - Interactions",
+    "section": "Prior predictive plots",
+    "text": "Prior predictive plots\n\nconditional_effects(m_5_priorpp, effects = \"language:c2_phonation\")"
+  },
+  {
+    "objectID": "slides/04_interactions.html#fit-the-model",
+    "href": "slides/04_interactions.html#fit-the-model",
+    "title": "04 - Interactions",
+    "section": "Fit the model",
+    "text": "Fit the model\n\nm_5 &lt;- brm(\n  v1_duration ~ 0 + c2_phonation:language,\n  data = token_measures,\n  family = lognormal,\n  prior = m_5_priors,\n  seed = my_seed,\n  cores = 4,\n  file = \"data/cache/m_5\"\n)"
+  },
+  {
+    "objectID": "slides/04_interactions.html#model-summary",
+    "href": "slides/04_interactions.html#model-summary",
+    "title": "04 - Interactions",
+    "section": "Model summary",
+    "text": "Model summary\n\nsummary(m_5, prob = 0.8)\n\n Family: lognormal \n  Links: mu = identity; sigma = identity \nFormula: v1_duration ~ 0 + c2_phonation:language \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n                                      Estimate Est.Error l-80% CI u-80% CI Rhat\nc2_phonationvoiceless:languageItalian     4.67      0.01     4.65     4.68 1.00\nc2_phonationvoiced:languageItalian        4.78      0.01     4.76     4.79 1.00\nc2_phonationvoiceless:languagePolish      4.30      0.02     4.27     4.32 1.00\nc2_phonationvoiced:languagePolish         4.39      0.02     4.37     4.42 1.00\n                                      Bulk_ESS Tail_ESS\nc2_phonationvoiceless:languageItalian     5246     3360\nc2_phonationvoiced:languageItalian        5482     3145\nc2_phonationvoiceless:languagePolish      4966     3196\nc2_phonationvoiced:languagePolish         4724     3314\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nsigma     0.27      0.01     0.26     0.28 1.00     5045     3059\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
+  },
+  {
+    "objectID": "slides/04_interactions.html#posterior-probability-distributions-outcome-vowel-duration",
+    "href": "slides/04_interactions.html#posterior-probability-distributions-outcome-vowel-duration",
+    "title": "04 - Interactions",
+    "section": "Posterior probability distributions: outcome (vowel duration)",
+    "text": "Posterior probability distributions: outcome (vowel duration)\n\nconditional_effects(m_5, effects = \"language:c2_phonation\")"
+  },
+  {
+    "objectID": "slides/04_interactions.html#posterior-probability-distribution-difference-of-vowel-duration",
+    "href": "slides/04_interactions.html#posterior-probability-distribution-difference-of-vowel-duration",
+    "title": "04 - Interactions",
+    "section": "Posterior probability distribution: difference of vowel duration",
+    "text": "Posterior probability distribution: difference of vowel duration\n\nlibrary(marginaleffects)\n\n# In milliseconds\navg_comparisons(m_5, variables = \"c2_phonation\", by = \"language\", conf_level = 0.8)\n\n\n         Term                       Contrast language Estimate 10.0 % 90.0 %\n c2_phonation mean(voiced) - mean(voiceless)  Italian    12.74  10.01   15.3\n c2_phonation mean(voiced) - mean(voiceless)  Polish      7.65   5.06   10.3\n\nColumns: term, contrast, language, estimate, conf.low, conf.high, predicted_lo, predicted_hi, predicted, tmp_idx \nType:  response"
+  },
+  {
+    "objectID": "slides/04_interactions.html#posterior-probability-distribution-difference-of-vowel-duration-1",
+    "href": "slides/04_interactions.html#posterior-probability-distribution-difference-of-vowel-duration-1",
+    "title": "04 - Interactions",
+    "section": "Posterior probability distribution: difference of vowel duration",
+    "text": "Posterior probability distribution: difference of vowel duration\n\n# As ratio\navg_comparisons(m_5, variables = \"c2_phonation\", by = \"language\", conf_level = 0.8, comparison = \"ratio\")\n\n\n         Term                       Contrast language Estimate 10.0 % 90.0 %\n c2_phonation mean(voiced) / mean(voiceless)  Italian     1.12   1.09   1.14\n c2_phonation mean(voiced) / mean(voiceless)  Polish      1.10   1.07   1.14\n\nColumns: term, contrast, language, estimate, conf.low, conf.high, predicted_lo, predicted_hi, predicted, tmp_idx \nType:  response"
+  },
+  {
+    "objectID": "slides/04_interactions.html#posterior-probability-distribution-difference-of-difference",
+    "href": "slides/04_interactions.html#posterior-probability-distribution-difference-of-difference",
+    "title": "04 - Interactions",
+    "section": "Posterior probability distribution: difference of difference",
+    "text": "Posterior probability distribution: difference of difference\n\navg_comparisons(m_5, variables = \"c2_phonation\", by = \"language\", conf_level = 0.8, comparison = \"ratio\", hypothesis = \"b2 = b1\")\n\n\n  Term Estimate  10.0 % 90.0 %\n b2=b1  -0.0143 -0.0577 0.0296\n\nColumns: term, estimate, conf.low, conf.high \nType:  response"
   },
   {
     "objectID": "slides/02_priors.html#vowel-duration",
     "href": "slides/02_priors.html#vowel-duration",
     "title": "02 - Priors",
     "section": "Vowel duration",
-    "text": "Vowel duration\n\\[\n\\begin{align}\nvdur & \\sim Gaussian(\\mu, \\sigma)\\\\\n\\end{align}\n\\]\nPick a \\(\\mu\\) and \\(\\sigma\\).\nReport them here: https://forms.gle/HRzH5CworngWrBv16."
+    "text": "Vowel duration\n\\[\n\\begin{align}\nvdur & \\sim Gaussian(\\mu, \\sigma)\\\\\n\\end{align}\n\\]\n\nPick a \\(\\mu\\) and \\(\\sigma\\).\nReport them here: https://forms.gle/HRzH5CworngWrBv16."
   },
   {
     "objectID": "slides/02_priors.html#proposed-distributions-of-vowel-duration",
@@ -207,7 +515,7 @@
     "href": "slides/02_priors.html#get-default-priors",
     "title": "02 - Priors",
     "section": "Get default priors",
-    "text": "Get default priors\n\n\n                  prior     class coef group resp dpar nlpar lb ub  source\n student_t(3, 4.6, 2.5) Intercept                                  default\n   student_t(3, 0, 2.5)     sigma                             0    default"
+    "text": "Get default priors\n\nget_prior(\n  v1_duration ~ 1,\n  family = lognormal,\n  data = token_measures\n)\n\n                  prior     class coef group resp dpar nlpar lb ub  source\n student_t(3, 4.6, 2.5) Intercept                                  default\n   student_t(3, 0, 2.5)     sigma                             0    default"
   },
   {
     "objectID": "slides/02_priors.html#prior-probability-distributions",
@@ -256,7 +564,7 @@
     "href": "slides/02_priors.html#priors-of-the-model",
     "title": "02 - Priors",
     "section": "Priors of the model",
-    "text": "Priors of the model\n\\[\n\\begin{align}\n\\text{RT}_i & \\sim Gaussian(\\mu, \\sigma)\\\\\n\\mu & \\sim Gaussian(\\mu_1, \\sigma_1)\\\\\n\\sigma & \\sim Cauchy_{+}(0, \\sigma_2)\\\\\n\\end{align}\n\\]\n\n\nLet’s pick \\(\\mu_1\\) and \\(\\sigma_1\\).\nWe can use the empirical rule."
+    "text": "Priors of the model\n\\[\n\\begin{align}\nvdur & \\sim LogNormal(\\mu, \\sigma)\\\\\n\\mu & \\sim Gaussian(\\mu_1, \\sigma_1)\\\\\n\\sigma & \\sim Cauchy_{+}(0, \\sigma_2)\\\\\n\\end{align}\n\\]\n\n\nLet’s pick \\(\\mu_1\\) and \\(\\sigma_1\\).\nWe can use the empirical rule."
   },
   {
     "objectID": "slides/02_priors.html#prior-for-mu",
@@ -270,7 +578,7 @@
     "href": "slides/02_priors.html#prior-for-mu-1",
     "title": "02 - Priors",
     "section": "Prior for \\(\\mu\\)",
-    "text": "Prior for \\(\\mu\\)\n\\[\n\\begin{align}\n\\text{RT}_i & \\sim Gaussian(\\mu, \\sigma)\\\\\n\\mu & \\sim Gaussian(\\mu_1 = 4.45, \\sigma_1 = 0.55)\\\\\n\\sigma & \\sim Cauchy_{+}(0, \\sigma_2)\\\\\n\\end{align}\n\\]"
+    "text": "Prior for \\(\\mu\\)\n\\[\n\\begin{align}\nvdur & \\sim LogNormal(\\mu, \\sigma)\\\\\n\\mu & \\sim Gaussian(\\mu_1 = 4.45, \\sigma_1 = 0.55)\\\\\n\\sigma & \\sim Cauchy_{+}(0, \\sigma_2)\\\\\n\\end{align}\n\\]"
   },
   {
     "objectID": "slides/02_priors.html#prior-for-mu-plot",
@@ -284,62 +592,62 @@
     "href": "slides/02_priors.html#prior-for-sigma",
     "title": "02 - Priors",
     "section": "Prior for \\(\\sigma\\)",
-    "text": "Prior for \\(\\sigma\\)\n\n\n[1] 3\n\n\n[1] 5\n\n\n[1] 8"
+    "text": "Prior for \\(\\sigma\\)\n\nlibrary(HDInterval)\n\nround(inverseCDF(c(0.975), ptrunc, spec = \"cauchy\", a = 0, scale = 0.1))\n\n[1] 3\n\nround(inverseCDF(c(0.975), ptrunc, spec = \"cauchy\", a = 0, scale = 0.2))\n\n[1] 5\n\nround(inverseCDF(c(0.975), ptrunc, spec = \"cauchy\", a = 0, scale = 0.3))\n\n[1] 8"
   },
   {
     "objectID": "slides/02_priors.html#prior-for-sigma-plot",
     "href": "slides/02_priors.html#prior-for-sigma-plot",
     "title": "02 - Priors",
     "section": "Prior for \\(\\sigma\\): plot",
-    "text": "Prior for \\(\\sigma\\): plot"
+    "text": "Prior for \\(\\sigma\\): plot\n\nggplot(tibble(x = c(0, 2)), aes(x = x)) +\n  stat_function(fun = dtrunc, geom = \"area\", fill = \"tomato4\",\n                args = list(spec = \"cauchy\", a = 0, scale = 0.1))"
   },
   {
     "objectID": "slides/02_priors.html#prior-predictive-checks-sample-prior",
     "href": "slides/02_priors.html#prior-predictive-checks-sample-prior",
     "title": "02 - Priors",
     "section": "Prior predictive checks: sample prior",
-    "text": "Prior predictive checks: sample prior"
+    "text": "Prior predictive checks: sample prior\n\nmy_seed &lt;- 3485\n\nm_3_priors &lt;- c(\n  prior(normal(4.45, 0.55), class = Intercept),\n  prior(cauchy(0, 0.1), class = sigma)\n)\n\nm_3_priorpp &lt;- brm(\n  v1_duration ~ 1,\n  family = lognormal,\n  prior = m_3_priors,\n  data = token_measures,\n  sample_prior = \"only\",\n  cores = 4,\n  file = \"data/cache/m_3_priorpp\",\n  seed = my_seed\n)"
   },
   {
     "objectID": "slides/02_priors.html#prior-predictive-checks-sample-prior-1",
     "href": "slides/02_priors.html#prior-predictive-checks-sample-prior-1",
     "title": "02 - Priors",
     "section": "Prior predictive checks: sample prior",
-    "text": "Prior predictive checks: sample prior\n\n\n Family: lognormal \n  Links: mu = identity; sigma = identity \nFormula: v1_duration ~ 1 \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n          Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nIntercept     4.44      0.55     3.37     5.50 1.00     2453     1701\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nsigma     0.42      2.29     0.00     2.58 1.00     2838     1969\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
+    "text": "Prior predictive checks: sample prior\n\nsummary(m_3_priorpp)\n\n Family: lognormal \n  Links: mu = identity; sigma = identity \nFormula: v1_duration ~ 1 \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n          Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nIntercept     4.44      0.55     3.37     5.50 1.00     2453     1701\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nsigma     0.42      2.29     0.00     2.58 1.00     2838     1969\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
   },
   {
     "objectID": "slides/02_priors.html#prior-predictive-checks-plot",
     "href": "slides/02_priors.html#prior-predictive-checks-plot",
     "title": "02 - Priors",
     "section": "Prior predictive checks: plot",
-    "text": "Prior predictive checks: plot"
+    "text": "Prior predictive checks: plot\n\nset.seed(my_seed)\nm_3_pppreds &lt;- posterior_predict(m_3_priorpp, newdata = tibble(y = 1), ndraws = 1e3) |&gt;\n  as.vector()\n\nggplot() +\n  aes(x = m_3_pppreds) +\n  geom_density(fill = \"forestgreen\") +\n  geom_rug(alpha = 0.25)"
   },
   {
     "objectID": "slides/02_priors.html#prior-predictive-checks-plot-zoom-in",
     "href": "slides/02_priors.html#prior-predictive-checks-plot-zoom-in",
     "title": "02 - Priors",
     "section": "Prior predictive checks: plot (zoom in)",
-    "text": "Prior predictive checks: plot (zoom in)"
+    "text": "Prior predictive checks: plot (zoom in)\n\nggplot() +\n  aes(x = m_3_pppreds) +\n  geom_density(fill = \"forestgreen\") +\n  geom_rug(alpha = 0.25) +\n  xlim(-100, 500)"
   },
   {
     "objectID": "slides/02_priors.html#run-the-model",
     "href": "slides/02_priors.html#run-the-model",
     "title": "02 - Priors",
     "section": "Run the model",
-    "text": "Run the model"
+    "text": "Run the model\n\nm_3 &lt;- brm(\n  v1_duration ~ 1,\n  family = lognormal,\n  prior = m_3_priors,\n  data = token_measures,\n  cores = 4,\n  file = \"data/cache/m_3\",\n  seed = my_seed\n)"
   },
   {
     "objectID": "slides/02_priors.html#model-summary",
     "href": "slides/02_priors.html#model-summary",
     "title": "02 - Priors",
     "section": "Model summary",
-    "text": "Model summary\n\n\n Family: lognormal \n  Links: mu = identity; sigma = identity \nFormula: v1_duration ~ 1 \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n          Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nIntercept     4.59      0.01     4.58     4.61 1.00     3240     2369\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nsigma     0.33      0.01     0.32     0.34 1.00     3516     2708\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
+    "text": "Model summary\n\nsummary(m_3, prob = 0.8)\n\n Family: lognormal \n  Links: mu = identity; sigma = identity \nFormula: v1_duration ~ 1 \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n          Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nIntercept     4.59      0.01     4.58     4.61 1.00     3240     2369\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nsigma     0.33      0.01     0.32     0.34 1.00     3516     2708\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
   },
   {
     "objectID": "slides/02_priors.html#posterior-predictive-checks",
     "href": "slides/02_priors.html#posterior-predictive-checks",
     "title": "02 - Priors",
     "section": "Posterior predictive checks",
-    "text": "Posterior predictive checks"
+    "text": "Posterior predictive checks\n\npp_check(m_3, ndraws = 100)"
   }
 ]

@@ -7,10 +7,16 @@ format:
     history: false
 filters:
   - tachyonsextra
+execute:
+  echo: true
+knitr:
+  opts_chunk: 
+    fig-align: center
 ---
 
 ```{r}
 #| label: setup
+#| include: false
 
 library(tidyverse)
 theme_set(theme_light())
@@ -35,6 +41,8 @@ $$
 vdur & \sim Gaussian(\mu, \sigma)\\
 \end{align}
 $$
+
+. . .
 
 Pick a $\mu$ and $\sigma$.
 
@@ -113,6 +121,8 @@ get_prior(
 
 ```{r}
 #| label: distrs
+#| echo: false
+#| fig-align: center
 
 ggplot(tibble(x = c(-10, 10)), aes(x = x)) +
   stat_function(fun = dnorm, geom = "line", colour = "blue", 
@@ -120,7 +130,10 @@ ggplot(tibble(x = c(-10, 10)), aes(x = x)) +
   stat_function(fun = dt, geom = "line", colour = "red",
               args = list(df = 3), n = 501) +
   stat_function(fun = dcauchy, geom = "line", colour = "orange",
-              args = list(0, 1), n = 501)
+              args = list(0, 1), n = 501) +
+  annotate("text", x = 2.5, y = 0.4, label = "Gaussian", colour = "blue") +
+  annotate("text", x = 2.5, y = 0.35, label = "Student-t", colour = "red") +
+  annotate("text", x = 2.5, y = 0.3, label = "Cauchy", colour = "orange")
 ```
 
 ## The empirical rule
@@ -231,7 +244,7 @@ ggplot() +
 
 $$
 \begin{align}
-\text{RT}_i & \sim Gaussian(\mu, \sigma)\\
+vdur & \sim LogNormal(\mu, \sigma)\\
 \mu & \sim Gaussian(\mu_1, \sigma_1)\\
 \sigma & \sim Cauchy_{+}(0, \sigma_2)\\
 \end{align}
@@ -271,7 +284,7 @@ $$
 
 $$
 \begin{align}
-\text{RT}_i & \sim Gaussian(\mu, \sigma)\\
+vdur & \sim LogNormal(\mu, \sigma)\\
 \mu & \sim Gaussian(\mu_1 = 4.45, \sigma_1 = 0.55)\\
 \sigma & \sim Cauchy_{+}(0, \sigma_2)\\
 \end{align}
@@ -281,6 +294,7 @@ $$
 
 ```{r}
 #| label: mu-prior-plot
+#| echo: false
 
 ggplot(tibble(x = c(2, 7)), aes(x = x)) +
   stat_function(fun = dnorm, geom = "area", fill = "lightblue",
@@ -316,6 +330,7 @@ ggplot(tibble(x = c(0, 2)), aes(x = x)) +
 
 ```{r}
 #| label: m-3-priorpp
+#| code-line-numbers: "|13"
 
 my_seed <- 3485
 

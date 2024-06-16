@@ -7,10 +7,16 @@ format:
     history: false
 filters:
   - tachyonsextra
+execute:
+  echo: true
+knitr:
+  opts_chunk: 
+    fig-align: center
 ---
 
 ```{r}
 #| label: setup
+#| include: false
 
 library(tidyverse)
 theme_set(theme_light())
@@ -39,6 +45,9 @@ token_measures <- token_measures |>
 ## Vowel duration by voicing and language
 
 ```{r}
+#| label: vdur-voi-lang
+#| echo: false
+
 token_measures |> 
   ggplot(aes(c2_phonation, v1_duration)) +
   geom_violin() +
@@ -150,9 +159,16 @@ conditional_effects(m_5, effects = "language:c2_phonation")
 ```{r}
 #| label: m-5-comparisons
 
+library(marginaleffects)
+
 # In milliseconds
 avg_comparisons(m_5, variables = "c2_phonation", by = "language", conf_level = 0.8)
+```
 
+## Posterior probability distribution: difference of vowel duration
+
+```{r}
+#| label: m-5-comparisons-2
 # As ratio
 avg_comparisons(m_5, variables = "c2_phonation", by = "language", conf_level = 0.8, comparison = "ratio")
 ```
