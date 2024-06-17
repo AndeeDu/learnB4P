@@ -148,3 +148,68 @@ m_8_fix |>
   xlim(0, 1)
 ```
 
+## Plotting posteriors
+
+```{r}
+#| label: mcmc-areas
+library(bayesplot)
+
+as.array(m_8) |> 
+  mcmc_areas(regex_pars = "b_")
+```
+
+## Get posterior draws
+
+```{r}
+#| label: as-draws
+
+m_8_draws <- as_draws_df(m_8)
+m_8_draws
+```
+
+## Difference by language across all vowels
+
+```{r}
+#| label: m-8-avg-diff
+m_8_avg_diff <- m_8_draws |> 
+  select(`b_c2_phonationvoiceless:vowela:languageItalian`:`b_c2_phonationvoiced:vowelu:languagePolish`, .draw) |> 
+  pivot_longer(`b_c2_phonationvoiceless:vowela:languageItalian`:`b_c2_phonationvoiced:vowelu:languagePolish`) |> 
+  separate(name, c("phonation", "vowel", "language"), sep = ":") |> 
+  pivot_wider(names_from = phonation, values_from = value) |> 
+  mutate(
+    diff = b_c2_phonationvoiced - b_c2_phonationvoiceless
+  ) |> 
+  group_by(.draw, language) |> 
+  summarise(
+    avg_diff = mean(diff)
+  )
+m_8_avg_diff
+```
+
+## Plot the average difference across vowels
+
+```{r}
+#| label: m-8-avg-diff-plot
+#| echo: false
+m_8_avg_diff |> 
+  ggplot(aes(avg_diff, language)) +
+  geom_vline(xintercept = 0) +
+  stat_halfeye()
+```
+
+## Calculate average difference (ms)
+
+```{r}
+#| label: m-8-comp
+avg_comparisons(m_8, variables = "c2_phonation", by = "language", conf_level = 0.8)
+```
+
+## Calculate average difference (ratio)
+
+```{r}
+#| label: m-8-comp-2
+avg_comparisons(m_8, variables = "c2_phonation", by = "language", conf_level = 0.8, comparison = "ratio")
+
+avg_comparisons(m_8, variables = "c2_phonation", by = "language", conf_level = 0.8, comparison = "ratio", hypothesis = "b2 = b1")
+```
+

@@ -758,8 +758,196 @@ sspeech_rate_c_1                             -0.1047572</code></pre>
 <span id="cb13-16"><a></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
+<img data-src="08_sensitive_files/figure-revealjs/prior-sens-plot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="plotting-posteriors" class="slide level2">
+<h2>Plotting posteriors</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">library</span>(bayesplot)</span>
+<span id="cb14-2"><a></a></span>
+<span id="cb14-3"><a></a><span class="fu">as.array</span>(m_8) <span class="sc">|&gt;</span> </span>
+<span id="cb14-4"><a></a>  <span class="fu">mcmc_areas</span>(<span class="at">regex_pars =</span> <span class="st">"b_"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="08_sensitive_files/figure-revealjs/prior-sens-plot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="quarto-auto-generated-content">
+</div>
+<img data-src="08_sensitive_files/figure-revealjs/mcmc-areas-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="get-posterior-draws" class="slide level2">
+<h2>Get posterior draws</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>m_8_draws <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(m_8)</span>
+<span id="cb15-2"><a></a>m_8_draws</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A draws_df: 1000 iterations, 4 chains, and 141 variables
+   b_c2_phonationvoiceless:vowela:languageItalian
+1                                             4.7
+2                                             4.7
+3                                             4.8
+4                                             4.7
+5                                             4.8
+6                                             4.7
+7                                             4.7
+8                                             4.6
+9                                             4.7
+10                                            4.7
+   b_c2_phonationvoiced:vowela:languageItalian
+1                                          4.8
+2                                          4.9
+3                                          4.8
+4                                          4.9
+5                                          4.8
+6                                          4.9
+7                                          4.8
+8                                          4.8
+9                                          4.8
+10                                         4.8
+   b_c2_phonationvoiceless:vowelo:languageItalian
+1                                             4.6
+2                                             4.6
+3                                             4.7
+4                                             4.7
+5                                             4.7
+6                                             4.6
+7                                             4.6
+8                                             4.6
+9                                             4.7
+10                                            4.7
+   b_c2_phonationvoiced:vowelo:languageItalian
+1                                          4.8
+2                                          4.8
+3                                          4.8
+4                                          4.8
+5                                          4.8
+6                                          4.8
+7                                          4.8
+8                                          4.8
+9                                          4.8
+10                                         4.8
+   b_c2_phonationvoiceless:vowelu:languageItalian
+1                                             4.5
+2                                             4.4
+3                                             4.5
+4                                             4.5
+5                                             4.6
+6                                             4.4
+7                                             4.4
+8                                             4.4
+9                                             4.5
+10                                            4.5
+   b_c2_phonationvoiced:vowelu:languageItalian
+1                                          4.5
+2                                          4.5
+3                                          4.5
+4                                          4.5
+5                                          4.5
+6                                          4.5
+7                                          4.5
+8                                          4.5
+9                                          4.5
+10                                         4.5
+   b_c2_phonationvoiceless:vowela:languagePolish
+1                                            4.5
+2                                            4.6
+3                                            4.5
+4                                            4.4
+5                                            4.5
+6                                            4.4
+7                                            4.5
+8                                            4.5
+9                                            4.5
+10                                           4.5
+   b_c2_phonationvoiced:vowela:languagePolish
+1                                         4.6
+2                                         4.7
+3                                         4.5
+4                                         4.5
+5                                         4.6
+6                                         4.6
+7                                         4.6
+8                                         4.6
+9                                         4.6
+10                                        4.6
+# ... with 3990 more draws, and 133 more variables
+# ... hidden reserved variables {'.chain', '.iteration', '.draw'}</code></pre>
+</div>
+</div>
+</section>
+<section id="difference-by-language-across-all-vowels" class="slide level2">
+<h2>Difference by language across all vowels</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>m_8_avg_diff <span class="ot">&lt;-</span> m_8_draws <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">b_c2_phonationvoiceless:vowela:languageItalian</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">b_c2_phonationvoiced:vowelu:languagePolish</span><span class="st">`</span>, .draw) <span class="sc">|&gt;</span> </span>
+<span id="cb17-3"><a></a>  <span class="fu">pivot_longer</span>(<span class="st">`</span><span class="at">b_c2_phonationvoiceless:vowela:languageItalian</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">b_c2_phonationvoiced:vowelu:languagePolish</span><span class="st">`</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb17-4"><a></a>  <span class="fu">separate</span>(name, <span class="fu">c</span>(<span class="st">"phonation"</span>, <span class="st">"vowel"</span>, <span class="st">"language"</span>), <span class="at">sep =</span> <span class="st">":"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb17-5"><a></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> phonation, <span class="at">values_from =</span> value) <span class="sc">|&gt;</span> </span>
+<span id="cb17-6"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-7"><a></a>    <span class="at">diff =</span> b_c2_phonationvoiced <span class="sc">-</span> b_c2_phonationvoiceless</span>
+<span id="cb17-8"><a></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb17-9"><a></a>  <span class="fu">group_by</span>(.draw, language) <span class="sc">|&gt;</span> </span>
+<span id="cb17-10"><a></a>  <span class="fu">summarise</span>(</span>
+<span id="cb17-11"><a></a>    <span class="at">avg_diff =</span> <span class="fu">mean</span>(diff)</span>
+<span id="cb17-12"><a></a>  )</span>
+<span id="cb17-13"><a></a>m_8_avg_diff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8,000 × 3
+# Groups:   .draw [4,000]
+   .draw language        avg_diff
+   &lt;int&gt; &lt;chr&gt;              &lt;dbl&gt;
+ 1     1 languageItalian   0.0801
+ 2     1 languagePolish    0.0642
+ 3     2 languageItalian   0.159 
+ 4     2 languagePolish    0.136 
+ 5     3 languageItalian   0.0726
+ 6     3 languagePolish    0.0279
+ 7     4 languageItalian   0.0976
+ 8     4 languagePolish    0.102 
+ 9     5 languageItalian   0.0298
+10     5 languagePolish    0.0847
+# ℹ 7,990 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="plot-the-average-difference-across-vowels" class="slide level2">
+<h2>Plot the average difference across vowels</h2>
+
+<img data-src="08_sensitive_files/figure-revealjs/m-8-avg-diff-plot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="calculate-average-difference-ms" class="slide level2">
+<h2>Calculate average difference (ms)</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">avg_comparisons</span>(m_8, <span class="at">variables =</span> <span class="st">"c2_phonation"</span>, <span class="at">by =</span> <span class="st">"language"</span>, <span class="at">conf_level =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+         Term                       Contrast language Estimate 10.0 % 90.0 %
+ c2_phonation mean(voiced) - mean(voiceless)  Italian     13.5  12.10  14.87
+ c2_phonation mean(voiced) - mean(voiceless)  Polish       7.4   6.07   8.67
+
+Columns: term, contrast, language, estimate, conf.low, conf.high, predicted_lo, predicted_hi, predicted, tmp_idx 
+Type:  response </code></pre>
+</div>
+</div>
+</section>
+<section id="calculate-average-difference-ratio" class="slide level2">
+<h2>Calculate average difference (ratio)</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">avg_comparisons</span>(m_8, <span class="at">variables =</span> <span class="st">"c2_phonation"</span>, <span class="at">by =</span> <span class="st">"language"</span>, <span class="at">conf_level =</span> <span class="fl">0.8</span>, <span class="at">comparison =</span> <span class="st">"ratio"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+         Term                       Contrast language Estimate 10.0 % 90.0 %
+ c2_phonation mean(voiced) / mean(voiceless)  Italian     1.12   1.11   1.14
+ c2_phonation mean(voiced) / mean(voiceless)  Polish      1.10   1.08   1.12
+
+Columns: term, contrast, language, estimate, conf.low, conf.high, predicted_lo, predicted_hi, predicted, tmp_idx 
+Type:  response </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">avg_comparisons</span>(m_8, <span class="at">variables =</span> <span class="st">"c2_phonation"</span>, <span class="at">by =</span> <span class="st">"language"</span>, <span class="at">conf_level =</span> <span class="fl">0.8</span>, <span class="at">comparison =</span> <span class="st">"ratio"</span>, <span class="at">hypothesis =</span> <span class="st">"b2 = b1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  Term Estimate  10.0 %   90.0 %
+ b2=b1  -0.0241 -0.0459 -0.00142
+
+Columns: term, estimate, conf.low, conf.high 
+Type:  response </code></pre>
+</div>
+</div>
+
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
