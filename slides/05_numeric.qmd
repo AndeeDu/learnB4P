@@ -7,6 +7,11 @@ format:
     history: false
 filters:
   - tachyonsextra
+execute:
+  echo: true
+knitr:
+  opts_chunk: 
+    fig-align: center
 ---
 
 ```{r}
@@ -44,6 +49,8 @@ token_measures <- token_measures |>
 
 ```{r}
 #| label: vdur-speech
+#| echo: false
+#| message: false
 
 token_measures |> 
   ggplot(aes(speech_rate, log(v1_duration))) +
@@ -57,13 +64,26 @@ token_measures |>
 $$
 \begin{align}
 vdur_i & \sim LogNormal(\mu_i, \sigma)\\
-\mu_i & = \beta_{1,voicing[i], language[i]} + \beta_2 \cdot \text{spr}\\
+\mu_i & = \beta_{1,voicing[i], language[i]} + \beta_2 \cdot \text{spr_c}\\
 \beta_{1jw} & \sim Gaussian(\mu_j, \sigma_j) & , \text{for } j = 1..2\\
  &  &  w = 1..2\\
 \beta_2 & \sim Gaussian(\mu_3, \sigma_3)\\
 \sigma & \sim Cauchy_{+}(0, \sigma_4)\\
 \end{align}
 $$
+
+## Centred speech rate
+
+```{r}
+#| label: sr-centre
+#| echo: false
+
+token_measures |> 
+  ggplot(aes(speech_rate_c)) +
+  geom_density() +
+  geom_rug(alpha = 0.5)
+```
+
 
 ## Get default priors: indexing
 
@@ -115,12 +135,19 @@ m_6_priorpp <- brm(
 )
 ```
 
-## Prior predictive plots
+## Prior predictive plots: voicing and language
 
 ```{r}
-#| label: m-5-prior-pp-plot
+#| label: m-5-prior-pp-plot-1
 
 conditional_effects(m_6_priorpp, effects = "language:c2_phonation")
+```
+
+## Prior predictive plots: speech rate
+
+```{r}
+#| label: m-5-prior-pp-plot-2
+
 conditional_effects(m_6_priorpp, effects = "speech_rate_c", spaghetti = TRUE, ndraws = 100)
 ```
 
@@ -151,9 +178,16 @@ summary(m_6, prob = 0.8)
 ## Posterior probability distributions: outcome (vowel duration)
 
 ```{r}
-#| label: m-6-cond
+#| label: m-6-cond-1
 
 conditional_effects(m_6, effects = "language:c2_phonation")
+```
+
+## Posterior probability distributions: outcome (vowel duration)
+
+```{r}
+#| label: m-6-cond-2
+
 conditional_effects(m_6, effects = "speech_rate_c")
 ```
 
@@ -161,6 +195,8 @@ conditional_effects(m_6, effects = "speech_rate_c")
 
 ```{r}
 #| label: m-6-comparisons
+
+library(marginaleffects)
 
 # In milliseconds
 avg_comparisons(m_6, variables = "c2_phonation", by = "language", conf_level = 0.8)
@@ -180,8 +216,23 @@ avg_comparisons(m_6, variables = "c2_phonation", by = "language", conf_level = 0
 ## Posterior predictive checks
 
 ```{r}
+#| label: m-6-ppcheck
 pp_check(m_6, ndraws = 100)
 ```
+
+## Non-linear effect of speech rate
+
+```{r}
+#| label: vdur-speech-2
+#| echo: false
+#| message: false
+
+token_measures |> 
+  ggplot(aes(speech_rate, log(v1_duration))) +
+  geom_point(alpha = 0.25) +
+  geom_smooth(method = "gam", formula = y ~ s(x, k = 3), colour = "red")
+```
+
 
 ## Non-linear effects: GAMs
 

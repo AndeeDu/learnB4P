@@ -30,6 +30,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -340,17 +405,23 @@ Stefano Coretta
 </section>
 <section id="set-order-of-levels" class="slide level2">
 <h2>Set order of levels</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>token_measures <span class="ot">&lt;-</span> token_measures <span class="sc">|&gt;</span> </span>
+<span id="cb1-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-3"><a></a>    <span class="at">c2_phonation =</span> <span class="fu">factor</span>(c2_phonation, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"voiceless"</span>, <span class="st">"voiced"</span>))</span>
+<span id="cb1-4"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="vowel-duration-by-speech-rate" class="slide level2">
 <h2>Vowel duration by speech rate</h2>
 
-<img data-src="05_numeric_files/figure-revealjs/vdur-speech-1.png" width="960" class="r-stretch"></section>
+<img data-src="05_numeric_files/figure-revealjs/vdur-speech-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="numeric-predictors" class="slide level2">
 <h2>Numeric predictors</h2>
 <p><span class="math display">\[
 \begin{align}
 vdur_i &amp; \sim LogNormal(\mu_i, \sigma)\\
-\mu_i &amp; = \beta_{1,voicing[i], language[i]} + \beta_2 \cdot \text{spr}\\
+\mu_i &amp; = \beta_{1,voicing[i], language[i]} + \beta_2 \cdot \text{spr_c}\\
 \beta_{1jw} &amp; \sim Gaussian(\mu_j, \sigma_j) &amp; , \text{for } j = 1..2\\
 &amp;  &amp;  w = 1..2\\
 \beta_2 &amp; \sim Gaussian(\mu_3, \sigma_3)\\
@@ -358,9 +429,18 @@ vdur_i &amp; \sim LogNormal(\mu_i, \sigma)\\
 \end{align}
 \]</span></p>
 </section>
+<section id="centred-speech-rate" class="slide level2">
+<h2>Centred speech rate</h2>
+
+<img data-src="05_numeric_files/figure-revealjs/sr-centre-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="get-default-priors-indexing" class="slide level2">
 <h2>Get default priors: indexing</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">get_prior</span>(</span>
+<span id="cb2-2"><a></a>  v1_duration <span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> c2_phonation<span class="sc">:</span>language <span class="sc">+</span> speech_rate_c,</span>
+<span id="cb2-3"><a></a>  <span class="at">family =</span> lognormal,</span>
+<span id="cb2-4"><a></a>  <span class="at">data =</span> token_measures</span>
+<span id="cb2-5"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                prior class                                  coef group resp
                (flat)     b                                                 
@@ -383,7 +463,19 @@ vdur_i &amp; \sim LogNormal(\mu_i, \sigma)\\
 </section>
 <section id="priors" class="slide level2">
 <h2>Priors</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>m_6_priors <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb4-2"><a></a>  <span class="co"># Priors for the four `b` coefficients</span></span>
+<span id="cb4-3"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.55</span>), <span class="at">class =</span> b, <span class="at">coef =</span> <span class="st">`</span><span class="at">c2_phonationvoiced:languageItalian</span><span class="st">`</span>),</span>
+<span id="cb4-4"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.55</span>), <span class="at">class =</span> b, <span class="at">coef =</span> <span class="st">`</span><span class="at">c2_phonationvoiced:languagePolish</span><span class="st">`</span>),</span>
+<span id="cb4-5"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.55</span>), <span class="at">class =</span> b, <span class="at">coef =</span> <span class="st">`</span><span class="at">c2_phonationvoiceless:languageItalian</span><span class="st">`</span>),</span>
+<span id="cb4-6"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.55</span>), <span class="at">class =</span> b, <span class="at">coef =</span> <span class="st">`</span><span class="at">c2_phonationvoiceless:languagePolish</span><span class="st">`</span>),</span>
+<span id="cb4-7"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">0.5</span>), <span class="at">class =</span> b, <span class="at">coef =</span> <span class="st">`</span><span class="at">speech_rate_c</span><span class="st">`</span>),</span>
+<span id="cb4-8"><a></a>  <span class="co"># Prior for sigma</span></span>
+<span id="cb4-9"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">0.1</span>), <span class="at">class =</span> sigma)</span>
+<span id="cb4-10"><a></a>)</span>
+<span id="cb4-11"><a></a></span>
+<span id="cb4-12"><a></a>m_6_priors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              prior class                                  coef group resp dpar
  normal(4.45, 0.55)     b    c2_phonationvoiced:languageItalian                
@@ -404,32 +496,53 @@ vdur_i &amp; \sim LogNormal(\mu_i, \sigma)\\
 </section>
 <section id="prior-predictive-checks" class="slide level2">
 <h2>Prior predictive checks</h2>
-</section>
-<section id="prior-predictive-plots" class="slide level2">
-<h2>Prior predictive plots</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="05_numeric_files/figure-revealjs/m-5-prior-pp-plot-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="05_numeric_files/figure-revealjs/m-5-prior-pp-plot-2.png" width="960"></p>
-</figure>
-</div>
-</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>my_seed <span class="ot">&lt;-</span> <span class="dv">5293</span></span>
+<span id="cb6-2"><a></a></span>
+<span id="cb6-3"><a></a>m_6_priorpp <span class="ot">&lt;-</span> <span class="fu">brm</span>(</span>
+<span id="cb6-4"><a></a>  v1_duration <span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> c2_phonation<span class="sc">:</span>language <span class="sc">+</span> speech_rate_c,</span>
+<span id="cb6-5"><a></a>  <span class="at">data =</span> token_measures,</span>
+<span id="cb6-6"><a></a>  <span class="at">family =</span> lognormal,</span>
+<span id="cb6-7"><a></a>  <span class="at">prior =</span> m_6_priors,</span>
+<span id="cb6-8"><a></a>  <span class="at">sample_prior =</span> <span class="st">"only"</span>,</span>
+<span id="cb6-9"><a></a>  <span class="at">cores =</span> <span class="dv">4</span>,</span>
+<span id="cb6-10"><a></a>  <span class="at">seed =</span> my_seed,</span>
+<span id="cb6-11"><a></a>  <span class="at">file =</span> <span class="st">"data/cache/m_6_priorpp"</span></span>
+<span id="cb6-12"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
+<section id="prior-predictive-plots-voicing-and-language" class="slide level2">
+<h2>Prior predictive plots: voicing and language</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">conditional_effects</span>(m_6_priorpp, <span class="at">effects =</span> <span class="st">"language:c2_phonation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="05_numeric_files/figure-revealjs/m-5-prior-pp-plot-1-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="prior-predictive-plots-speech-rate" class="slide level2">
+<h2>Prior predictive plots: speech rate</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">conditional_effects</span>(m_6_priorpp, <span class="at">effects =</span> <span class="st">"speech_rate_c"</span>, <span class="at">spaghetti =</span> <span class="cn">TRUE</span>, <span class="at">ndraws =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="05_numeric_files/figure-revealjs/m-5-prior-pp-plot-2-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="fit-the-model" class="slide level2">
 <h2>Fit the model</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>m_6 <span class="ot">&lt;-</span> <span class="fu">brm</span>(</span>
+<span id="cb9-2"><a></a>  v1_duration <span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> c2_phonation<span class="sc">:</span>language <span class="sc">+</span> speech_rate_c,</span>
+<span id="cb9-3"><a></a>  <span class="at">data =</span> token_measures,</span>
+<span id="cb9-4"><a></a>  <span class="at">family =</span> lognormal,</span>
+<span id="cb9-5"><a></a>  <span class="at">prior =</span> m_6_priors,</span>
+<span id="cb9-6"><a></a>  <span class="at">seed =</span> my_seed,</span>
+<span id="cb9-7"><a></a>  <span class="at">cores =</span> <span class="dv">4</span>,</span>
+<span id="cb9-8"><a></a>  <span class="at">file =</span> <span class="st">"data/cache/m_6"</span></span>
+<span id="cb9-9"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="model-summary" class="slide level2">
 <h2>Model summary</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">summary</span>(m_6, <span class="at">prob =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Family: lognormal 
   Links: mu = identity; sigma = identity 
@@ -464,26 +577,25 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 </section>
 <section id="posterior-probability-distributions-outcome-vowel-duration" class="slide level2">
 <h2>Posterior probability distributions: outcome (vowel duration)</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="05_numeric_files/figure-revealjs/m-6-cond-1.png" width="960"></p>
-</figure>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">conditional_effects</span>(m_6, <span class="at">effects =</span> <span class="st">"language:c2_phonation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
+<img data-src="05_numeric_files/figure-revealjs/m-6-cond-1-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="posterior-probability-distributions-outcome-vowel-duration-1" class="slide level2">
+<h2>Posterior probability distributions: outcome (vowel duration)</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">conditional_effects</span>(m_6, <span class="at">effects =</span> <span class="st">"speech_rate_c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="05_numeric_files/figure-revealjs/m-6-cond-2.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
+<img data-src="05_numeric_files/figure-revealjs/m-6-cond-2-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="posterior-probability-distribution-difference-of-vowel-duration" class="slide level2">
 <h2>Posterior probability distribution: difference of vowel duration</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">library</span>(marginaleffects)</span>
+<span id="cb14-2"><a></a></span>
+<span id="cb14-3"><a></a><span class="co"># In milliseconds</span></span>
+<span id="cb14-4"><a></a><span class="fu">avg_comparisons</span>(m_6, <span class="at">variables =</span> <span class="st">"c2_phonation"</span>, <span class="at">by =</span> <span class="st">"language"</span>, <span class="at">conf_level =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
          Term                       Contrast language Estimate 10.0 % 90.0 %
@@ -493,6 +605,8 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 Columns: term, contrast, language, estimate, conf.low, conf.high, predicted_lo, predicted_hi, predicted, tmp_idx 
 Type:  response </code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="co"># As ratio</span></span>
+<span id="cb16-2"><a></a><span class="fu">avg_comparisons</span>(m_6, <span class="at">variables =</span> <span class="st">"c2_phonation"</span>, <span class="at">by =</span> <span class="st">"language"</span>, <span class="at">conf_level =</span> <span class="fl">0.8</span>, <span class="at">comparison =</span> <span class="st">"ratio"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
          Term                       Contrast language Estimate 10.0 % 90.0 %
@@ -506,7 +620,8 @@ Type:  response </code></pre>
 </section>
 <section id="posterior-probability-distribution-difference-of-difference" class="slide level2">
 <h2>Posterior probability distribution: difference of difference</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">avg_comparisons</span>(m_6, <span class="at">variables =</span> <span class="st">"c2_phonation"</span>, <span class="at">by =</span> <span class="st">"language"</span>, <span class="at">conf_level =</span> <span class="fl">0.8</span>, <span class="at">comparison =</span> <span class="st">"ratio"</span>, <span class="at">hypothesis =</span> <span class="st">"b2 = b1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   Term Estimate  10.0 % 90.0 %
@@ -519,18 +634,39 @@ Type:  response </code></pre>
 </section>
 <section id="posterior-predictive-checks" class="slide level2">
 <h2>Posterior predictive checks</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">pp_check</span>(m_6, <span class="at">ndraws =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="05_numeric_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
+</div>
+<img data-src="05_numeric_files/figure-revealjs/m-6-ppcheck-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="non-linear-effect-of-speech-rate" class="slide level2">
+<h2>Non-linear effect of speech rate</h2>
+
+<img data-src="05_numeric_files/figure-revealjs/vdur-speech-2-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="non-linear-effects-gams" class="slide level2">
 <h2>Non-linear effects: GAMs</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>m_6a <span class="ot">&lt;-</span> <span class="fu">brm</span>(</span>
+<span id="cb21-2"><a></a>  v1_duration <span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> c2_phonation<span class="sc">:</span>language <span class="sc">+</span> <span class="fu">s</span>(speech_rate_c, <span class="at">k =</span> <span class="dv">3</span>),</span>
+<span id="cb21-3"><a></a>  <span class="at">data =</span> token_measures,</span>
+<span id="cb21-4"><a></a>  <span class="at">family =</span> lognormal,</span>
+<span id="cb21-5"><a></a>  <span class="at">seed =</span> my_seed,</span>
+<span id="cb21-6"><a></a>  <span class="at">cores =</span> <span class="dv">4</span>,</span>
+<span id="cb21-7"><a></a>  <span class="at">file =</span> <span class="st">"data/cache/m_6a"</span></span>
+<span id="cb21-8"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="posterior-probability-distributions-outcome-vowel-duration-1" class="slide level2">
+<section id="posterior-probability-distributions-outcome-vowel-duration-2" class="slide level2">
 <h2>Posterior probability distributions: outcome (vowel duration)</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">plot</span>(<span class="fu">conditional_effects</span>(m_6a, <span class="at">effects =</span> <span class="st">"speech_rate_c"</span>), <span class="at">points =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="05_numeric_files/figure-revealjs/m-6a-cond-1.png" width="960" class="r-stretch"></section>
+</div>
+<img data-src="05_numeric_files/figure-revealjs/m-6a-cond-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="posterior-probability-distribution-difference-of-difference-1" class="slide level2">
 <h2>Posterior probability distribution: difference of difference</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">avg_comparisons</span>(m_6a, <span class="at">variables =</span> <span class="st">"c2_phonation"</span>, <span class="at">by =</span> <span class="st">"language"</span>, <span class="at">conf_level =</span> <span class="fl">0.8</span>, <span class="at">comparison =</span> <span class="st">"ratio"</span>, <span class="at">hypothesis =</span> <span class="st">"b2 = b1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   Term Estimate  10.0 % 90.0 %
