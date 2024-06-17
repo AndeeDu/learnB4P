@@ -684,5 +684,47 @@
     "title": "05 - Numeric predictors",
     "section": "Posterior probability distributions: outcome (vowel duration)",
     "text": "Posterior probability distributions: outcome (vowel duration)\n\nplot(conditional_effects(m_6a, effects = \"speech_rate_c\"), points = TRUE)"
+  },
+  {
+    "objectID": "slides/03_categorical.html#diagnostics",
+    "href": "slides/03_categorical.html#diagnostics",
+    "title": "03 - Categorical predictors",
+    "section": "Diagnostics",
+    "text": "Diagnostics\n\n\nPrior predictive checks.\nPosterior predictive checks (pp_check()).\nChain plots.\n\\(\\hat{R}\\) and Effective Sample Size (convergence)."
+  },
+  {
+    "objectID": "slides/03_categorical.html#sampling-from-the-posterior",
+    "href": "slides/03_categorical.html#sampling-from-the-posterior",
+    "title": "03 - Categorical predictors",
+    "section": "Sampling from the posterior",
+    "text": "Sampling from the posterior\n\n\nCalculating posteriors analytically (with calculus) is challenging.\nInstead, a sampling algorithm is used to draw samples from the posterior.\n\nMarkov Chain Monte Carlo (MCMC).\n\nMCMC simulation: https://chi-feng.github.io/mcmc-demo/app.html\nMore on MCMC:\nhttps://elizabethpankratz.github.io/bayes_stat/day1/mcmc.html.\nhttp://elevanth.org/blog/2017/11/28/build-a-better-markov-chain/."
+  },
+  {
+    "objectID": "slides/03_categorical.html#chain-plots",
+    "href": "slides/03_categorical.html#chain-plots",
+    "title": "03 - Categorical predictors",
+    "section": "Chain plots",
+    "text": "Chain plots\n\nplot(m_4)"
+  },
+  {
+    "objectID": "slides/03_categorical.html#bad-chain-mixing",
+    "href": "slides/03_categorical.html#bad-chain-mixing",
+    "title": "03 - Categorical predictors",
+    "section": "Bad chain mixing",
+    "text": "Bad chain mixing"
+  },
+  {
+    "objectID": "slides/03_categorical.html#bad-chain-mixing-1",
+    "href": "slides/03_categorical.html#bad-chain-mixing-1",
+    "title": "03 - Categorical predictors",
+    "section": "Bad chain mixing",
+    "text": "Bad chain mixing"
+  },
+  {
+    "objectID": "slides/03_categorical.html#hatr-and-ess",
+    "href": "slides/03_categorical.html#hatr-and-ess",
+    "title": "03 - Categorical predictors",
+    "section": "\\(\\hat{R}\\) and ESS",
+    "text": "\\(\\hat{R}\\) and ESS\n\nsummary(m_4, prob = 0.8)\n\n Family: lognormal \n  Links: mu = identity; sigma = identity \nFormula: v1_duration ~ 0 + c2_phonation \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n                      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS\nc2_phonationvoiced        4.65      0.01     4.63     4.66 1.00     4593\nc2_phonationvoiceless     4.54      0.01     4.53     4.56 1.00     4526\n                      Tail_ESS\nc2_phonationvoiced        3242\nc2_phonationvoiceless     3027\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nsigma     0.32      0.01     0.31     0.33 1.00     4205     2982\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
   }
 ]

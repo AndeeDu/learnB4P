@@ -605,6 +605,78 @@ Type:  response </code></pre>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="diagnostics" class="slide level2">
+<h2>Diagnostics</h2>
+<div class="box-note">
+<ul>
+<li><p>Prior predictive checks.</p></li>
+<li><p>Posterior predictive checks (<code>pp_check()</code>).</p></li>
+<li><p>Chain plots.</p></li>
+<li><p><span class="math inline">\(\hat{R}\)</span> and Effective Sample Size (convergence).</p></li>
+</ul>
+</div>
+</section>
+<section id="sampling-from-the-posterior" class="slide level2">
+<h2>Sampling from the posterior</h2>
+<div class="box-tip">
+<ul>
+<li><p>Calculating posteriors analytically (with calculus) is challenging.</p></li>
+<li><p>Instead, a <strong>sampling algorithm</strong> is used to draw samples from the posterior.</p></li>
+</ul>
+<p><strong>Markov Chain Monte Carlo</strong> (MCMC).</p>
+<ul>
+<li><p>MCMC simulation: <a href="https://chi-feng.github.io/mcmc-demo/app.html" class="uri">https://chi-feng.github.io/mcmc-demo/app.html</a></p></li>
+<li><p>More on MCMC:</p></li>
+<li><p><a href="https://elizabethpankratz.github.io/bayes_stat/day1/mcmc.html" class="uri">https://elizabethpankratz.github.io/bayes_stat/day1/mcmc.html</a>.</p></li>
+<li><p><a href="http://elevanth.org/blog/2017/11/28/build-a-better-markov-chain/" class="uri">http://elevanth.org/blog/2017/11/28/build-a-better-markov-chain/</a>.</p></li>
+</ul>
+</div>
+</section>
+<section id="chain-plots" class="slide level2">
+<h2>Chain plots</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">plot</span>(m_4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="03_categorical_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="bad-chain-mixing" class="slide level2">
+<h2>Bad chain mixing</h2>
+
+<img data-src="img/bad-mcmc-2.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="bad-chain-mixing-1" class="slide level2">
+<h2>Bad chain mixing</h2>
+
+<img data-src="img/bad-mcmc-1.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="hatr-and-ess" class="slide level2">
+<h2><span class="math inline">\(\hat{R}\)</span> and ESS</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">summary</span>(m_4, <span class="at">prob =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Family: lognormal 
+  Links: mu = identity; sigma = identity 
+Formula: v1_duration ~ 0 + c2_phonation 
+   Data: token_measures (Number of observations: 1342) 
+  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;
+         total post-warmup draws = 4000
+
+Regression Coefficients:
+                      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS
+c2_phonationvoiced        4.65      0.01     4.63     4.66 1.00     4593
+c2_phonationvoiceless     4.54      0.01     4.53     4.56 1.00     4526
+                      Tail_ESS
+c2_phonationvoiced        3242
+c2_phonationvoiceless     3027
+
+Further Distributional Parameters:
+      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS
+sigma     0.32      0.01     0.31     0.33 1.00     4205     2982
+
+Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+and Tail_ESS are effective sample size measures, and Rhat is the potential
+scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+</div>
+</div>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">

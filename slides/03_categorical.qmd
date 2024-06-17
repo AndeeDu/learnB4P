@@ -180,3 +180,55 @@ avg_comparisons(m_4, conf_level = 0.8)
 |------------|-----------------|-------------------------|
 | Outcome    | brms            | `conditional_effects()` |
 | Difference | marginaleffects | `avg_comparisons()`     |
+
+## Diagnostics
+
+::: box-note
+-   Prior predictive checks.
+
+-   Posterior predictive checks (`pp_check()`).
+
+-   Chain plots.
+
+-   $\hat{R}$ and Effective Sample Size (convergence).
+:::
+
+## Sampling from the posterior
+
+::: box-tip
+-   Calculating posteriors analytically (with calculus) is challenging.
+
+-   Instead, a **sampling algorithm** is used to draw samples from the posterior.
+
+**Markov Chain Monte Carlo** (MCMC).
+
+-   MCMC simulation: <https://chi-feng.github.io/mcmc-demo/app.html>
+
+-   More on MCMC:
+
+-   <https://elizabethpankratz.github.io/bayes_stat/day1/mcmc.html>.
+
+-   <http://elevanth.org/blog/2017/11/28/build-a-better-markov-chain/>.
+:::
+
+## Chain plots
+
+```{r}
+plot(m_4)
+```
+
+## Bad chain mixing
+
+![](img/bad-mcmc-2.png){fig-align="center"}
+
+## Bad chain mixing
+
+![](img/bad-mcmc-1.png){fig-align="center"}
+
+## $\hat{R}$ and ESS
+
+```{r}
+#| label: r-hat
+
+summary(m_4, prob = 0.8)
+```
