@@ -726,5 +726,12 @@
     "title": "03 - Categorical predictors",
     "section": "\\(\\hat{R}\\) and ESS",
     "text": "\\(\\hat{R}\\) and ESS\n\nsummary(m_4, prob = 0.8)\n\n Family: lognormal \n  Links: mu = identity; sigma = identity \nFormula: v1_duration ~ 0 + c2_phonation \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n                      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS\nc2_phonationvoiced        4.65      0.01     4.63     4.66 1.00     4593\nc2_phonationvoiceless     4.54      0.01     4.53     4.56 1.00     4526\n                      Tail_ESS\nc2_phonationvoiced        3242\nc2_phonationvoiceless     3027\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nsigma     0.32      0.01     0.31     0.33 1.00     4205     2982\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
+  },
+  {
+    "objectID": "slides/04_interactions.html#reporting",
+    "href": "slides/04_interactions.html#reporting",
+    "title": "04 - Interactions",
+    "section": "Reporting",
+    "text": "Reporting\nWe fitted a Bayesian regression in R (R Core 2024) with brms (Bürkner 2017, 2018, 2021) to vowel duration using a log-normal distribution as the distribution family of the outcome. As predictors, we included C2 voicing (voiceless vs voiced) and language (Italian vs Polish). The predictors were coded using indexing (i.e. by suppressing the model’s intercept).\nAccording to the model, vowels followed by voiced stops are 10-15 ms longer in Italian and 5-10 ms longer in Polish, at 80% confidence. As a ratio of the duration of vowels followed by voiceless stops, vowels followed by voiced stops are 1.09-1.14 times longer in Italian and 1.07-1.14 times longer in Polish, at 80% probability. While the raw difference in milliseconds is different in Italian vs Polish, the ratio difference are very similar.\nAt 80% confidence, the difference in voicing effect ratio between Italian and Polish is between -0.06 and 0.03. This suggests that if there is a difference between the two language, it could be negative or positive although negative values are more likely."
   }
 ]

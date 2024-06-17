@@ -598,6 +598,12 @@ Columns: term, estimate, conf.low, conf.high
 Type:  response </code></pre>
 </div>
 </div>
+</section>
+<section id="reporting" class="slide level2">
+<h2>Reporting</h2>
+<p>We fitted a Bayesian regression in R (R Core 2024) with brms (Bürkner 2017, 2018, 2021) to vowel duration using a log-normal distribution as the distribution family of the outcome. As predictors, we included C2 voicing (voiceless vs voiced) and language (Italian vs Polish). The predictors were coded using indexing (i.e.&nbsp;by suppressing the model’s intercept).</p>
+<p>According to the model, vowels followed by voiced stops are 10-15 ms longer in Italian and 5-10 ms longer in Polish, at 80% confidence. As a ratio of the duration of vowels followed by voiceless stops, vowels followed by voiced stops are 1.09-1.14 times longer in Italian and 1.07-1.14 times longer in Polish, at 80% probability. While the raw difference in milliseconds is different in Italian vs Polish, the ratio difference are very similar.</p>
+<p>At 80% confidence, the difference in voicing effect ratio between Italian and Polish is between -0.06 and 0.03. This suggests that if there is a difference between the two language, it could be negative or positive although negative values are more likely.</p>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
