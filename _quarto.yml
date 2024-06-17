@@ -26,8 +26,10 @@ website:
             text: "04 - Interactions"
           - href: "slides/05_numeric.qmd"
             text: "05 - Numeric predictors"
-          - href: "slides/06_multilevel_1.qmd"
-            text: "06 - Multilevel models I"
+          - href: "slides/06_multilevel.qmd"
+            text: "06 - Multilevel models"
+          - href: "slides/08_sensitive.qmd"
+            text: "08 - Other goods"
 
 format:
   html:

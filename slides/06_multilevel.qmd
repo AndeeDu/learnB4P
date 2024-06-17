@@ -1,0 +1,195 @@
+---
+title: "06 - Multilevel models"
+author: "Stefano Coretta"
+format:
+  mono-light-revealjs:
+    theme: [default, custom.scss]
+    history: false
+filters:
+  - tachyonsextra
+execute:
+  echo: true
+knitr:
+  opts_chunk: 
+    fig-align: center
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+theme_set(theme_light())
+library(coretta2018itapol)
+library(brms)
+library(htmltools)
+
+library(coretta2018itapol)
+data("token_measures")
+token_measures <- token_measures |> drop_na(v1_duration)
+
+library(marginaleffects)
+library(tidybayes)
+```
+
+## Set order of levels
+
+```{r}
+#| label: set-levels
+
+token_measures <- token_measures |> 
+  mutate(
+    c2_phonation = factor(c2_phonation, levels = c("voiceless", "voiced"))
+  )
+```
+
+## Multilevel terms
+
+```{r}
+#| label: m-7-get-p
+get_prior(
+  v1_duration ~
+    0 + c2_phonation:language + s(speech_rate_c, k = 3) +
+    (0 + c2_phonation | speaker),
+  data = token_measures,
+  family = lognormal
+)
+```
+## Model priors
+
+```{r}
+#| label: m-7-priors
+m_7_priors <- c(
+  prior(normal(4.45, 0.55), class = b),
+  prior(normal(0, 0.5), class = b, coef = sspeech_rate_c_1),
+  prior(normal(0, 0.1), class = sigma),
+  prior(normal(0, 0.1), class = sd),
+  prior(normal(0, 0.1), class = sds),
+  prior(lkj(2), class = cor)
+)
+```
+
+## Fit model
+
+```{r}
+#| label: m-7
+
+m_7 <- brm(
+  v1_duration ~
+    0 + c2_phonation:language + s(speech_rate_c, k = 3) +
+    (0 + c2_phonation | speaker),
+  data = token_measures,
+  family = lognormal,
+  prior = m_7_priors,
+  seed = my_seed,
+  cores = 4,
+  file = "data/cache/m_7"
+)
+```
+
+## Model summary
+
+```{r}
+#| label: m-7-summary
+summary(m_7, prob = 0.8)
+```
+
+## Posterior probability distribution: outcome
+
+```{r}
+#| label: m-7-cond-1
+conditional_effects(m_7, effects = "language:c2_phonation")
+```
+
+## Posterior probability distribution: difference of difference
+
+```{r}
+#| label: m-7-diffdiff
+
+avg_comparisons(m_7, variables = "c2_phonation", by = "language", conf_level = 0.8, comparison = "ratio")
+avg_comparisons(m_7, variables = "c2_phonation", by = "language", conf_level = 0.8, comparison = "ratio", hypothesis = "b2 = b1")
+```
+
+## Spread draws
+
+```{r}
+#| label: spread draws
+
+gather_draws(m_7, r_speaker[speaker,term])
+```
+
+
+## Forest plot
+
+```{r}
+#| label: forest-1
+
+gather_draws(m_7, r_speaker[speaker,term]) |> 
+  ggplot(aes(.value, reorder(speaker, .value))) +
+  geom_vline(xintercept = 0) +
+  stat_halfeye() +
+  facet_grid(cols = vars(term))
+```
+
+## Calculate posterior draws for each participant
+
+```{r}
+#| label: m-7-epred
+
+m_7_grid <- token_measures |> 
+  distinct(speaker, language, c2_phonation) |> 
+  mutate(
+    speech_rate_c = 0
+  )
+
+m_7_epred <- epred_draws(m_7, m_7_grid)
+m_7_epred
+```
+
+## Calculate posterior difference
+
+```{r}
+#| label: m-7-epred-diff
+
+m_7_epred_diff <- m_7_epred |> 
+  ungroup() |> 
+  select(-.row) |> 
+  pivot_wider(names_from = c2_phonation, values_from = .epred) |> 
+  mutate(
+    diff = voiced - voiceless
+  )
+
+m_7_epred_diff
+```
+
+## Plot posterior difference by speaker
+
+```{r}
+#| label: diff-plot
+#| echo: false
+m_7_epred_diff |> 
+  ggplot(aes(diff, reorder(speaker, diff))) +
+  stat_halfeye()
+```
+
+## What about different vowels?
+
+```{r}
+#| label: vdur-vow
+
+token_measures |> 
+  ggplot(aes(c2_phonation, v1_duration)) +
+  geom_jitter(width = 0.1, alpha = 0.2) +
+  facet_grid(rows = vars(vowel), cols = vars(language))
+```
+
+## You try it! {background-color=var(--inverse)}
+
+A hint
+
+```r
+v1_duration ~
+    0 + c2_phonation:vowel:language + s(speech_rate_c, k = 3) +
+    (0 + c2_phonation:vowel | speaker)
+```
+

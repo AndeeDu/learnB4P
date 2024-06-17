@@ -1,0 +1,150 @@
+---
+title: "08 - Sensitivity analysis and other goods"
+author: "Stefano Coretta"
+format:
+  mono-light-revealjs:
+    theme: [default, custom.scss]
+    history: false
+filters:
+  - tachyonsextra
+execute:
+  echo: true
+knitr:
+  opts_chunk: 
+    fig-align: center
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+theme_set(theme_light())
+library(coretta2018itapol)
+library(brms)
+library(htmltools)
+
+library(coretta2018itapol)
+data("token_measures")
+token_measures <- token_measures |> drop_na(v1_duration)
+
+library(marginaleffects)
+library(tidybayes)
+```
+
+## Set order of levels
+
+```{r}
+#| label: set-levels
+
+token_measures <- token_measures |> 
+  mutate(
+    c2_phonation = factor(c2_phonation, levels = c("voiceless", "voiced"))
+  )
+```
+
+## Model priors
+
+```{r}
+#| label: m-7-priors
+m_7_priors <- c(
+  prior(normal(4.45, 0.55), class = b),
+  prior(normal(0, 0.5), class = b, coef = sspeech_rate_c_1),
+  prior(normal(0, 0.1), class = sigma),
+  prior(normal(0, 0.1), class = sd),
+  prior(normal(0, 0.1), class = sds),
+  prior(lkj(2), class = cor)
+)
+```
+
+## Fit model
+
+```{r}
+#| label: m-8
+
+m_8 <- brm(
+  v1_duration ~
+    0 + c2_phonation:vowel:language + s(speech_rate_c, k = 3) +
+    (0 + c2_phonation:vowel | speaker),
+  data = token_measures,
+  family = lognormal,
+  prior = m_7_priors,
+  seed = my_seed,
+  cores = 4,
+  file = "data/cache/m_8"
+)
+```
+
+## Model summary
+
+```{r}
+#| label: m-8-summary
+summary(m_8, prob = 0.8)
+```
+
+## Constant (aka fixed) coefficients
+
+```{r}
+#| label: m-8-const
+fixef(m_8)
+
+# try ranef(m_8) for varying aka random coefficients
+```
+
+## Constant coefficients tibble
+
+```{r}
+#| label: m-8-const-2
+
+m_8_fix <- fixef(m_8) |> as_tibble(rownames = "term")
+m_8_fix
+```
+
+
+## Prior sensitivity analysis
+
+::: box-note
+- Method from Betancourt 2018, *Calibrating Model-Based Inferences and Decisions*.
+
+- Uses posterior shrinkage and posterior z-score of parameters.
+
+- Can be easily calculated from the prior and posteriors parameters.
+:::
+
+## Prior sensitivity analysis: code
+
+```{r}
+#| label: add-s-z
+m_8_fix <- m_8_fix |> 
+  mutate(
+    theta = c(rep(4.45, 12), 0),
+    sigma_prior = c(rep(0.55, 12), 0.5),
+    z = abs((Estimate - theta) / Est.Error),
+    s = 1 - (Est.Error^2 / sigma_prior^2)
+  )
+m_8_fix
+```
+
+
+## Prior sensitivity analysis graph
+
+```{r}
+#| label: prior-sens-plot
+labels <- tibble(
+  s = c(0.25, 0.25, 0.75, 0.75),
+  z = c(1.25, 3.75, 1.25, 3.75),
+  term = c("Poorly identified", "Prior/Posterior\nconflict", "Ideal", "Overfit")
+)
+
+m_8_fix |> 
+  ggplot(aes(s, z, label = term)) +
+  annotate("rect", xmin = 0, ymin = 0, xmax = 0.5, ymax = 2.5, alpha = 0.5, fill = "#e66101") +
+  annotate("rect", xmin = 0, ymin = 2.5, xmax = 0.5, ymax = Inf, alpha = 0.5, fill = "#fdb863") +
+  annotate("rect", xmin = 0.5, ymin = 0, xmax = 1, ymax = 2.5, alpha = 0.5, fill = "#b2abd2") +
+  annotate("rect", xmin = 0.5, ymin = 2.5, xmax = 1, ymax = Inf, alpha = 0.5, fill = "#5e3c99") +
+  geom_text(size = 2, nudge_x = -0.15) +
+  geom_point() +
+  geom_label(data = labels, colour = "white", fill = "black") +
+  xlim(0, 1)
+```
+
