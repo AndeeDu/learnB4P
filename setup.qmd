@@ -88,3 +88,21 @@ If you are having issues with installation, the best place to ask for help are:
 -   StackOverflow: <https://stackoverflow.com>
 
 -   Any search engine.
+
+## Download the materials
+
+All the materials of the workshop (data, code, slides) are in the workshop [repository](https://github.com/stefanocoretta/learnB4P) on GitHub.
+
+You have two options:
+
+1.  You can fork the repository and clone it locally if you use git/GitHub.
+
+2.  You can simply download the repo by clicking on the `Code` button \> `Download ZIP` on GitHub.
+
+::: callout-tip
+This is an RStudio project. You can open it by double clicking on the `learnGAM.Rproj` file.
+:::
+
+::: callout-important
+Before opening the RStudio project, please remove the `.Rprofile` file (if you can't see this file, you have to enable the show hidden files option on your operating system). This will deactivate renv (an R package manager).
+:::

@@ -4,4 +4,6 @@ title: "Learn Bayesian modelling for Phonetology"
 
 This is the website of the workshop **learnB4P**.
 
-Check out the [set-up](setup.qmd) page for instructions on software requirements.
+::: callout-important
+Head off to the [Set-up](setup.qmd) page for pre-workshop installation instructions.
+:::

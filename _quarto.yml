@@ -6,6 +6,9 @@ project:
 website:
   title: "learnB4P"
   navbar:
+    tools:
+    - icon: github
+      href: "https://github.com/stefanocoretta/learnB4P"
     left:
       - href: index.qmd
         text: Home
@@ -21,6 +24,10 @@ website:
             text: "03 - Categorical predictors"
           - href: "slides/04_interactions.qmd"
             text: "04 - Interactions"
+          - href: "slides/05_numeric.qmd"
+            text: "05 - Numeric predictors"
+          - href: "slides/06_multilevel_1.qmd"
+            text: "06 - Multilevel models I"
 
 format:
   html:
