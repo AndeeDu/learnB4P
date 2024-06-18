@@ -515,7 +515,7 @@ vdur &amp; \sim LogNormal(\mu, \sigma)\\
 </ul></li>
 <li><p>Get <span class="math inline">\(\sigma_1\)</span></p>
 <ul>
-<li><code>(5 - 3.9) / 2 = 0.55</code></li>
+<li><code>(5 - 3.9) / 4 = 0.275</code></li>
 </ul></li>
 </ul>
 </div>
@@ -525,7 +525,7 @@ vdur &amp; \sim LogNormal(\mu, \sigma)\\
 <p><span class="math display">\[
 \begin{align}
 vdur &amp; \sim LogNormal(\mu, \sigma)\\
-\mu &amp; \sim Gaussian(\mu_1 = 4.45, \sigma_1 = 0.55)\\
+\mu &amp; \sim Gaussian(\mu_1 = 4.45, \sigma_1 = 0.275)\\
 \sigma &amp; \sim Cauchy_{+}(0, \sigma_2)\\
 \end{align}
 \]</span></p>
@@ -568,7 +568,7 @@ vdur &amp; \sim LogNormal(\mu, \sigma)\\
 <div class="sourceCode cell-code" id="cb10" data-code-line-numbers="|13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>my_seed <span class="ot">&lt;-</span> <span class="dv">3485</span></span>
 <span id="cb10-2"><a></a></span>
 <span id="cb10-3"><a></a>m_3_priors <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb10-4"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.55</span>), <span class="at">class =</span> Intercept),</span>
+<span id="cb10-4"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.275</span>), <span class="at">class =</span> Intercept),</span>
 <span id="cb10-5"><a></a>  <span class="fu">prior</span>(<span class="fu">cauchy</span>(<span class="dv">0</span>, <span class="fl">0.1</span>), <span class="at">class =</span> sigma)</span>
 <span id="cb10-6"><a></a>)</span>
 <span id="cb10-7"><a></a></span>
@@ -598,11 +598,11 @@ Formula: v1_duration ~ 1
 
 Regression Coefficients:
           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-Intercept     4.44      0.55     3.37     5.50 1.00     2453     1701
+Intercept     4.45      0.28     3.91     5.03 1.00     2736     1915
 
 Further Distributional Parameters:
       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-sigma     0.42      2.29     0.00     2.58 1.00     2838     1969
+sigma     0.47      3.70     0.00     2.33 1.00     2902     2096
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -663,11 +663,11 @@ Formula: v1_duration ~ 1
 
 Regression Coefficients:
           Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS
-Intercept     4.59      0.01     4.58     4.61 1.00     3240     2369
+Intercept     4.59      0.01     4.58     4.61 1.00     4265     3162
 
 Further Distributional Parameters:
       Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS
-sigma     0.33      0.01     0.32     0.34 1.00     3516     2708
+sigma     0.33      0.01     0.32     0.34 1.00     3407     2797
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential

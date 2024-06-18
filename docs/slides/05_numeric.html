@@ -466,10 +466,10 @@ vdur_i &amp; \sim LogNormal(\mu_i, \sigma)\\
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>m_6_priors <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
 <span id="cb4-2"><a></a>  <span class="co"># Priors for the four `b` coefficients</span></span>
-<span id="cb4-3"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.55</span>), <span class="at">class =</span> b, <span class="at">coef =</span> <span class="st">`</span><span class="at">c2_phonationvoiced:languageItalian</span><span class="st">`</span>),</span>
-<span id="cb4-4"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.55</span>), <span class="at">class =</span> b, <span class="at">coef =</span> <span class="st">`</span><span class="at">c2_phonationvoiced:languagePolish</span><span class="st">`</span>),</span>
-<span id="cb4-5"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.55</span>), <span class="at">class =</span> b, <span class="at">coef =</span> <span class="st">`</span><span class="at">c2_phonationvoiceless:languageItalian</span><span class="st">`</span>),</span>
-<span id="cb4-6"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.55</span>), <span class="at">class =</span> b, <span class="at">coef =</span> <span class="st">`</span><span class="at">c2_phonationvoiceless:languagePolish</span><span class="st">`</span>),</span>
+<span id="cb4-3"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.275</span>), <span class="at">class =</span> b, <span class="at">coef =</span> <span class="st">`</span><span class="at">c2_phonationvoiced:languageItalian</span><span class="st">`</span>),</span>
+<span id="cb4-4"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.275</span>), <span class="at">class =</span> b, <span class="at">coef =</span> <span class="st">`</span><span class="at">c2_phonationvoiced:languagePolish</span><span class="st">`</span>),</span>
+<span id="cb4-5"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.275</span>), <span class="at">class =</span> b, <span class="at">coef =</span> <span class="st">`</span><span class="at">c2_phonationvoiceless:languageItalian</span><span class="st">`</span>),</span>
+<span id="cb4-6"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.275</span>), <span class="at">class =</span> b, <span class="at">coef =</span> <span class="st">`</span><span class="at">c2_phonationvoiceless:languagePolish</span><span class="st">`</span>),</span>
 <span id="cb4-7"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">0.5</span>), <span class="at">class =</span> b, <span class="at">coef =</span> <span class="st">`</span><span class="at">speech_rate_c</span><span class="st">`</span>),</span>
 <span id="cb4-8"><a></a>  <span class="co"># Prior for sigma</span></span>
 <span id="cb4-9"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">0.1</span>), <span class="at">class =</span> sigma)</span>
@@ -477,20 +477,20 @@ vdur_i &amp; \sim LogNormal(\mu_i, \sigma)\\
 <span id="cb4-11"><a></a></span>
 <span id="cb4-12"><a></a>m_6_priors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>              prior class                                  coef group resp dpar
- normal(4.45, 0.55)     b    c2_phonationvoiced:languageItalian                
- normal(4.45, 0.55)     b     c2_phonationvoiced:languagePolish                
- normal(4.45, 0.55)     b c2_phonationvoiceless:languageItalian                
- normal(4.45, 0.55)     b  c2_phonationvoiceless:languagePolish                
-     normal(0, 0.5)     b                         speech_rate_c                
-     normal(0, 0.1) sigma                                                      
- nlpar   lb   ub source
-       &lt;NA&gt; &lt;NA&gt;   user
-       &lt;NA&gt; &lt;NA&gt;   user
-       &lt;NA&gt; &lt;NA&gt;   user
-       &lt;NA&gt; &lt;NA&gt;   user
-       &lt;NA&gt; &lt;NA&gt;   user
-       &lt;NA&gt; &lt;NA&gt;   user</code></pre>
+<pre><code>               prior class                                  coef group resp
+ normal(4.45, 0.275)     b    c2_phonationvoiced:languageItalian           
+ normal(4.45, 0.275)     b     c2_phonationvoiced:languagePolish           
+ normal(4.45, 0.275)     b c2_phonationvoiceless:languageItalian           
+ normal(4.45, 0.275)     b  c2_phonationvoiceless:languagePolish           
+      normal(0, 0.5)     b                         speech_rate_c           
+      normal(0, 0.1) sigma                                                 
+ dpar nlpar   lb   ub source
+            &lt;NA&gt; &lt;NA&gt;   user
+            &lt;NA&gt; &lt;NA&gt;   user
+            &lt;NA&gt; &lt;NA&gt;   user
+            &lt;NA&gt; &lt;NA&gt;   user
+            &lt;NA&gt; &lt;NA&gt;   user
+            &lt;NA&gt; &lt;NA&gt;   user</code></pre>
 </div>
 </div>
 </section>
@@ -557,17 +557,17 @@ speech_rate_c                            -0.19      0.01    -0.20    -0.18 1.00
 c2_phonationvoiceless:languageItalian     4.64      0.01     4.63     4.66 1.00
 c2_phonationvoiced:languageItalian        4.75      0.01     4.74     4.77 1.00
 c2_phonationvoiceless:languagePolish      4.35      0.02     4.33     4.37 1.00
-c2_phonationvoiced:languagePolish         4.44      0.01     4.42     4.46 1.00
+c2_phonationvoiced:languagePolish         4.44      0.02     4.42     4.46 1.00
                                       Bulk_ESS Tail_ESS
-speech_rate_c                             6068     3582
-c2_phonationvoiceless:languageItalian     6112     3110
-c2_phonationvoiced:languageItalian        6022     3294
-c2_phonationvoiceless:languagePolish      5909     2482
-c2_phonationvoiced:languagePolish         5415     3012
+speech_rate_c                             5154     3038
+c2_phonationvoiceless:languageItalian     6123     3140
+c2_phonationvoiced:languageItalian        5637     3156
+c2_phonationvoiceless:languagePolish      5510     3056
+c2_phonationvoiced:languagePolish         5625     3238
 
 Further Distributional Parameters:
       Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS
-sigma     0.23      0.00     0.22     0.24 1.00     5878     3114
+sigma     0.23      0.00     0.22     0.24 1.00     5516     2817
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -599,8 +599,8 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>
          Term                       Contrast language Estimate 10.0 % 90.0 %
- c2_phonation mean(voiced) - mean(voiceless)  Italian    12.74  10.49  14.99
- c2_phonation mean(voiced) - mean(voiceless)  Polish      6.93   4.84   9.11
+ c2_phonation mean(voiced) - mean(voiceless)  Italian    12.76  10.46  15.00
+ c2_phonation mean(voiced) - mean(voiceless)  Polish      6.94   4.78   9.15
 
 Columns: term, contrast, language, estimate, conf.low, conf.high, predicted_lo, predicted_hi, predicted, tmp_idx 
 Type:  response </code></pre>
@@ -625,7 +625,7 @@ Type:  response </code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   Term Estimate  10.0 % 90.0 %
- b2=b1  -0.0242 -0.0601  0.013
+ b2=b1  -0.0243 -0.0605 0.0128
 
 Columns: term, estimate, conf.low, conf.high 
 Type:  response </code></pre>

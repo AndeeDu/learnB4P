@@ -462,7 +462,7 @@ Stefano Coretta
 <h2>Model priors</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>m_7_priors <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb4-2"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.55</span>), <span class="at">class =</span> b),</span>
+<span id="cb4-2"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.275</span>), <span class="at">class =</span> b),</span>
 <span id="cb4-3"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">0.5</span>), <span class="at">class =</span> b, <span class="at">coef =</span> sspeech_rate_c_1),</span>
 <span id="cb4-4"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">0.1</span>), <span class="at">class =</span> sigma),</span>
 <span id="cb4-5"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">0.1</span>), <span class="at">class =</span> sd),</span>
@@ -501,38 +501,38 @@ Formula: v1_duration ~ 0 + c2_phonation:language + s(speech_rate_c, k = 3) + (0 
 
 Smoothing Spline Hyperparameters:
                       Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS
-sds(sspeech_rate_c_1)     0.19      0.07     0.10     0.28 1.00     2931
+sds(sspeech_rate_c_1)     0.19      0.07     0.10     0.27 1.00     2431
                       Tail_ESS
-sds(sspeech_rate_c_1)     1370
+sds(sspeech_rate_c_1)      911
 
 Multilevel Hyperparameters:
 ~speaker (Number of levels: 17) 
                                               Estimate Est.Error l-80% CI
 sd(c2_phonationvoiceless)                         0.13      0.02     0.10
-sd(c2_phonationvoiced)                            0.13      0.02     0.10
-cor(c2_phonationvoiceless,c2_phonationvoiced)     0.82      0.11     0.68
+sd(c2_phonationvoiced)                            0.12      0.02     0.10
+cor(c2_phonationvoiceless,c2_phonationvoiced)     0.82      0.11     0.67
                                               u-80% CI Rhat Bulk_ESS Tail_ESS
-sd(c2_phonationvoiceless)                         0.15 1.00     2032     2466
-sd(c2_phonationvoiced)                            0.15 1.00     1803     2185
-cor(c2_phonationvoiceless,c2_phonationvoiced)     0.93 1.00     1754     2381
+sd(c2_phonationvoiceless)                         0.15 1.00     1811     2958
+sd(c2_phonationvoiced)                            0.15 1.00     1839     2604
+cor(c2_phonationvoiceless,c2_phonationvoiced)     0.93 1.00     1857     2872
 
 Regression Coefficients:
                                       Estimate Est.Error l-80% CI u-80% CI Rhat
-c2_phonationvoiceless:languageItalian     4.62      0.04     4.58     4.67 1.00
-c2_phonationvoiced:languageItalian        4.73      0.04     4.69     4.78 1.00
-c2_phonationvoiceless:languagePolish      4.33      0.05     4.27     4.40 1.00
-c2_phonationvoiced:languagePolish         4.43      0.05     4.36     4.49 1.00
+c2_phonationvoiceless:languageItalian     4.62      0.04     4.56     4.67 1.01
+c2_phonationvoiced:languageItalian        4.73      0.04     4.68     4.78 1.00
+c2_phonationvoiceless:languagePolish      4.34      0.05     4.27     4.41 1.00
+c2_phonationvoiced:languagePolish         4.43      0.05     4.36     4.50 1.00
 sspeech_rate_c_1                         -0.09      0.01    -0.11    -0.08 1.00
                                       Bulk_ESS Tail_ESS
-c2_phonationvoiceless:languageItalian     1049     1783
-c2_phonationvoiced:languageItalian        1302     1834
-c2_phonationvoiceless:languagePolish      1464     2120
-c2_phonationvoiced:languagePolish         1578     1974
-sspeech_rate_c_1                          4845     3154
+c2_phonationvoiceless:languageItalian     1001     1583
+c2_phonationvoiced:languageItalian        1264     2022
+c2_phonationvoiceless:languagePolish      1692     1995
+c2_phonationvoiced:languagePolish         1948     2173
+sspeech_rate_c_1                          5706     3063
 
 Further Distributional Parameters:
       Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS
-sigma     0.19      0.00     0.19     0.20 1.00     8021     3058
+sigma     0.19      0.00     0.19     0.20 1.00     8048     3024
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -564,7 +564,7 @@ Type:  response </code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   Term Estimate  10.0 % 90.0 %
- b2=b1  -0.0163 -0.0489 0.0148
+ b2=b1  -0.0185 -0.0495 0.0137
 
 Columns: term, estimate, conf.low, conf.high 
 Type:  response </code></pre>
@@ -580,16 +580,16 @@ Type:  response </code></pre>
 # Groups:   speaker, term, .variable [34]
    speaker term               .chain .iteration .draw .variable .value
    &lt;chr&gt;   &lt;chr&gt;               &lt;int&gt;      &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;dbl&gt;
- 1 it01    c2_phonationvoiced      1          1     1 r_speaker 0.133 
- 2 it01    c2_phonationvoiced      1          2     2 r_speaker 0.0872
- 3 it01    c2_phonationvoiced      1          3     3 r_speaker 0.109 
- 4 it01    c2_phonationvoiced      1          4     4 r_speaker 0.0909
- 5 it01    c2_phonationvoiced      1          5     5 r_speaker 0.143 
- 6 it01    c2_phonationvoiced      1          6     6 r_speaker 0.0633
- 7 it01    c2_phonationvoiced      1          7     7 r_speaker 0.137 
- 8 it01    c2_phonationvoiced      1          8     8 r_speaker 0.0637
- 9 it01    c2_phonationvoiced      1          9     9 r_speaker 0.104 
-10 it01    c2_phonationvoiced      1         10    10 r_speaker 0.0409
+ 1 it01    c2_phonationvoiced      1          1     1 r_speaker 0.0960
+ 2 it01    c2_phonationvoiced      1          2     2 r_speaker 0.0764
+ 3 it01    c2_phonationvoiced      1          3     3 r_speaker 0.0686
+ 4 it01    c2_phonationvoiced      1          4     4 r_speaker 0.119 
+ 5 it01    c2_phonationvoiced      1          5     5 r_speaker 0.132 
+ 6 it01    c2_phonationvoiced      1          6     6 r_speaker 0.120 
+ 7 it01    c2_phonationvoiced      1          7     7 r_speaker 0.102 
+ 8 it01    c2_phonationvoiced      1          8     8 r_speaker 0.0592
+ 9 it01    c2_phonationvoiced      1          9     9 r_speaker 0.0339
+10 it01    c2_phonationvoiced      1         10    10 r_speaker 0.118 
 # ℹ 135,990 more rows</code></pre>
 </div>
 </div>
@@ -652,16 +652,16 @@ Type:  response </code></pre>
 <pre><code># A tibble: 68,000 × 9
    speaker language speech_rate_c .chain .iteration .draw voiced voiceless  diff
    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;  &lt;int&gt;      &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
- 1 it01    Italian              0     NA         NA     1   126.      114. 12.1 
- 2 it01    Italian              0     NA         NA     2   122.      116.  6.43
- 3 it01    Italian              0     NA         NA     3   131.      113. 17.5 
- 4 it01    Italian              0     NA         NA     4   124.      113. 11.6 
- 5 it01    Italian              0     NA         NA     5   128.      117. 10.7 
- 6 it01    Italian              0     NA         NA     6   124.      118.  6.37
- 7 it01    Italian              0     NA         NA     7   127.      115. 12.2 
- 8 it01    Italian              0     NA         NA     8   124.      117.  7.19
- 9 it01    Italian              0     NA         NA     9   130.      113. 16.7 
-10 it01    Italian              0     NA         NA    10   120.      116.  3.58
+ 1 it01    Italian              0     NA         NA     1   127.      115. 11.9 
+ 2 it01    Italian              0     NA         NA     2   125.      117.  8.17
+ 3 it01    Italian              0     NA         NA     3   124.      118.  5.73
+ 4 it01    Italian              0     NA         NA     4   122.      113.  9.02
+ 5 it01    Italian              0     NA         NA     5   125.      117.  8.13
+ 6 it01    Italian              0     NA         NA     6   124.      115.  9.15
+ 7 it01    Italian              0     NA         NA     7   124.      112. 12.2 
+ 8 it01    Italian              0     NA         NA     8   121.      110. 11.3 
+ 9 it01    Italian              0     NA         NA     9   119.      112.  6.42
+10 it01    Italian              0     NA         NA    10   128.      117. 11.1 
 # ℹ 67,990 more rows</code></pre>
 </div>
 </div>

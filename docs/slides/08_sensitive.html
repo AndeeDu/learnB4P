@@ -416,7 +416,7 @@ Stefano Coretta
 <h2>Model priors</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>m_7_priors <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb2-2"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.55</span>), <span class="at">class =</span> b),</span>
+<span id="cb2-2"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.275</span>), <span class="at">class =</span> b),</span>
 <span id="cb2-3"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">0.5</span>), <span class="at">class =</span> b, <span class="at">coef =</span> sspeech_rate_c_1),</span>
 <span id="cb2-4"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">0.1</span>), <span class="at">class =</span> sigma),</span>
 <span id="cb2-5"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">0.1</span>), <span class="at">class =</span> sd),</span>
@@ -455,9 +455,9 @@ Formula: v1_duration ~ 0 + c2_phonation:vowel:language + s(speech_rate_c, k = 3)
 
 Smoothing Spline Hyperparameters:
                       Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS
-sds(sspeech_rate_c_1)     0.18      0.06     0.11     0.26 1.00     4178
+sds(sspeech_rate_c_1)     0.19      0.06     0.11     0.26 1.00     4051
                       Tail_ESS
-sds(sspeech_rate_c_1)     2482
+sds(sspeech_rate_c_1)     2316
 
 Multilevel Hyperparameters:
 ~speaker (Number of levels: 17) 
@@ -469,20 +469,20 @@ sd(c2_phonationvoiced:vowelo)                                      0.10
 sd(c2_phonationvoiceless:vowelu)                                   0.12
 sd(c2_phonationvoiced:vowelu)                                      0.10
 cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowela)        0.60
-cor(c2_phonationvoiceless:vowela,c2_phonationvoiceless:vowelo)     0.72
+cor(c2_phonationvoiceless:vowela,c2_phonationvoiceless:vowelo)     0.73
 cor(c2_phonationvoiced:vowela,c2_phonationvoiceless:vowelo)        0.54
 cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowelo)        0.62
 cor(c2_phonationvoiced:vowela,c2_phonationvoiced:vowelo)           0.80
 cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelo)        0.64
 cor(c2_phonationvoiceless:vowela,c2_phonationvoiceless:vowelu)     0.52
-cor(c2_phonationvoiced:vowela,c2_phonationvoiceless:vowelu)        0.22
+cor(c2_phonationvoiced:vowela,c2_phonationvoiceless:vowelu)        0.21
 cor(c2_phonationvoiceless:vowelo,c2_phonationvoiceless:vowelu)     0.49
 cor(c2_phonationvoiced:vowelo,c2_phonationvoiceless:vowelu)        0.26
-cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowelu)        0.46
-cor(c2_phonationvoiced:vowela,c2_phonationvoiced:vowelu)           0.46
-cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelu)        0.51
+cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowelu)        0.47
+cor(c2_phonationvoiced:vowela,c2_phonationvoiced:vowelu)           0.45
+cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelu)        0.52
 cor(c2_phonationvoiced:vowelo,c2_phonationvoiced:vowelu)           0.47
-cor(c2_phonationvoiceless:vowelu,c2_phonationvoiced:vowelu)        0.63
+cor(c2_phonationvoiceless:vowelu,c2_phonationvoiced:vowelu)        0.64
                                                                Est.Error
 sd(c2_phonationvoiceless:vowela)                                    0.02
 sd(c2_phonationvoiced:vowela)                                       0.02
@@ -495,14 +495,14 @@ cor(c2_phonationvoiceless:vowela,c2_phonationvoiceless:vowelo)      0.15
 cor(c2_phonationvoiced:vowela,c2_phonationvoiceless:vowelo)         0.17
 cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowelo)         0.16
 cor(c2_phonationvoiced:vowela,c2_phonationvoiced:vowelo)            0.12
-cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelo)         0.16
+cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelo)         0.15
 cor(c2_phonationvoiceless:vowela,c2_phonationvoiceless:vowelu)      0.18
 cor(c2_phonationvoiced:vowela,c2_phonationvoiceless:vowelu)         0.19
 cor(c2_phonationvoiceless:vowelo,c2_phonationvoiceless:vowelu)      0.18
-cor(c2_phonationvoiced:vowelo,c2_phonationvoiceless:vowelu)         0.20
+cor(c2_phonationvoiced:vowelo,c2_phonationvoiceless:vowelu)         0.19
 cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowelu)         0.20
 cor(c2_phonationvoiced:vowela,c2_phonationvoiced:vowelu)            0.18
-cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelu)         0.19
+cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelu)         0.18
 cor(c2_phonationvoiced:vowelo,c2_phonationvoiced:vowelu)            0.18
 cor(c2_phonationvoiceless:vowelu,c2_phonationvoiced:vowelu)         0.17
                                                                l-80% CI
@@ -513,26 +513,26 @@ sd(c2_phonationvoiced:vowelo)                                      0.09
 sd(c2_phonationvoiceless:vowelu)                                   0.09
 sd(c2_phonationvoiced:vowelu)                                      0.08
 cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowela)        0.39
-cor(c2_phonationvoiceless:vowela,c2_phonationvoiceless:vowelo)     0.52
+cor(c2_phonationvoiceless:vowela,c2_phonationvoiceless:vowelo)     0.54
 cor(c2_phonationvoiced:vowela,c2_phonationvoiceless:vowelo)        0.30
-cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowelo)        0.39
+cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowelo)        0.40
 cor(c2_phonationvoiced:vowela,c2_phonationvoiced:vowelo)           0.64
-cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelo)        0.42
+cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelo)        0.43
 cor(c2_phonationvoiceless:vowela,c2_phonationvoiceless:vowelu)     0.28
-cor(c2_phonationvoiced:vowela,c2_phonationvoiceless:vowelu)       -0.03
+cor(c2_phonationvoiced:vowela,c2_phonationvoiceless:vowelu)       -0.04
 cor(c2_phonationvoiceless:vowelo,c2_phonationvoiceless:vowelu)     0.25
-cor(c2_phonationvoiced:vowelo,c2_phonationvoiceless:vowelu)       -0.01
-cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowelu)        0.19
-cor(c2_phonationvoiced:vowela,c2_phonationvoiced:vowelu)           0.22
-cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelu)        0.26
+cor(c2_phonationvoiced:vowelo,c2_phonationvoiceless:vowelu)        0.00
+cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowelu)        0.20
+cor(c2_phonationvoiced:vowela,c2_phonationvoiced:vowelu)           0.21
+cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelu)        0.27
 cor(c2_phonationvoiced:vowelo,c2_phonationvoiced:vowelu)           0.22
-cor(c2_phonationvoiceless:vowelu,c2_phonationvoiced:vowelu)        0.40
+cor(c2_phonationvoiceless:vowelu,c2_phonationvoiced:vowelu)        0.41
                                                                u-80% CI Rhat
 sd(c2_phonationvoiceless:vowela)                                   0.13 1.00
 sd(c2_phonationvoiced:vowela)                                      0.14 1.00
 sd(c2_phonationvoiceless:vowelo)                                   0.12 1.00
 sd(c2_phonationvoiced:vowelo)                                      0.13 1.00
-sd(c2_phonationvoiceless:vowelu)                                   0.15 1.00
+sd(c2_phonationvoiceless:vowelu)                                   0.14 1.00
 sd(c2_phonationvoiced:vowelu)                                      0.13 1.00
 cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowela)        0.79 1.00
 cor(c2_phonationvoiceless:vowela,c2_phonationvoiceless:vowelo)     0.89 1.00
@@ -541,92 +541,92 @@ cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowelo)        0.81 1.00
 cor(c2_phonationvoiced:vowela,c2_phonationvoiced:vowelo)           0.92 1.00
 cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelo)        0.82 1.00
 cor(c2_phonationvoiceless:vowela,c2_phonationvoiceless:vowelu)     0.73 1.00
-cor(c2_phonationvoiced:vowela,c2_phonationvoiceless:vowelu)        0.47 1.00
+cor(c2_phonationvoiced:vowela,c2_phonationvoiceless:vowelu)        0.46 1.00
 cor(c2_phonationvoiceless:vowelo,c2_phonationvoiceless:vowelu)     0.71 1.00
 cor(c2_phonationvoiced:vowelo,c2_phonationvoiceless:vowelu)        0.51 1.00
-cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowelu)        0.70 1.00
+cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowelu)        0.71 1.00
 cor(c2_phonationvoiced:vowela,c2_phonationvoiced:vowelu)           0.68 1.00
 cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelu)        0.74 1.00
 cor(c2_phonationvoiced:vowelo,c2_phonationvoiced:vowelu)           0.69 1.00
-cor(c2_phonationvoiceless:vowelu,c2_phonationvoiced:vowelu)        0.82 1.00
+cor(c2_phonationvoiceless:vowelu,c2_phonationvoiced:vowelu)        0.83 1.00
                                                                Bulk_ESS
-sd(c2_phonationvoiceless:vowela)                                   1502
-sd(c2_phonationvoiced:vowela)                                      2014
-sd(c2_phonationvoiceless:vowelo)                                   1800
-sd(c2_phonationvoiced:vowelo)                                      2171
-sd(c2_phonationvoiceless:vowelu)                                   2161
-sd(c2_phonationvoiced:vowelu)                                      2074
-cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowela)        1450
-cor(c2_phonationvoiceless:vowela,c2_phonationvoiceless:vowelo)     1852
-cor(c2_phonationvoiced:vowela,c2_phonationvoiceless:vowelo)        2233
-cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowelo)        1543
-cor(c2_phonationvoiced:vowela,c2_phonationvoiced:vowelo)           2395
-cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelo)        2408
-cor(c2_phonationvoiceless:vowela,c2_phonationvoiceless:vowelu)     1901
-cor(c2_phonationvoiced:vowela,c2_phonationvoiceless:vowelu)        2377
-cor(c2_phonationvoiceless:vowelo,c2_phonationvoiceless:vowelu)     2686
-cor(c2_phonationvoiced:vowelo,c2_phonationvoiceless:vowelu)        2392
-cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowelu)        2037
-cor(c2_phonationvoiced:vowela,c2_phonationvoiced:vowelu)           2675
-cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelu)        2345
-cor(c2_phonationvoiced:vowelo,c2_phonationvoiced:vowelu)           2502
-cor(c2_phonationvoiceless:vowelu,c2_phonationvoiced:vowelu)        3032
+sd(c2_phonationvoiceless:vowela)                                   1250
+sd(c2_phonationvoiced:vowela)                                      1772
+sd(c2_phonationvoiceless:vowelo)                                   1906
+sd(c2_phonationvoiced:vowelo)                                      2316
+sd(c2_phonationvoiceless:vowelu)                                   1969
+sd(c2_phonationvoiced:vowelu)                                      2444
+cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowela)        1659
+cor(c2_phonationvoiceless:vowela,c2_phonationvoiceless:vowelo)     1571
+cor(c2_phonationvoiced:vowela,c2_phonationvoiceless:vowelo)        2539
+cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowelo)        1725
+cor(c2_phonationvoiced:vowela,c2_phonationvoiced:vowelo)           2610
+cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelo)        2996
+cor(c2_phonationvoiceless:vowela,c2_phonationvoiceless:vowelu)     2120
+cor(c2_phonationvoiced:vowela,c2_phonationvoiceless:vowelu)        2194
+cor(c2_phonationvoiceless:vowelo,c2_phonationvoiceless:vowelu)     2104
+cor(c2_phonationvoiced:vowelo,c2_phonationvoiceless:vowelu)        2423
+cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowelu)        1616
+cor(c2_phonationvoiced:vowela,c2_phonationvoiced:vowelu)           2408
+cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelu)        2031
+cor(c2_phonationvoiced:vowelo,c2_phonationvoiced:vowelu)           2646
+cor(c2_phonationvoiceless:vowelu,c2_phonationvoiced:vowelu)        2894
                                                                Tail_ESS
-sd(c2_phonationvoiceless:vowela)                                   2266
-sd(c2_phonationvoiced:vowela)                                      2819
-sd(c2_phonationvoiceless:vowelo)                                   2725
-sd(c2_phonationvoiced:vowelo)                                      2923
-sd(c2_phonationvoiceless:vowelu)                                   2546
-sd(c2_phonationvoiced:vowelu)                                      2328
-cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowela)        2503
-cor(c2_phonationvoiceless:vowela,c2_phonationvoiceless:vowelo)     2691
-cor(c2_phonationvoiced:vowela,c2_phonationvoiceless:vowelo)        2907
-cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowelo)        2426
-cor(c2_phonationvoiced:vowela,c2_phonationvoiced:vowelo)           2928
-cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelo)        2799
-cor(c2_phonationvoiceless:vowela,c2_phonationvoiceless:vowelu)     2492
-cor(c2_phonationvoiced:vowela,c2_phonationvoiceless:vowelu)        3128
-cor(c2_phonationvoiceless:vowelo,c2_phonationvoiceless:vowelu)     3158
-cor(c2_phonationvoiced:vowelo,c2_phonationvoiceless:vowelu)        3273
-cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowelu)        2580
-cor(c2_phonationvoiced:vowela,c2_phonationvoiced:vowelu)           3000
-cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelu)        2605
-cor(c2_phonationvoiced:vowelo,c2_phonationvoiced:vowelu)           2967
-cor(c2_phonationvoiceless:vowelu,c2_phonationvoiced:vowelu)        3397
+sd(c2_phonationvoiceless:vowela)                                   1769
+sd(c2_phonationvoiced:vowela)                                      2606
+sd(c2_phonationvoiceless:vowelo)                                   2785
+sd(c2_phonationvoiced:vowelo)                                      2676
+sd(c2_phonationvoiceless:vowelu)                                   2469
+sd(c2_phonationvoiced:vowelu)                                      3025
+cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowela)        2602
+cor(c2_phonationvoiceless:vowela,c2_phonationvoiceless:vowelo)     2225
+cor(c2_phonationvoiced:vowela,c2_phonationvoiceless:vowelo)        2734
+cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowelo)        2551
+cor(c2_phonationvoiced:vowela,c2_phonationvoiced:vowelo)           3212
+cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelo)        3106
+cor(c2_phonationvoiceless:vowela,c2_phonationvoiceless:vowelu)     2552
+cor(c2_phonationvoiced:vowela,c2_phonationvoiceless:vowelu)        3087
+cor(c2_phonationvoiceless:vowelo,c2_phonationvoiceless:vowelu)     2556
+cor(c2_phonationvoiced:vowelo,c2_phonationvoiceless:vowelu)        3196
+cor(c2_phonationvoiceless:vowela,c2_phonationvoiced:vowelu)        2364
+cor(c2_phonationvoiced:vowela,c2_phonationvoiced:vowelu)           2671
+cor(c2_phonationvoiceless:vowelo,c2_phonationvoiced:vowelu)        2505
+cor(c2_phonationvoiced:vowelo,c2_phonationvoiced:vowelu)           2996
+cor(c2_phonationvoiceless:vowelu,c2_phonationvoiced:vowelu)        3422
 
 Regression Coefficients:
                                              Estimate Est.Error l-80% CI
-c2_phonationvoiceless:vowela:languageItalian     4.71      0.03     4.67
-c2_phonationvoiced:vowela:languageItalian        4.85      0.04     4.80
-c2_phonationvoiceless:vowelo:languageItalian     4.66      0.03     4.62
-c2_phonationvoiced:vowelo:languageItalian        4.81      0.03     4.77
-c2_phonationvoiceless:vowelu:languageItalian     4.48      0.04     4.43
-c2_phonationvoiced:vowelu:languageItalian        4.51      0.04     4.46
-c2_phonationvoiceless:vowela:languagePolish      4.50      0.05     4.44
+c2_phonationvoiceless:vowela:languageItalian     4.70      0.04     4.66
+c2_phonationvoiced:vowela:languageItalian        4.84      0.04     4.79
+c2_phonationvoiceless:vowelo:languageItalian     4.65      0.03     4.61
+c2_phonationvoiced:vowelo:languageItalian        4.80      0.03     4.76
+c2_phonationvoiceless:vowelu:languageItalian     4.47      0.04     4.42
+c2_phonationvoiced:vowelu:languageItalian        4.50      0.04     4.46
+c2_phonationvoiceless:vowela:languagePolish      4.50      0.05     4.45
 c2_phonationvoiced:vowela:languagePolish         4.61      0.05     4.55
-c2_phonationvoiceless:vowelo:languagePolish      4.38      0.05     4.32
-c2_phonationvoiced:vowelo:languagePolish         4.46      0.05     4.40
-c2_phonationvoiceless:vowelu:languagePolish      4.16      0.05     4.10
-c2_phonationvoiced:vowelu:languagePolish         4.24      0.05     4.18
+c2_phonationvoiceless:vowelo:languagePolish      4.38      0.04     4.33
+c2_phonationvoiced:vowelo:languagePolish         4.46      0.04     4.40
+c2_phonationvoiceless:vowelu:languagePolish      4.17      0.05     4.11
+c2_phonationvoiced:vowelu:languagePolish         4.25      0.05     4.19
 sspeech_rate_c_1                                -0.12      0.01    -0.13
                                              u-80% CI Rhat Bulk_ESS Tail_ESS
-c2_phonationvoiceless:vowela:languageItalian     4.76 1.00     1045     1792
-c2_phonationvoiced:vowela:languageItalian        4.90 1.00     1354     2070
-c2_phonationvoiceless:vowelo:languageItalian     4.70 1.00     1307     1657
-c2_phonationvoiced:vowelo:languageItalian        4.86 1.00     1475     1970
-c2_phonationvoiceless:vowelu:languageItalian     4.53 1.00     1375     2389
-c2_phonationvoiced:vowelu:languageItalian        4.55 1.00     1379     2182
-c2_phonationvoiceless:vowela:languagePolish      4.56 1.00     1247     1846
-c2_phonationvoiced:vowela:languagePolish         4.67 1.00     1423     1993
-c2_phonationvoiceless:vowelo:languagePolish      4.44 1.00     1490     2196
-c2_phonationvoiced:vowelo:languagePolish         4.52 1.00     1630     2388
-c2_phonationvoiceless:vowelu:languagePolish      4.23 1.00     1660     2452
-c2_phonationvoiced:vowelu:languagePolish         4.30 1.00     1730     2010
-sspeech_rate_c_1                                -0.11 1.00     3838     2954
+c2_phonationvoiceless:vowela:languageItalian     4.75 1.01      848     1418
+c2_phonationvoiced:vowela:languageItalian        4.89 1.00      974     1539
+c2_phonationvoiceless:vowelo:languageItalian     4.70 1.00     1035     1855
+c2_phonationvoiced:vowelo:languageItalian        4.85 1.00     1043     1931
+c2_phonationvoiceless:vowelu:languageItalian     4.52 1.00     1349     1880
+c2_phonationvoiced:vowelu:languageItalian        4.55 1.00     1176     1958
+c2_phonationvoiceless:vowela:languagePolish      4.56 1.00     1061     1629
+c2_phonationvoiced:vowela:languagePolish         4.67 1.00     1359     2085
+c2_phonationvoiceless:vowelo:languagePolish      4.44 1.00     1343     2188
+c2_phonationvoiced:vowelo:languagePolish         4.52 1.00     1424     2379
+c2_phonationvoiceless:vowelu:languagePolish      4.24 1.00     1347     1836
+c2_phonationvoiced:vowelu:languagePolish         4.30 1.00     1333     1953
+sspeech_rate_c_1                                -0.11 1.00     3990     3164
 
 Further Distributional Parameters:
       Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS
-sigma     0.14      0.00     0.13     0.14 1.00     5483     2676
+sigma     0.13      0.00     0.13     0.14 1.00     7556     2929
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -640,33 +640,33 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">fixef</span>(m_8)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                               Estimate   Est.Error       Q2.5
-c2_phonationvoiceless:vowela:languageItalian  4.7122450 0.034916715  4.6454676
-c2_phonationvoiced:vowela:languageItalian     4.8514845 0.036926284  4.7784278
-c2_phonationvoiceless:vowelo:languageItalian  4.6629440 0.033175368  4.5971891
-c2_phonationvoiced:vowelo:languageItalian     4.8142018 0.034575362  4.7453693
-c2_phonationvoiceless:vowelu:languageItalian  4.4764707 0.040190531  4.3961912
-c2_phonationvoiced:vowelu:languageItalian     4.5080261 0.036089181  4.4351499
-c2_phonationvoiceless:vowela:languagePolish   4.4995275 0.047867217  4.4073739
-c2_phonationvoiced:vowela:languagePolish      4.6093928 0.049089497  4.5083197
-c2_phonationvoiceless:vowelo:languagePolish   4.3751811 0.046151652  4.2867708
-c2_phonationvoiced:vowelo:languagePolish      4.4604986 0.045483803  4.3705579
-c2_phonationvoiceless:vowelu:languagePolish   4.1615771 0.051198575  4.0642669
-c2_phonationvoiced:vowelu:languagePolish      4.2408769 0.046027346  4.1538028
-sspeech_rate_c_1                             -0.1223993 0.008814521 -0.1390819
+c2_phonationvoiceless:vowela:languageItalian  4.7036193 0.035139190  4.6332045
+c2_phonationvoiced:vowela:languageItalian     4.8405653 0.036680903  4.7666069
+c2_phonationvoiceless:vowelo:languageItalian  4.6546952 0.033724692  4.5887558
+c2_phonationvoiced:vowelo:languageItalian     4.8031478 0.034044280  4.7355748
+c2_phonationvoiceless:vowelu:languageItalian  4.4694273 0.038646938  4.3974617
+c2_phonationvoiced:vowelu:languageItalian     4.5011339 0.035710181  4.4279623
+c2_phonationvoiceless:vowela:languagePolish   4.5032760 0.045599551  4.4152570
+c2_phonationvoiced:vowela:languagePolish      4.6071869 0.046979667  4.5144822
+c2_phonationvoiceless:vowelo:languagePolish   4.3809034 0.043588440  4.2945127
+c2_phonationvoiced:vowelo:languagePolish      4.4597988 0.043787193  4.3747349
+c2_phonationvoiceless:vowelu:languagePolish   4.1726964 0.051049784  4.0766763
+c2_phonationvoiced:vowelu:languagePolish      4.2466189 0.045867835  4.1592076
+sspeech_rate_c_1                             -0.1222801 0.008704368 -0.1389974
                                                   Q97.5
-c2_phonationvoiceless:vowela:languageItalian  4.7809149
-c2_phonationvoiced:vowela:languageItalian     4.9240641
-c2_phonationvoiceless:vowelo:languageItalian  4.7275417
-c2_phonationvoiced:vowelo:languageItalian     4.8857720
-c2_phonationvoiceless:vowelu:languageItalian  4.5537840
-c2_phonationvoiced:vowelu:languageItalian     4.5776827
-c2_phonationvoiceless:vowela:languagePolish   4.5940803
-c2_phonationvoiced:vowela:languagePolish      4.7036358
-c2_phonationvoiceless:vowelo:languagePolish   4.4669873
-c2_phonationvoiced:vowelo:languagePolish      4.5494635
-c2_phonationvoiceless:vowelu:languagePolish   4.2662212
-c2_phonationvoiced:vowelu:languagePolish      4.3321339
-sspeech_rate_c_1                             -0.1047572</code></pre>
+c2_phonationvoiceless:vowela:languageItalian  4.7717725
+c2_phonationvoiced:vowela:languageItalian     4.9129486
+c2_phonationvoiceless:vowelo:languageItalian  4.7226924
+c2_phonationvoiced:vowelo:languageItalian     4.8696711
+c2_phonationvoiceless:vowelu:languageItalian  4.5470384
+c2_phonationvoiced:vowelu:languageItalian     4.5707617
+c2_phonationvoiceless:vowela:languagePolish   4.5954815
+c2_phonationvoiced:vowela:languagePolish      4.7000069
+c2_phonationvoiceless:vowelo:languagePolish   4.4685048
+c2_phonationvoiced:vowelo:languagePolish      4.5451462
+c2_phonationvoiceless:vowelu:languagePolish   4.2742313
+c2_phonationvoiced:vowelu:languagePolish      4.3419343
+sspeech_rate_c_1                             -0.1051024</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co"># try ranef(m_8) for varying aka random coefficients</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -680,19 +680,19 @@ sspeech_rate_c_1                             -0.1047572</code></pre>
 <pre><code># A tibble: 13 × 5
    term                                         Estimate Est.Error   Q2.5  Q97.5
    &lt;chr&gt;                                           &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
- 1 c2_phonationvoiceless:vowela:languageItalian    4.71    0.0349   4.65   4.78 
- 2 c2_phonationvoiced:vowela:languageItalian       4.85    0.0369   4.78   4.92 
- 3 c2_phonationvoiceless:vowelo:languageItalian    4.66    0.0332   4.60   4.73 
- 4 c2_phonationvoiced:vowelo:languageItalian       4.81    0.0346   4.75   4.89 
- 5 c2_phonationvoiceless:vowelu:languageItalian    4.48    0.0402   4.40   4.55 
- 6 c2_phonationvoiced:vowelu:languageItalian       4.51    0.0361   4.44   4.58 
- 7 c2_phonationvoiceless:vowela:languagePolish     4.50    0.0479   4.41   4.59 
- 8 c2_phonationvoiced:vowela:languagePolish        4.61    0.0491   4.51   4.70 
- 9 c2_phonationvoiceless:vowelo:languagePolish     4.38    0.0462   4.29   4.47 
-10 c2_phonationvoiced:vowelo:languagePolish        4.46    0.0455   4.37   4.55 
-11 c2_phonationvoiceless:vowelu:languagePolish     4.16    0.0512   4.06   4.27 
-12 c2_phonationvoiced:vowelu:languagePolish        4.24    0.0460   4.15   4.33 
-13 sspeech_rate_c_1                               -0.122   0.00881 -0.139 -0.105</code></pre>
+ 1 c2_phonationvoiceless:vowela:languageItalian    4.70    0.0351   4.63   4.77 
+ 2 c2_phonationvoiced:vowela:languageItalian       4.84    0.0367   4.77   4.91 
+ 3 c2_phonationvoiceless:vowelo:languageItalian    4.65    0.0337   4.59   4.72 
+ 4 c2_phonationvoiced:vowelo:languageItalian       4.80    0.0340   4.74   4.87 
+ 5 c2_phonationvoiceless:vowelu:languageItalian    4.47    0.0386   4.40   4.55 
+ 6 c2_phonationvoiced:vowelu:languageItalian       4.50    0.0357   4.43   4.57 
+ 7 c2_phonationvoiceless:vowela:languagePolish     4.50    0.0456   4.42   4.60 
+ 8 c2_phonationvoiced:vowela:languagePolish        4.61    0.0470   4.51   4.70 
+ 9 c2_phonationvoiceless:vowelo:languagePolish     4.38    0.0436   4.29   4.47 
+10 c2_phonationvoiced:vowelo:languagePolish        4.46    0.0438   4.37   4.55 
+11 c2_phonationvoiceless:vowelu:languagePolish     4.17    0.0510   4.08   4.27 
+12 c2_phonationvoiced:vowelu:languagePolish        4.25    0.0459   4.16   4.34 
+13 sspeech_rate_c_1                               -0.122   0.00870 -0.139 -0.105</code></pre>
 </div>
 </div>
 </section>
@@ -712,7 +712,7 @@ sspeech_rate_c_1                             -0.1047572</code></pre>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>m_8_fix <span class="ot">&lt;-</span> m_8_fix <span class="sc">|&gt;</span> </span>
 <span id="cb11-2"><a></a>  <span class="fu">mutate</span>(</span>
 <span id="cb11-3"><a></a>    <span class="at">theta =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="fl">4.45</span>, <span class="dv">12</span>), <span class="dv">0</span>),</span>
-<span id="cb11-4"><a></a>    <span class="at">sigma_prior =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="fl">0.55</span>, <span class="dv">12</span>), <span class="fl">0.5</span>),</span>
+<span id="cb11-4"><a></a>    <span class="at">sigma_prior =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="fl">0.275</span>, <span class="dv">12</span>), <span class="fl">0.5</span>),</span>
 <span id="cb11-5"><a></a>    <span class="at">z =</span> <span class="fu">abs</span>((Estimate <span class="sc">-</span> theta) <span class="sc">/</span> Est.Error),</span>
 <span id="cb11-6"><a></a>    <span class="at">s =</span> <span class="dv">1</span> <span class="sc">-</span> (Est.Error<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> sigma_prior<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb11-7"><a></a>  )</span>
@@ -721,19 +721,19 @@ sspeech_rate_c_1                             -0.1047572</code></pre>
 <pre><code># A tibble: 13 × 9
    term          Estimate Est.Error   Q2.5  Q97.5 theta sigma_prior      z     s
    &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
- 1 c2_phonation…    4.71    0.0349   4.65   4.78   4.45        0.55  7.51  0.996
- 2 c2_phonation…    4.85    0.0369   4.78   4.92   4.45        0.55 10.9   0.995
- 3 c2_phonation…    4.66    0.0332   4.60   4.73   4.45        0.55  6.42  0.996
- 4 c2_phonation…    4.81    0.0346   4.75   4.89   4.45        0.55 10.5   0.996
- 5 c2_phonation…    4.48    0.0402   4.40   4.55   4.45        0.55  0.659 0.995
- 6 c2_phonation…    4.51    0.0361   4.44   4.58   4.45        0.55  1.61  0.996
- 7 c2_phonation…    4.50    0.0479   4.41   4.59   4.45        0.55  1.03  0.992
- 8 c2_phonation…    4.61    0.0491   4.51   4.70   4.45        0.55  3.25  0.992
- 9 c2_phonation…    4.38    0.0462   4.29   4.47   4.45        0.55  1.62  0.993
-10 c2_phonation…    4.46    0.0455   4.37   4.55   4.45        0.55  0.231 0.993
-11 c2_phonation…    4.16    0.0512   4.06   4.27   4.45        0.55  5.63  0.991
-12 c2_phonation…    4.24    0.0460   4.15   4.33   4.45        0.55  4.54  0.993
-13 sspeech_rate…   -0.122   0.00881 -0.139 -0.105  0           0.5  13.9   1.00 </code></pre>
+ 1 c2_phonation…    4.70    0.0351   4.63   4.77   4.45       0.275  7.22  0.984
+ 2 c2_phonation…    4.84    0.0367   4.77   4.91   4.45       0.275 10.6   0.982
+ 3 c2_phonation…    4.65    0.0337   4.59   4.72   4.45       0.275  6.07  0.985
+ 4 c2_phonation…    4.80    0.0340   4.74   4.87   4.45       0.275 10.4   0.985
+ 5 c2_phonation…    4.47    0.0386   4.40   4.55   4.45       0.275  0.503 0.980
+ 6 c2_phonation…    4.50    0.0357   4.43   4.57   4.45       0.275  1.43  0.983
+ 7 c2_phonation…    4.50    0.0456   4.42   4.60   4.45       0.275  1.17  0.973
+ 8 c2_phonation…    4.61    0.0470   4.51   4.70   4.45       0.275  3.35  0.971
+ 9 c2_phonation…    4.38    0.0436   4.29   4.47   4.45       0.275  1.59  0.975
+10 c2_phonation…    4.46    0.0438   4.37   4.55   4.45       0.275  0.224 0.975
+11 c2_phonation…    4.17    0.0510   4.08   4.27   4.45       0.275  5.43  0.966
+12 c2_phonation…    4.25    0.0459   4.16   4.34   4.45       0.275  4.43  0.972
+13 sspeech_rate…   -0.122   0.00870 -0.139 -0.105  0          0.5   14.0   1.00 </code></pre>
 </div>
 </div>
 </section>
@@ -777,41 +777,41 @@ sspeech_rate_c_1                             -0.1047572</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code># A draws_df: 1000 iterations, 4 chains, and 141 variables
    b_c2_phonationvoiceless:vowela:languageItalian
-1                                             4.7
-2                                             4.7
-3                                             4.8
+1                                             4.8
+2                                             4.8
+3                                             4.7
 4                                             4.7
-5                                             4.8
+5                                             4.7
 6                                             4.7
 7                                             4.7
-8                                             4.6
+8                                             4.7
 9                                             4.7
 10                                            4.7
    b_c2_phonationvoiced:vowela:languageItalian
-1                                          4.8
+1                                          4.9
 2                                          4.9
 3                                          4.8
-4                                          4.9
+4                                          4.8
 5                                          4.8
-6                                          4.9
+6                                          4.8
 7                                          4.8
 8                                          4.8
-9                                          4.8
-10                                         4.8
+9                                          4.9
+10                                         4.9
    b_c2_phonationvoiceless:vowelo:languageItalian
-1                                             4.6
-2                                             4.6
+1                                             4.7
+2                                             4.7
 3                                             4.7
 4                                             4.7
 5                                             4.7
 6                                             4.6
-7                                             4.6
-8                                             4.6
+7                                             4.7
+8                                             4.7
 9                                             4.7
 10                                            4.7
    b_c2_phonationvoiced:vowelo:languageItalian
-1                                          4.8
-2                                          4.8
+1                                          4.9
+2                                          4.9
 3                                          4.8
 4                                          4.8
 5                                          4.8
@@ -822,12 +822,12 @@ sspeech_rate_c_1                             -0.1047572</code></pre>
 10                                         4.8
    b_c2_phonationvoiceless:vowelu:languageItalian
 1                                             4.5
-2                                             4.4
-3                                             4.5
+2                                             4.5
+3                                             4.4
 4                                             4.5
-5                                             4.6
-6                                             4.4
-7                                             4.4
+5                                             4.5
+6                                             4.5
+7                                             4.5
 8                                             4.4
 9                                             4.5
 10                                            4.5
@@ -844,26 +844,26 @@ sspeech_rate_c_1                             -0.1047572</code></pre>
 10                                         4.5
    b_c2_phonationvoiceless:vowela:languagePolish
 1                                            4.5
-2                                            4.6
-3                                            4.5
+2                                            4.5
+3                                            4.4
 4                                            4.4
 5                                            4.5
-6                                            4.4
+6                                            4.5
 7                                            4.5
 8                                            4.5
 9                                            4.5
 10                                           4.5
    b_c2_phonationvoiced:vowela:languagePolish
-1                                         4.6
+1                                         4.7
 2                                         4.7
 3                                         4.5
-4                                         4.5
-5                                         4.6
+4                                         4.6
+5                                         4.5
 6                                         4.6
 7                                         4.6
 8                                         4.6
-9                                         4.6
-10                                        4.6
+9                                         4.7
+10                                        4.7
 # ... with 3990 more draws, and 133 more variables
 # ... hidden reserved variables {'.chain', '.iteration', '.draw'}</code></pre>
 </div>
@@ -890,16 +890,16 @@ sspeech_rate_c_1                             -0.1047572</code></pre>
 # Groups:   .draw [4,000]
    .draw language        avg_diff
    &lt;int&gt; &lt;chr&gt;              &lt;dbl&gt;
- 1     1 languageItalian   0.0801
- 2     1 languagePolish    0.0642
- 3     2 languageItalian   0.159 
- 4     2 languagePolish    0.136 
- 5     3 languageItalian   0.0726
- 6     3 languagePolish    0.0279
- 7     4 languageItalian   0.0976
- 8     4 languagePolish    0.102 
- 9     5 languageItalian   0.0298
-10     5 languagePolish    0.0847
+ 1     1 languageItalian   0.101 
+ 2     1 languagePolish    0.136 
+ 3     2 languageItalian   0.0931
+ 4     2 languagePolish    0.143 
+ 5     3 languageItalian   0.0930
+ 6     3 languagePolish    0.0917
+ 7     4 languageItalian   0.0847
+ 8     4 languagePolish    0.160 
+ 9     5 languageItalian   0.0881
+10     5 languagePolish    0.0283
 # ℹ 7,990 more rows</code></pre>
 </div>
 </div>
@@ -915,8 +915,8 @@ sspeech_rate_c_1                             -0.1047572</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>
          Term                       Contrast language Estimate 10.0 % 90.0 %
- c2_phonation mean(voiced) - mean(voiceless)  Italian     13.5  12.10  14.87
- c2_phonation mean(voiced) - mean(voiceless)  Polish       7.4   6.07   8.67
+ c2_phonation mean(voiced) - mean(voiceless)  Italian    13.45  12.06  14.78
+ c2_phonation mean(voiced) - mean(voiceless)  Polish      7.32   6.11   8.58
 
 Columns: term, contrast, language, estimate, conf.low, conf.high, predicted_lo, predicted_hi, predicted, tmp_idx 
 Type:  response </code></pre>
@@ -930,8 +930,8 @@ Type:  response </code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>
          Term                       Contrast language Estimate 10.0 % 90.0 %
- c2_phonation mean(voiced) / mean(voiceless)  Italian     1.12   1.11   1.14
- c2_phonation mean(voiced) / mean(voiceless)  Polish      1.10   1.08   1.12
+ c2_phonation mean(voiced) / mean(voiceless)  Italian     1.12   1.11   1.13
+ c2_phonation mean(voiced) / mean(voiceless)  Polish      1.10   1.08   1.11
 
 Columns: term, contrast, language, estimate, conf.low, conf.high, predicted_lo, predicted_hi, predicted, tmp_idx 
 Type:  response </code></pre>
@@ -940,7 +940,7 @@ Type:  response </code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   Term Estimate  10.0 %   90.0 %
- b2=b1  -0.0241 -0.0459 -0.00142
+ b2=b1  -0.0245 -0.0457 -0.00278
 
 Columns: term, estimate, conf.low, conf.high 
 Type:  response </code></pre>

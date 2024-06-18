@@ -479,15 +479,15 @@ vdur_i &amp; \sim LogNormal(\mu_i, \sigma)\\
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>m_4_priors <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
 <span id="cb5-2"><a></a>  <span class="co"># Prior for both `b` coefficients</span></span>
-<span id="cb5-3"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.55</span>), <span class="at">class =</span> b),</span>
+<span id="cb5-3"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">4.45</span>, <span class="fl">0.275</span>), <span class="at">class =</span> b),</span>
 <span id="cb5-4"><a></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">0.1</span>), <span class="at">class =</span> sigma)</span>
 <span id="cb5-5"><a></a>)</span>
 <span id="cb5-6"><a></a></span>
 <span id="cb5-7"><a></a>m_4_priors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>              prior class coef group resp dpar nlpar   lb   ub source
- normal(4.45, 0.55)     b                            &lt;NA&gt; &lt;NA&gt;   user
-     normal(0, 0.1) sigma                            &lt;NA&gt; &lt;NA&gt;   user</code></pre>
+<pre><code>               prior class coef group resp dpar nlpar   lb   ub source
+ normal(4.45, 0.275)     b                            &lt;NA&gt; &lt;NA&gt;   user
+      normal(0, 0.1) sigma                            &lt;NA&gt; &lt;NA&gt;   user</code></pre>
 </div>
 </div>
 </section>
@@ -543,15 +543,15 @@ Formula: v1_duration ~ 0 + c2_phonation
 
 Regression Coefficients:
                       Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS
-c2_phonationvoiced        4.65      0.01     4.63     4.66 1.00     4593
-c2_phonationvoiceless     4.54      0.01     4.53     4.56 1.00     4526
+c2_phonationvoiced        4.65      0.01     4.63     4.66 1.00     4140
+c2_phonationvoiceless     4.54      0.01     4.53     4.56 1.00     3891
                       Tail_ESS
-c2_phonationvoiced        3242
-c2_phonationvoiceless     3027
+c2_phonationvoiced        2736
+c2_phonationvoiceless     3013
 
 Further Distributional Parameters:
       Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS
-sigma     0.32      0.01     0.31     0.33 1.00     4205     2982
+sigma     0.32      0.01     0.31     0.33 1.00     3715     3035
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -575,7 +575,7 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>
          Term                       Contrast Estimate 10.0 % 90.0 %
- c2_phonation mean(voiceless) - mean(voiced)    -10.9  -13.2  -8.63
+ c2_phonation mean(voiceless) - mean(voiced)    -10.9  -13.2  -8.61
 
 Columns: term, contrast, estimate, conf.low, conf.high, predicted_lo, predicted_hi, predicted, tmp_idx 
 Type:  response </code></pre>
@@ -662,15 +662,15 @@ Formula: v1_duration ~ 0 + c2_phonation
 
 Regression Coefficients:
                       Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS
-c2_phonationvoiced        4.65      0.01     4.63     4.66 1.00     4593
-c2_phonationvoiceless     4.54      0.01     4.53     4.56 1.00     4526
+c2_phonationvoiced        4.65      0.01     4.63     4.66 1.00     4140
+c2_phonationvoiceless     4.54      0.01     4.53     4.56 1.00     3891
                       Tail_ESS
-c2_phonationvoiced        3242
-c2_phonationvoiceless     3027
+c2_phonationvoiced        2736
+c2_phonationvoiceless     3013
 
 Further Distributional Parameters:
       Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS
-sigma     0.32      0.01     0.31     0.33 1.00     4205     2982
+sigma     0.32      0.01     0.31     0.33 1.00     3715     3035
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential

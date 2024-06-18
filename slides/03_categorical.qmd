@@ -98,7 +98,7 @@ get_prior(
 
 m_4_priors <- c(
   # Prior for both `b` coefficients
-  prior(normal(4.45, 0.55), class = b),
+  prior(normal(4.45, 0.275), class = b),
   prior(normal(0, 0.1), class = sigma)
 )
 

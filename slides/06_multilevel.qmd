@@ -30,6 +30,8 @@ token_measures <- token_measures |> drop_na(v1_duration)
 
 library(marginaleffects)
 library(tidybayes)
+
+my_seed <- 8123
 ```
 
 ## Set order of levels
@@ -60,7 +62,7 @@ get_prior(
 ```{r}
 #| label: m-7-priors
 m_7_priors <- c(
-  prior(normal(4.45, 0.55), class = b),
+  prior(normal(4.45, 0.275), class = b),
   prior(normal(0, 0.5), class = b, coef = sspeech_rate_c_1),
   prior(normal(0, 0.1), class = sigma),
   prior(normal(0, 0.1), class = sd),
