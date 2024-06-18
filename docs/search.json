@@ -679,6 +679,20 @@
     "text": "\\(\\hat{R}\\) and ESS\n\nsummary(m_4, prob = 0.8)\n\n Family: lognormal \n  Links: mu = identity; sigma = identity \nFormula: v1_duration ~ 0 + c2_phonation \n   Data: token_measures (Number of observations: 1342) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nRegression Coefficients:\n                      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS\nc2_phonationvoiced        4.65      0.01     4.63     4.66 1.00     4593\nc2_phonationvoiceless     4.54      0.01     4.53     4.56 1.00     4526\n                      Tail_ESS\nc2_phonationvoiced        3242\nc2_phonationvoiceless     3027\n\nFurther Distributional Parameters:\n      Estimate Est.Error l-80% CI u-80% CI Rhat Bulk_ESS Tail_ESS\nsigma     0.32      0.01     0.31     0.33 1.00     4205     2982\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
   },
   {
+    "objectID": "slides/01_introduction.html#schedule-day-1",
+    "href": "slides/01_introduction.html#schedule-day-1",
+    "title": "01 - Introduction",
+    "section": "Schedule: Day 1",
+    "text": "Schedule: Day 1\n\n\n\ntime\ntopic\n\n\n\n\n10.00-11.15\n01 Introduction\n\n\n11.15-11.30\nBREAK\n\n\n11.30-12.30\n02 Priors\n\n\n12.30-13.30\nLUNCH\n\n\n13.30-14.45\n03 Categorical predictors\n\n\n14.45-15.00\nBREAK\n\n\n15.00-16.00\n04 Interactions\n\n\n16.00-17.00\nQ&A"
+  },
+  {
+    "objectID": "slides/01_introduction.html#schedule-day-2",
+    "href": "slides/01_introduction.html#schedule-day-2",
+    "title": "01 - Introduction",
+    "section": "Schedule: Day 2",
+    "text": "Schedule: Day 2\n\n\n\ntime\ntopic\n\n\n\n\n10.00-11.15\n05 Numeric predictors\n\n\n11.15-11.30\nBREAK\n\n\n11.30-12.30\n06 Multilevel effects\n\n\n12.30-13.30\nLUNCH\n\n\n13.30-14.45\n07 Practice\n\n\n14.45-15.00\nBREAK\n\n\n15.00-16.00\n08 Sensitivity analysis\n\n\n16.00-17.00\nQ&A"
+  },
+  {
     "objectID": "slides/01_introduction.html#statistical-modelling",
     "href": "slides/01_introduction.html#statistical-modelling",
     "title": "01 - Introduction",

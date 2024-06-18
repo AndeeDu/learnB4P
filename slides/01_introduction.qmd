@@ -22,6 +22,32 @@ library(coretta2018itapol)
 library(brms)
 ```
 
+## Schedule: Day 1
+
+| time        | topic                     |
+| ----------- | ------------------------- |
+| 10.00-11.15 | 01 Introduction           |
+| 11.15-11.30 | BREAK                     |
+| 11.30-12.30 | 02 Priors                 |
+| 12.30-13.30 | LUNCH                     |
+| 13.30-14.45 | 03 Categorical predictors |
+| 14.45-15.00 | BREAK                     |
+| 15.00-16.00 | 04 Interactions           |
+| 16.00-17.00 | Q&A                       |
+
+## Schedule: Day 2
+
+| time        | topic                   |
+| ----------- | ----------------------- |
+| 10.00-11.15 | 05 Numeric predictors   |
+| 11.15-11.30 | BREAK                   |
+| 11.30-12.30 | 06 Multilevel effects   |
+| 12.30-13.30 | LUNCH                   |
+| 13.30-14.45 | 07 Practice             |
+| 14.45-15.00 | BREAK                   |
+| 15.00-16.00 | 08 Sensitivity analysis |
+| 16.00-17.00 | Q&A                     |
+
 ## Statistical modelling
 
 ![From McElreath 2019](img/models.png)
